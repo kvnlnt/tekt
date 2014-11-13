@@ -1,0 +1,7 @@
+{% macro link(endpoint, text) %}
+{% if request.endpoint.endswith(endpoint) %}
+    <a href="{{ url_for(endpoint) }}" class="selected">{{text}}</a>
+{% else %}
+   <a href="{{ url_for(endpoint) }}">{{text}}</a>
+{% endif %}
+{% endmacro %}
