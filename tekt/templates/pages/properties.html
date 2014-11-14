@@ -6,5 +6,11 @@ Properties
 
 {% block body %}
 <h1>Properties</h1>
-{% include 'parts/properties_list.html' %}
+
+{% if view == 'list' %}
+    {% include 'parts/properties_list.html' %}
+{% elif view == 'read' %}
+    {% include 'parts/properties_read.html' %}
+{% endif %}
+
 {% endblock %}

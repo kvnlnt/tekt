@@ -2,7 +2,7 @@
 import os
 
 from flask import Flask
-from tekt.controller import main
+from tekt.pages import pages
 
 
 def create_app(object_name, env="prod"):
@@ -23,7 +23,7 @@ def create_app(object_name, env="prod"):
     app.config['ENV'] = env
 
     # register our blueprints
-    app.register_blueprint(main)
+    app.register_blueprint(pages)
 
     return app
 

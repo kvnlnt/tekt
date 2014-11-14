@@ -17,7 +17,7 @@ ARK.properties = (function(module){
      * @type {Object}
      */
     module.endpoint = {};
-    module.endpoint.get = { url: ARK.BACKEND + '/properties', type:'GET' };
+    module.endpoint.get = { url: '/properties', type:'GET' };
 
     /**
      * Get properties from backend api

@@ -1,1 +1,14 @@
-<div id="properties_list"></div>
+<div id="properties_list">
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Actions</th>
+        </tr>
+        {% for record in properties_list %}
+        <tr>
+            <td>{{ record.property }}</td>
+            <td>{{record.id}}<button>edit</button><button>delete</button></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
