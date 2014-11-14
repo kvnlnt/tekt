@@ -9,7 +9,8 @@ module.exports = {
     },
     app_files: {
         src: [
-            'tekt/static/scripts/scripts.js', 
+            'tekt/static/scripts/scripts.js',
+            'tekt/static/scripts/patterns/**/*.js',
             'tekt/static/scripts/pieces/**/*.js', 
             'tekt/static/scripts/parts/**/*.js', 
             'tekt/static/scripts/pages/**/*.js',
