@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 import os
 
-from flask.ext.script import Manager, Server
+from flask.ext.script import Manager
+from flask.ext.script import Server
 from tekt import create_app
 
 # default to dev config because no one should use this in

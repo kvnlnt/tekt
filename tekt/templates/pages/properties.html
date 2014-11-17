@@ -5,12 +5,17 @@ Properties
 {% endblock %}
 
 {% block body %}
-<h1>Properties</h1>
 
 {% if view == 'list' %}
-    {% include 'parts/properties_list.html' %}
+    {% include 'parts/properties/list.html' %}
+{% elif view == 'create' %}
+    {% include 'parts/properties/create.html' %}
 {% elif view == 'read' %}
-    {% include 'parts/properties_read.html' %}
+    {% include 'parts/properties/read.html' %}
+{% elif view == 'update' %}
+    {% include 'parts/properties/update.html' %}
+{% elif view == 'delete' %}
+    {% include 'parts/properties/delete.html' %}
 {% endif %}
 
 {% endblock %}
