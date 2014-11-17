@@ -16,7 +16,7 @@ ARK.loader = (function(module){
      * @memberOf module:loader
      */
     module.el = {};
-    module.el.resource = $('[load]');
+    module.el.resource = $('[ark-load]');
 
     /**
      * load part
@@ -26,7 +26,7 @@ ARK.loader = (function(module){
     module.load = function(index, el){
 
         var el = $(el);
-        var resource = el.attr('load');
+        var resource = el.attr('ark-load');
         el.load('/load/'+resource);
 
     };

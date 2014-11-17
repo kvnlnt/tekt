@@ -1,10 +1,10 @@
 {% extends "template.html" %}
 
 {% block title %}
-Properties
+Property
 {% endblock %}
 
 {% block body %}
-<h1>Properties</h1>
-<div ark-load="Properties.list"></div>
+<h1>Property</h1>
+<div ark-load="Properties.read({{id}})"></div>
 {% endblock %}

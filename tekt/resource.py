@@ -28,7 +28,10 @@ class Properties:
         endpoint = current_app.config['TEKTONIK'] + '/properties/' + id
         response = requests.get(endpoint).content
         payload = json.loads(response)
-        return payload
+        return {
+            'template': 'properties/parts/read.html',
+            'data': {'record': payload}
+        }
 
     @staticmethod
     def update(id, form):
@@ -42,3 +45,9 @@ class Properties:
         endpoint = current_app.config['TEKTONIK'] + '/properties/' + id
         response = requests.delete(endpoint).content
         return response
+
+# Register all resources
+Registry = {
+    'Properties.list': Properties.list,
+    'Properties.read': Properties.read
+}
