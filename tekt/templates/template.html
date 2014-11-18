@@ -33,6 +33,7 @@
             <script src="{{ url_for('static', filename='assets/scripts.min.js') }}"></script>
             {% if config.DEBUG %}<script src="//localhost:35729/livereload.js"></script>{% endif %}
         {% endblock %}
+        {% block page_scripts %}{% endblock %}
 
     </body>
 </html>
