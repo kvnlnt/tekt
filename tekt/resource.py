@@ -8,13 +8,16 @@ class Properties:
 
     @staticmethod
     def list():
+        payload = Properties.list_data()
+        template = 'properties/parts/list.html'
+        return {'template': template, 'data': {'records': payload}}
+
+    @staticmethod
+    def list_data():
         endpoint = current_app.config['TEKTONIK'] + '/properties'
         response = requests.get(endpoint).content
         payload = json.loads(response)
-        return {
-            'template': 'properties/parts/list.html',
-            'data': {'records': payload}
-        }
+        return payload
 
     @staticmethod
     def create(form):
@@ -43,11 +46,12 @@ class Properties:
     @staticmethod
     def delete(id):
         endpoint = current_app.config['TEKTONIK'] + '/properties/' + id
-        response = requests.delete(endpoint).content
-        return response
+        payload = requests.delete(endpoint).content
+        return payload
 
 # Register all resources
 Registry = {
     'Properties.list': Properties.list,
-    'Properties.read': Properties.read
+    'Properties.read': Properties.read,
+    'Properties.delete': Properties.delete
 }

@@ -1,27 +1,29 @@
 /**
-* Lists all properties
-* @module properties
+* Lists all Properties
+* @module Properties
 * @version 1.0
 */
 
 "use strict";
 
-ARK.properties = (function(module){
+ARK.Properties = (function(module){
 
-    /** @exports properties */
+    /** @exports Properties */
 
     /**
      * DOM elements
-     * @member ARK.menu.el
-     * @memberOf module:properties
+     * @member ARK.Properties.el
+     * @memberOf module:Properties
      */
     module.el = {};
-    module.el.form               = $(".properties_form");
-    module.el.form_submit        = $(".properties_form_submit");
+    module.el.property_delete    = $(".property_delete");
+    module.el.properties_list    = $(".properties_list");
+    module.el.form               = $(".Properties_form");
+    module.el.form_submit        = $(".Properties_form_submit");
 
     /**
-     * Render properties
-     * @function ARK.properties.render
+     * Render Properties
+     * @function ARK.Properties.render
      * @param  {[type]} data [description]
      * @return {[type]}      [description]
      */
@@ -39,26 +41,63 @@ ARK.properties = (function(module){
             async:false,
             data:data,
             success:function(data, status){
-                window.location.href = '/properties';
+                window.location.href = '/Properties';
                 return data; 
             },
         };
 
-        // get properties
+        // get Properties
         var response = $.ajax(ajax).responseJSON;
 
     };
 
     /**
+     * Delete a property
+     * @function ARK.Properties.delete
+     * @memberOf module:Properties
+     */
+    module.delete = function(e){
+
+        // get element
+        var el = $(e.target);
+
+        // get data id
+        var id = el.data('id');
+
+        // run ajax
+        ARK.Exec.run('Properties.delete('+id+')', module.delete_complete);
+
+    };
+
+    /**
+     * Delete a property result
+     * @function ARK.Properties.delete
+     * @memberOf module:Properties
+     */
+    module.delete_complete = function(response, status, xhr){
+
+        // reload any property lists
+        ARK.Loader.load(module.el.properties_list[0]);
+
+    };
+
+    module.loaded = function(){
+
+        alert('loaded');
+
+    };
+
+    /**
      * Initialize o
-     * @function ARK.menu.init
-     * @memberOf module:menu
+     * @function ARK.Properties.init
+     * @memberOf module:Properties
      */
     module.init = function(){
 
         // populate list
         // module.el.form_submit.on('click', module.save);
-
+        $("body").on('click', module.el.property_delete, module.delete);
+        
     };
 
     // boot file
@@ -67,4 +106,4 @@ ARK.properties = (function(module){
     // export
     return module;
 
-})(ARK.properties || {});
+})(ARK.Properties || {});

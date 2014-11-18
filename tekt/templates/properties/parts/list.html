@@ -1,3 +1,6 @@
+{% if records.message %}
+    {{ records.message }}
+{% else %}
 <table>
     <tr>
         <th>Property</th>
@@ -8,8 +11,9 @@
         <td><a href="{{ url_for('.properties_read', id=record.id) }}">{{ record.property }}</a></td>
         <td>
             <a href="{{ url_for('.properties_update', id=record.id) }}">edit</a>
-            <a href="{{ url_for('.properties_delete', id=record.id) }}">delete</a>
+            <a class="property_delete" data-id="{{record.id}}">delete</a>
         </td>
     </tr>
     {% endfor %}
 </table>
+{% endif %}

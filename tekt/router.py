@@ -11,6 +11,7 @@ from flask import request
 router = Blueprint('router', __name__, template_folder='templates')
 
 
+# Ajax Proxy
 @router.route('/load/<string:resource>(<string:args>)')
 def load_with_args(resource, args):
     """ loads resources """
@@ -23,6 +24,20 @@ def load(resource):
     """ loads resources """
     resource = Registry[resource]()
     return render_template(resource['template'], **resource['data'])
+
+
+@router.route('/exec/<string:resource>(<string:args>)')
+def execute_with_args(resource, args):
+    """ loads resources """
+    resource = Registry[resource](args)
+    return resource
+
+
+@router.route('/exec/<string:resource>')
+def execute(resource):
+    """ loads resources """
+    resource = Registry[resource]()
+    return resource
 
 
 @router.route('/')
@@ -60,17 +75,3 @@ def properties_update(id):
         )
     elif request.method == 'POST':
         return Properties.update(id, request.form)
-
-
-@router.route('/properties/<string:id>/delete', methods=['GET', 'POST'])
-def properties_delete(id):
-    """ delete a property """
-    if request.method == 'GET':
-        return render_template(
-            "pages/properties.html",
-            view='delete',
-            record=Properties.read(id)
-        )
-    elif request.method == 'POST':
-        id = request.form['id']
-        return Properties.delete(id)
