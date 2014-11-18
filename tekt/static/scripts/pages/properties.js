@@ -16,10 +16,10 @@ ARK.Properties = (function(module){
      * @memberOf module:Properties
      */
     module.el = {};
-    module.el.property_delete    = $(".property_delete");
-    module.el.properties_list    = $(".properties_list");
-    module.el.form               = $(".Properties_form");
-    module.el.form_submit        = $(".Properties_form_submit");
+    module.el.delete             = $(".property_delete");
+    module.el.list               = $(".properties_list");
+    module.el.create_form        = $(".properties_create_form");
+    module.el.create_form_submit = $(".properties_create_form_submit");
 
     /**
      * Render Properties
@@ -77,7 +77,7 @@ ARK.Properties = (function(module){
     module.delete_complete = function(response, status, xhr){
 
         // reload any property lists
-        ARK.Loader.load(module.el.properties_list[0]);
+        ARK.Loader.load(module.el.list, 'Properties.list');
 
     };
 

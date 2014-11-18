@@ -27,6 +27,11 @@ class Properties:
         return response
 
     @staticmethod
+    def create_form():
+        template = 'properties/parts/form.html'
+        return {'template': template, 'data':{}}
+
+    @staticmethod
     def read(id):
         endpoint = current_app.config['TEKTONIK'] + '/properties/' + id
         response = requests.get(endpoint).content
@@ -52,6 +57,7 @@ class Properties:
 # Register all resources
 Registry = {
     'Properties.list': Properties.list,
+    'Properties.create_form': Properties.create_form,
     'Properties.read': Properties.read,
     'Properties.delete': Properties.delete
 }
