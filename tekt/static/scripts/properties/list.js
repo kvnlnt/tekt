@@ -1,19 +1,25 @@
 ARK.Properties_list_item = Backbone.View.extend({
 
   tagName: 'li',
-  template: _.template($('#properties_list_record').html()),
+  template: '#properties_list_record',
   events: { 'click .delete': "delete" },
 
   delete:function(){
 
-    this.remove();
-    this.model.destroy({wait: true});
+    var prompt = ARK.Prompt('To delete this property, please type DELETE');
+    if(prompt == 'DELETE'){
+      this.remove();
+      this.model.destroy({wait: true});
+    } else {
+      ARK.Messenger('Deletion cancelled');
+    }
     
   },
 
   render: function() {
 
-    this.$el.html(this.template(this.model.toJSON()));
+    var template = ARK.Template(this);
+    this.$el.html(template);
     return this;
 
   }

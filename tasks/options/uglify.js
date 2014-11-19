@@ -5,11 +5,9 @@ module.exports = {
         },
         preserveComments: false,
         mangle: false,
+        sourceMap:true,
     },
     app_files: {
-        options: {
-            sourceMap:true,
-        },
         src: [
             'tekt/static/scripts/scripts.js',
             'tekt/static/scripts/patterns/*.js',

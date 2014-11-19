@@ -13,7 +13,9 @@ ARK.Autoload = (function(module) {
      * @function ARK.Autoload.view
      * @memberOf module:Autoload
      */
-    module.view = function(selector, view){
+    module.view = function(selector, view, makeSelectorEl){
+
+        var makeSelectorEl = makeSelectorEl || false;
 
         // on docment ready
         $(document).on('ready', function() {
@@ -26,7 +28,8 @@ ARK.Autoload = (function(module) {
 
                 // for each one, create and attach a view object
                 els.each(function(i, container) {
-                    var v = new view();
+                    var config = makeSelectorEl ? { el:selector } : {};
+                    var v = new view(config);
                     v.container = container;
                 });
             }
