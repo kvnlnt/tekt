@@ -1,8 +1,8 @@
-ARK.Properties_Model = Backbone.Model.extend();
+ARK.Property = Backbone.Model.extend();
 
-ARK.Properties_Collection = Backbone.Collection.extend({
+ARK.Properties = Backbone.Collection.extend({
     
     url: ARK.TEKTONIK + '/properties',
-    model:ARK.Properties_Model,
+    model:ARK.Property,
 
 });

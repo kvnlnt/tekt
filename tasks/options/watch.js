@@ -15,7 +15,7 @@ module.exports = {
     },
     app_scripts: {
         files: ['tekt/static/scripts/**/*.js'],
-        tasks: ['uglify:app_files', 'jasmine']
+        tasks: ['uglify:app_files']
     },
     vendor_scripts: {
         files: ['tekt/static/vendor/scripts/**/*.js'],

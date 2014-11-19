@@ -11,7 +11,7 @@ controller = Blueprint('router', __name__, template_folder='templates')
 @controller.route('/')
 def dashboard():
     """ home page """
-    return render_template("pages/properties.html")
+    return render_template("properties/pages/list.html")
 
 
 @controller.route('/properties')
