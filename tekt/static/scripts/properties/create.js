@@ -1,13 +1,24 @@
 ARK.Properties_create = Backbone.View.extend({
 
-  events: { 'click .save': "save" },
+    events: {
+        'click .save': "save"
+    },
 
-  save: function(e){
+    initialize: function() {
 
-    e.preventDefault();
-    ARK.Log(this);
+        this.collection = new ARK.Properties();
 
-  },
+    },
+
+    save: function(e) {
+
+        e.preventDefault();
+        var data = this.$el.find('form').serializeJSON();
+        var model = new ARK.Property(data);
+        
+        console.log(data, model);
+
+    },
 
 });
 
