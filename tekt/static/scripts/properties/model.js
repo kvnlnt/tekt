@@ -1,6 +1,7 @@
 ARK.Property = Backbone.Model.extend({
-    id:null,
-    property:""
+
+    urlRoot: ARK.TEKTONIK + '/properties',
+    
 });
 
 ARK.Properties = Backbone.Collection.extend({

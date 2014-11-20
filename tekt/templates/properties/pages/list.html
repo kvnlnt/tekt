@@ -4,8 +4,15 @@
 Properties
 {% endblock %}
 
+{% block page_scripts %}
+<script>
+    var PAGE = new ARK.PAGE.properties_list();
+</script>
+{% endblock %}
+
 {% block body %}
 <h1>Properties</h1>
 {% include 'properties/parts/create.html' %}
 {% include 'properties/parts/list.html' %}
 {% endblock %}
+

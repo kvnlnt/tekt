@@ -9,6 +9,9 @@ module.exports = function(grunt) {
     // run both serverside and clientside tests
     grunt.registerTask('test', ['shell:test', 'jasmine']);
 
+    // compile assets
+    grunt.registerTask('assets', ['uglify', 'sass']);
+
     // run jsdocs
     grunt.registerTask('doc', ['shell:sphinx', 'jsdoc', 'connect:docs']);
 

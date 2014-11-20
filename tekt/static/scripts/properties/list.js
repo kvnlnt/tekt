@@ -1,7 +1,7 @@
 ARK.Properties_list_item = Backbone.View.extend({
 
   tagName: 'li',
-  template: '#properties_list_record',
+  jst_template: 'properties_list_item',
   events: { 'click .delete': "delete" },
 
   delete:function(){
@@ -13,13 +13,16 @@ ARK.Properties_list_item = Backbone.View.extend({
     } else {
       ARK.Messenger('Deletion cancelled');
     }
+
+    return this;
     
   },
 
   render: function() {
 
-    var template = ARK.Template(this);
+    var template = ARK.Template(this.jst_template, this.model.toJSON());
     this.$el.html(template);
+
     return this;
 
   }
@@ -28,13 +31,11 @@ ARK.Properties_list_item = Backbone.View.extend({
 
 ARK.Properties_list = Backbone.View.extend({
 
-  tagName: 'ul',
-  className: 'list',
+  el:'.properties_list',
   items:{},
 
   initialize: function() {
 
-    this.collection = new ARK.Properties();
     this.collection.bind('reset', this.addAll, this);
     this.collection.bind('add', this.addOne, this);
     this.collection.fetch({ reset: true });
@@ -67,15 +68,11 @@ ARK.Properties_list = Backbone.View.extend({
 
   render: function() {
 
-    // render all items
-    // _.each(this.items, this.renderItem, this);
-    
     // fill container
     $(this.container).html(this.el);
+
+    return this;
 
   }
 
 });
-
-// autoload view
-ARK.Autoload.view('.properties_list', ARK.Properties_list);

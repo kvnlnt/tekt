@@ -3,11 +3,11 @@
 * @function ARK.Template
 * @version 1.0
 */
-ARK.Template = function(view) {
+ARK.Template = function(source, data) {
 
-    var source   = $(view.template).html();
-    var template = _.template(source);
-    var compiled = template(view.model.toJSON());
+    var jst      = ARK.JST[source];
+    var template = _.template(jst);
+    var compiled = template(data);
 
     return compiled;
 
