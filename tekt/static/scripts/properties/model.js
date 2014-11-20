@@ -1,4 +1,7 @@
-ARK.Property = Backbone.Model.extend();
+ARK.Property = Backbone.Model.extend({
+    id:null,
+    property:""
+});
 
 ARK.Properties = Backbone.Collection.extend({
     

@@ -6,8 +6,8 @@ ARK.Properties_list_item = Backbone.View.extend({
 
   delete:function(){
 
-    var prompt = ARK.Prompt('To delete this property, please type DELETE');
-    if(prompt == 'DELETE'){
+    // var prompt = ARK.Prompt('To delete this property, please type DELETE');
+    if(true){
       this.remove();
       this.model.destroy({wait: true});
     } else {
@@ -38,6 +38,7 @@ ARK.Properties_list = Backbone.View.extend({
     this.collection.bind('reset', this.addAll, this);
     this.collection.bind('add', this.addOne, this);
     this.collection.fetch({ reset: true });
+    ARK.pubsub.on('properties_list:addOne', this.addOne, this);
 
   },
 
@@ -45,12 +46,14 @@ ARK.Properties_list = Backbone.View.extend({
 
     var config = { model: model };
     var item   = new ARK.Properties_list_item(config);
+    this.renderItem(item);
     this.items[model.cid] = item;
 
   },
 
   addAll: function() {
 
+    this.$el.empty();
     _.each(this.collection.models, this.addOne, this);
     this.render();
 
@@ -65,7 +68,7 @@ ARK.Properties_list = Backbone.View.extend({
   render: function() {
 
     // render all items
-    _.each(this.items, this.renderItem, this);
+    // _.each(this.items, this.renderItem, this);
     
     // fill container
     $(this.container).html(this.el);

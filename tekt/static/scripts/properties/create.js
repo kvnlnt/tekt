@@ -6,6 +6,7 @@ ARK.Properties_create = Backbone.View.extend({
 
     initialize: function() {
 
+        this.createForm = this.$el.find('form');
         this.collection = new ARK.Properties();
 
     },
@@ -13,10 +14,14 @@ ARK.Properties_create = Backbone.View.extend({
     save: function(e) {
 
         e.preventDefault();
-        var data = this.$el.find('form').serializeJSON();
+        var data = this.createForm.serializeJSON();
         var model = new ARK.Property(data);
-        
-        console.log(data, model);
+        this.collection.create(model, {
+            success:function(){
+                ARK.pubsub.trigger('properties_list:addOne', model);
+            }
+        });
+        this.createForm.trigger('reset');
 
     },
 
