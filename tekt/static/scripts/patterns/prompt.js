@@ -1,5 +1,5 @@
 /**
-* Proxy to confirm prompts
+* Prompt user for input
 * @function ARK.Prompt
 * @version 1.0
 */

@@ -1,3 +1,7 @@
+/** 
+ * Used to configure the Properties list page
+ * @module ARK.Properties_page_list
+ */
 ARK.Properties_page_list = function(){
 
     var listCollection = new ARK.Properties();

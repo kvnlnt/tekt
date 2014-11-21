@@ -1,3 +1,7 @@
+/** 
+ * Properties list view item
+ * @module ARK.Properties_part_list_item
+ */
 ARK.Properties_part_list_item = Backbone.View.extend({
 
   tagName: 'li',
@@ -29,6 +33,10 @@ ARK.Properties_part_list_item = Backbone.View.extend({
 
 });
 
+/** 
+ * Properties list view
+ * @module ARK.Properties_part_list
+ */
 ARK.Properties_part_list = Backbone.View.extend({
 
   el:'.properties_part_list',

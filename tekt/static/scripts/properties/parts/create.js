@@ -1,3 +1,7 @@
+/** 
+ * Add Property form
+ * @module ARK.Properties_part_create
+ */
 ARK.Properties_part_create = Backbone.View.extend({
 
     el:'.properties_part_create',

@@ -1,6 +1,6 @@
 /**
-* Proxy to confirm prompts
-* @function ARK.Prompt
+* Log action
+* @function ARK.Log
 * @version 1.0
 */
 ARK.Log = function() {

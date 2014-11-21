@@ -1,6 +1,6 @@
 /**
-* Publish/subscribe bus
-* @module Pubsub
+* pubsub object
+* @function ARK.pubsub
 * @version 1.0
 */
 

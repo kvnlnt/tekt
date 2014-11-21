@@ -1,5 +1,5 @@
 /**
-* Proxy to underscore templates
+* Load and compile underscore template
 * @function ARK.Template
 * @version 1.0
 */

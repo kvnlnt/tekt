@@ -1,5 +1,5 @@
 /**
-* Proxy to confirm prompts
+* Communicate message to user
 * @function ARK.Messenger
 * @version 1.0
 */

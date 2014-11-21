@@ -1,18 +1,11 @@
 /**
-* All menu functionality is contained within this module.
-* @module Autoload
+* Autoload a view
+* @function ARK.Autoload
 * @version 1.0
 */
 
 ARK.Autoload = (function(module) {
 
-    /** @exports menu */
-
-    /**
-     * Auto load view
-     * @function ARK.Autoload.view
-     * @memberOf module:Autoload
-     */
     module.view = function(selector, view, makeSelectorEl){
 
         var makeSelectorEl = makeSelectorEl || false;
