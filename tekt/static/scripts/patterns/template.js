@@ -5,10 +5,8 @@
 */
 ARK.Template = function(source, data) {
 
-    var jst      = ARK.JST[source];
-    var template = _.template(jst);
+    var template = _.template(source);
     var compiled = template(data);
 
     return compiled;
-
-};
+}

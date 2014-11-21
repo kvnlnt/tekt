@@ -1,7 +1,7 @@
-ARK.Properties_list_item = Backbone.View.extend({
+ARK.Properties_part_list_item = Backbone.View.extend({
 
   tagName: 'li',
-  jst_template: 'properties_list_item',
+  className: 'properties_part_list_item',
   events: { 'click .delete': "delete" },
 
   delete:function(){
@@ -20,7 +20,7 @@ ARK.Properties_list_item = Backbone.View.extend({
 
   render: function() {
 
-    var template = ARK.Template(this.jst_template, this.model.toJSON());
+    var template = ARK.Template(ARK.Properties_piece_list_item, this.model.toJSON());
     this.$el.html(template);
 
     return this;
@@ -29,9 +29,9 @@ ARK.Properties_list_item = Backbone.View.extend({
 
 });
 
-ARK.Properties_list = Backbone.View.extend({
+ARK.Properties_part_list = Backbone.View.extend({
 
-  el:'.properties_list',
+  el:'.properties_part_list',
   items:{},
 
   initialize: function() {
@@ -39,14 +39,13 @@ ARK.Properties_list = Backbone.View.extend({
     this.collection.bind('reset', this.addAll, this);
     this.collection.bind('add', this.addOne, this);
     this.collection.fetch({ reset: true });
-    ARK.pubsub.on('properties_list:addOne', this.addOne, this);
 
   },
 
   addOne: function(model) {
 
     var config = { model: model };
-    var item   = new ARK.Properties_list_item(config);
+    var item   = new ARK.Properties_part_list_item(config);
     this.renderItem(item);
     this.items[model.cid] = item;
 

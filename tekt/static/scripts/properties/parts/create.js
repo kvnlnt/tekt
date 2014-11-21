@@ -1,6 +1,6 @@
-ARK.Properties_create = Backbone.View.extend({
+ARK.Properties_part_create = Backbone.View.extend({
 
-    el:'.properties_create',
+    el:'.properties_part_create',
 
     events: {
 
