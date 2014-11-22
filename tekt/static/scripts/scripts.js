@@ -9,7 +9,7 @@ var ARK = {};
  * @type {String}
  * @memberof ARK
  */
-ARK.TEKTONIK = 'http://127.0.0.1:5001';
+ARK.TEKTONIK = 'http://127.0.0.1:5001/v1_0';
 
 // GLOBAL JSDOCS MARKUP
 /**
