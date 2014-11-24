@@ -15,6 +15,12 @@ def dashboard():
 
 
 @controller.route('/properties')
-def properties():
+def list_properties():
     """ get list of properties """
-    return render_template("pages/properties.html")
+    return render_template("properties/pages/list.html")
+
+
+@controller.route('/properties/<int:id>')
+def edit_property(id):
+    """ edit a property """
+    return render_template("properties/pages/edit.html")

@@ -53,8 +53,8 @@ ARK.Properties_part_list = Backbone.View.extend({
 
   error:function(model, xhr){
 
-    var message = xhr.responseJSON.error;
-    console.log(message);
+    var message =  xhr.responseJSON === void 0 ? 'There was an error' : xhr.responseJSON.error;
+    ARK.Messenger(message);
 
   },
 

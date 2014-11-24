@@ -28,8 +28,8 @@ ARK.Properties_part_create = Backbone.View.extend({
         var data    = this.createForm.serializeJSON();
         var model   = new ARK.Property();
         var success = function(model, resp){ that.collection.add(model); };
-        var error   = function(model, xhr){ 
-            console.log(xhr); 
+        var error   = function(model, xhr, options){ 
+            ARK.Messenger(xhr.responseJSON.result);
         };
 
         // save model and update collection
