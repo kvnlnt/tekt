@@ -47,7 +47,6 @@ ARK.Properties_part_list = Backbone.View.extend({
     this.collection.bind('reset', this.addAll, this);
     this.collection.bind('add', this.addOne, this);
     this.collection.bind('error', this.error, this);
-    this.collection.fetch({ reset: true });
 
   },
 

@@ -6,12 +6,12 @@ Edit Property
 
 {% block page_scripts %}
 <script>
-    var PAGE = new ARK.Properties_page_edit();
+    var PAGE = new ARK.Properties_page_update({ id: 2});
 </script>
 {% endblock %}
 
 {% block body %}
 <h1>Edit Property</h1>
-edit
+{% include 'properties/parts/update.html' %}
 {% endblock %}
 

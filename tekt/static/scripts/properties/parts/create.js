@@ -14,7 +14,7 @@ ARK.Properties_part_create = Backbone.View.extend({
 
     initialize: function() {
 
-        this.createForm = this.$el.find('form');
+        this.form = this.$el.find('form');
 
     },
 
@@ -25,9 +25,12 @@ ARK.Properties_part_create = Backbone.View.extend({
 
         // prep
         var that    = this;
-        var data    = this.createForm.serializeJSON();
+        var data    = this.form.serializeJSON();
         var model   = new ARK.Property();
-        var success = function(model, resp){ that.collection.add(model); };
+        var success = function(model, resp){ 
+            that.collection.add(model);
+            PAGE.navigate('list', true);
+        };
         var error   = function(model, xhr, options){ 
             ARK.Messenger(xhr.responseJSON.result);
         };
@@ -36,7 +39,7 @@ ARK.Properties_part_create = Backbone.View.extend({
         model.save(data, { wait:true, success:success, error:error });
         
         // reset form
-        this.createForm.trigger('reset');
+        this.form.trigger('reset');
 
     },
 

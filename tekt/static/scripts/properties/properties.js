@@ -1,7 +1,13 @@
 ARK.Property = Backbone.Model.extend({
 
     urlRoot: ARK.TEKTONIK + '/properties',
-    parse: function(response) { return response; }
+    parse: function(response) { 
+
+        // is this model part of a collection?
+        var hasResult = void 0 !== response.result;
+        return hasResult ? response.result : response;
+
+    }
 
 });
 
