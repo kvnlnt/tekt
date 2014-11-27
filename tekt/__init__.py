@@ -2,6 +2,7 @@
 import os
 
 from flask import Flask
+from tekt.models import db
 from tekt.controller import controller
 
 
@@ -18,9 +19,11 @@ def create_app(object_name, env="prod"):
     """
 
     app = Flask(__name__)
-
     app.config.from_object(object_name)
     app.config['ENV'] = env
+
+    #init SQLAlchemy
+    db.init_app(app)
 
     # register our blueprints
     app.register_blueprint(controller)

@@ -1,0 +1,32 @@
+{% extends "template.html" %}
+
+{% block title %}
+Properties
+{% endblock %}
+
+{% block body %}
+<h1>Properties</h1>
+
+<form method="POST" action="{{ url_for('.list_properties') }}" autocomplete="off" onload="this.reset();">
+    {{ form.csrf_token }}
+    {{ form.form }}
+    
+    {% if form.property.errors %}
+        <ul class="errors">{% for error in form.property.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+    {% endif %}
+    {{ form.property.label }} {{ form.property(size=20, placeholder="my.website.com") }}
+    <input type="submit" value="Go">
+</form>
+
+<ul id="properties">
+
+    {% for property in properties %}
+    <li>
+        <a href="{{ url_for('.read_update_property', id=property.id) }}">{{ property.property }}</a>
+        <a href="{{ url_for('.delete_property', id=property.id) }}">Delete</a>
+    </li>
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

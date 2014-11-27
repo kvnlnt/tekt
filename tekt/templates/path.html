@@ -1,0 +1,42 @@
+{% extends "template.html" %}
+
+{% block title %}
+Path
+{% endblock %}
+
+{% block body %}
+<h1>Path</h1>
+
+<ol>
+<li><a href="{{ url_for('.read_update_property', id=path.property.id) }}">{{ path.property.property }}</a></li>
+<li><a href="{{ url_for('.read_path', id=path.id) }}">{{ path.path }}</a></li>
+</ol>
+
+<h2>Pages</h2>
+
+<form method="POST" action="{{ url_for('.read_path', id=path.id) }}">
+    {{ form.csrf_token }}
+    {{ form.path }}
+    <ol>
+        <li>
+            {% if form.page.errors %}
+            <ul class="errors">{% for error in form.page.errors %}
+            <li>{{ error }}</li>{% endfor %}
+            </ul>{% endif %} 
+            {{ form.page.label }} {{ form.page }}
+        </li>
+    </ol>
+    <input type="submit" value="Go">
+</form>
+
+<ul id="path_pages">
+
+    {% for path_page in path_pages %}
+    <li>
+        {{ path_page.page.page }}
+    </li>
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

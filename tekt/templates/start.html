@@ -1,0 +1,21 @@
+{% extends "template.frameless.html" %}
+
+{% block title %}
+Start
+{% endblock %}
+
+{% block body %}
+<h1>Start</h1>
+
+<form method="POST" action="{{ url_for('.start') }}">
+    {{ form.csrf_token }}
+
+    {% if form.property.errors %}
+        <ul class="errors">{% for error in form.property.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+    {% endif %}
+    {{ form.property.label }} {{ form.property(size=20, placeholder="my.website.com") }}
+    <input type="submit" value="Go">
+</form>
+
+
+{% endblock %}

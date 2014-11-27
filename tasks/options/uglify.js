@@ -12,6 +12,7 @@ module.exports = {
             'tekt/static/scripts/scripts.js',
             'tekt/static/scripts/patterns/*.js',
             'tekt/static/scripts/**/*.js',
+            'tekt/static/scripts/router.js',
         ],
         dest: 'tekt/static/assets/scripts.min.js',
     },
