@@ -16,7 +16,6 @@ from tekt.models import PropertyModel
 from tekt.models import PathModel
 from tekt.models import PathPageModel
 from tekt.models import PageModel
-from sqlalchemy.exc import IntegrityError
 
 controller = Blueprint('controller', __name__, template_folder='templates')
 
@@ -57,12 +56,7 @@ def list_properties():
     if form.validate_on_submit():
         record = PropertyModel(property=form.property.data)
         db.session.add(record)
-        try:
-            db.session.commit()
-            form.property.data = ''
-        except IntegrityError:
-            db.session.rollback()
-            form.property.errors.append('Property must be unique')
+        db.session.commit()
 
     properties = PropertyModel.query.all()
     return render_template("properties.html", form=form, properties=properties)
@@ -103,10 +97,11 @@ def list_paths():
     """ properties list """
 
     form = PathForm()
-    form.property.choices = [(p.id, p.property)
-                             for p in PropertyModel.query.all()]
+    form.property_id.choices = [(p.id, p.property)
+                                for p in PropertyModel.query.all()]
     if form.validate_on_submit():
-        record = PathModel(path=form.path.data, property_id=form.property.data)
+        record = PathModel(
+            path=form.path.data, property_id=form.property_id.data)
         db.session.add(record)
         db.session.commit()
 

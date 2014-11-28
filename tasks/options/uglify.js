@@ -17,11 +17,7 @@ module.exports = {
         dest: 'tekt/static/assets/scripts.min.js',
     },
     vendor_files: {
-        src: [
-            'tekt/static/vendor/scripts/jquery/**/*.js',
-            'tekt/static/vendor/scripts/underscore/**/*.js',
-            'tekt/static/vendor/scripts/backbone/**/*.js',
-        ],
+        src: 'tekt/static/vendor/scripts/**/*.js',
         dest: 'tekt/static/assets/vendor.min.js'
     },
 }

@@ -35,7 +35,7 @@ class PathModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     path = db.Column(db.String(100))
     property_id = db.Column(db.Integer, db.ForeignKey('properties.id'))
-    page = db.relationship("PathPageModel", backref="path", cascade='delete')
+    pages = db.relationship("PathPageModel", backref="path", cascade='delete')
 
 
 class PageModel(db.Model):
