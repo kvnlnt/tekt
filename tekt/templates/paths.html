@@ -1,50 +1,8 @@
-{% extends "template.html" %} {% block title %} Paths {% endblock %} {% block body %}
+{% extends "template.html" %} 
+{% block title %} Paths {% endblock %} {% block body %}
 <h1>Paths</h1>
 
-{% if form.errors %}
-    <ul class="errors">
-        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
-            {% for error in field_errors %}
-                <li>{{ error }}</li>
-            {% endfor %}
-        {% endfor %}
-    </ul>
-{% endif %}
-
-<form method="POST" action="{{ url_for('.list_paths') }}">
-    {{ form.csrf_token }}
-
-    <ol>
-        <li>
-            {{ form.property_id.label }}
-            {{ form.property_id }}
-        </li>
-        <li>
-            {{ form.path.label }} 
-            {{ form.path(size=20, placeholder="/aboutus") }}
-        </li>
-        <li>
-            <input type="submit" value="save">
-        </li>
-    </ol>
-
-</form>
-
-<table id="paths">
-
-    <tr>
-        <th>Path</th>
-        <th>Property</th>
-        <th>Actions</th>
-    </tr>
-    {% for path in paths %}
-    <tr>
-        <td><a href="{{ url_for('.read_path', id=path.id) }}">{{ path.path }}</a></td>
-        <td><a href="{{ url_for('.read_update_property', id=path.property.id) }}">{{ path.property.property }}</a></td>
-        <td><a href="{{ url_for('.delete_path', id=path.id) }}">Delete</a></td>
-    </tr>
-    {% endfor %}
-
-</table>
+{{ path_form(form) }}
+{{ path_list(paths) }}
 
 {% endblock %}

@@ -1,0 +1,62 @@
+{% macro path_list(paths, showProperty=True) -%}
+    <table id="paths">
+
+        <tr>
+            <th>Path</th>
+            {% if showProperty %}<th>Property</th>{% endif %}
+            <th>Pages</th>
+            <th>Actions</th>
+        </tr>
+        {% for path in paths %}
+        <tr>
+            <td><a href="{{ url_for('.read_path', id=path.id) }}">{{ path.path }}</a></td>
+            
+            {% if showProperty %}
+
+            <td><a href="{{ url_for('.read_update_property', id=path.property.id) }}">{{ path.property.property }}</a></td>
+            {% endif %}
+            
+            <td>{{ path.pages | length }}</td>
+            <td><a href="{{ url_for('.delete_path', id=path.id) }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+{%- endmacro %}
+
+{% macro path_form(form, showProperty=True) -%}
+
+    {% if form.errors %}
+        <ul class="errors">
+            {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+                {% for error in field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="POST">
+        {{ form.csrf_token }}
+        {{ form.form }}
+        {{ form.property_id if showProperty == False }}
+
+        <ol>
+            {% if showProperty %}
+            <li>
+                {{ form.property_id.label }}
+                {{ form.property_id }}
+            </li>
+            {% endif %}
+            <li>
+                {{ form.path.label }} 
+                {{ form.path(size=20, placeholder="/aboutus") }}
+            </li>
+            <li>
+                <input type="submit" value="save">
+            </li>
+        </ol>
+
+    </form>
+
+{%- endmacro %}

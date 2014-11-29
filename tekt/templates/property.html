@@ -9,30 +9,9 @@ Property
 
 {{ property.property }}
 
-
 <h2>Paths</h2>
 
-<form method="POST" action="{{ url_for('.read_update_property', id=property.id) }}">
-    {{ property_path_form.csrf_token }}
-    {{ property_path_form.form }}
-    {{ property_path_form.property }}
-
-    {% if property_path_form.path.errors %}
-        <ul class="errors">{% for error in property_path_form.path.errors %}<li>{{ error }}</li>{% endfor %}</ul>
-    {% endif %}
-    {{ property_path_form.path.label }} {{ property_path_form.path(size=20, placeholder="/aboutus") }}
-    <input type="submit" value="Go">
-</form>
-
-<ul id="paths">
-
-    {% for path in property.paths %}
-    <li>
-        <a href="{{ url_for('.read_path', id=path.id) }}">{{ path.path }}</a>
-        <a href="{{ url_for('.delete_path', id=path.id) }}">Delete</a>
-    </li>
-    {% endfor %}
-
-</ul>
+{{ path_form(form, showProperty=False) }}
+{{ path_list(property.paths, showProperty=False) }}
 
 {% endblock %}

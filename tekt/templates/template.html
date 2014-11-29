@@ -21,6 +21,12 @@
 
     <body>
         
+        {% from "macros/paths.html" import path_list %}
+        {% from "macros/paths.html" import path_form %}
+        {% from "macros/properties.html" import property_form %}
+        {% from "macros/properties.html" import property_list %}
+
+        {% include 'menu_utility.html' %}
         {% include 'menu.html' %}
 
         <div id="body">

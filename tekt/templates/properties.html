@@ -5,49 +5,9 @@ Properties
 {% endblock %}
 
 {% block body %}
+
 <h1>Properties</h1>
-
-{% if form.errors %}
-    <ul class="errors">
-        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
-            {% for error in field_errors %}
-                <li>{{ error }}</li>
-            {% endfor %}
-        {% endfor %}
-    </ul>
-{% endif %}
-
-<form method="POST" action="{{ url_for('.list_properties') }}" autocomplete="off" onload="this.reset();">
-    {{ form.csrf_token }}
-    {{ form.form }}
-
-    <ol>
-        <li>
-            {{ form.property.label }} 
-            {{ form.property(size=20, placeholder="my.website.com") }}
-        </li>
-        <li>
-            <input type="submit" value="save">
-        </li>
-    </ol>
-    
-</form>
-
-<table id="properties">
-
-    <tr>
-        <th>Property</th>
-        <th>Paths</th>
-        <th>Actions</th>
-    </tr>
-    {% for property in properties %}
-    <tr>
-        <td><a href="{{ url_for('.read_update_property', id=property.id) }}">{{ property.property }}</a></td>
-        <td>{{ property.paths | length }}</td>
-        <td><a href="{{ url_for('.delete_property', id=property.id) }}">Delete</a></td>
-    </tr>
-    {% endfor %}
-
-</table>
+{{ property_form(form) }}
+{{ property_list(properties) }}
 
 {% endblock %}

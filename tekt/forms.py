@@ -18,13 +18,8 @@ class PropertyForm(Form):
         ])
 
 
-class PropertyPathForm(Form):
-    form = HiddenField('form', default='PropertyPathForm')
-    path = StringField('path', validators=[Required()])
-    property = HiddenField(u'Property')
-
-
 class PathForm(Form):
+
     form = HiddenField('form', default='PathForm')
     path = StringField(
         'path',
@@ -33,6 +28,18 @@ class PathForm(Form):
             Unique(PathModel, ['path', 'property_id'])
         ])
     property_id = SelectField(u'Property', coerce=int)
+
+
+class PathFormForProperty(Form):
+
+    form = HiddenField('form', default='PathForm')
+    path = StringField(
+        'path',
+        validators=[
+            Required(),
+            Unique(PathModel, ['path', 'property_id'])
+        ])
+    property_id = HiddenField(u'Property')
 
 
 class PathPageForm(Form):

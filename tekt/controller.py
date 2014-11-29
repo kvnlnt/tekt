@@ -8,8 +8,8 @@ from flask import url_for
 from flask import request
 from tekt.models import db
 from tekt.forms import PropertyForm
-from tekt.forms import PropertyPathForm
 from tekt.forms import PathForm
+from tekt.forms import PathFormForProperty
 from tekt.forms import PageForm
 from tekt.forms import PathPageForm
 from tekt.models import PropertyModel
@@ -66,20 +66,21 @@ def list_properties():
 def read_update_property(id):
     """ Show a property """
 
-    property_path_form = PropertyPathForm()
-    if property_path_form.validate_on_submit():
+    form = PathFormForProperty()
+    
+    if form.validate_on_submit():
         record = PathModel(
-            path=property_path_form.path.data,
-            property_id=property_path_form.property.data)
+            path=form.path.data,
+            property_id=form.property_id.data)
         db.session.add(record)
         db.session.commit()
 
     property = PropertyModel.query.get(id)
-    property_path_form.property.data = property.id
+    form.property_id.data = property.id
 
     return render_template("property.html",
                            property=property,
-                           property_path_form=property_path_form)
+                           form=form)
 
 
 @controller.route('/properties/<int:id>/delete', methods=['GET'])
