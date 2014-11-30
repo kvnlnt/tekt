@@ -29,7 +29,7 @@ ARK.Properties_part_create = Backbone.View.extend({
         var model   = new ARK.Property();
         var success = function(model, resp){ 
             that.collection.add(model);
-            PAGE.navigate('list', true);
+            ARK.PAGE.navigate('list', true);
         };
         var error   = function(model, xhr, options){ 
             ARK.Messenger(xhr.responseJSON.result);
