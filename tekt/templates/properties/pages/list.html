@@ -1,0 +1,18 @@
+{% extends "template.html" %}
+
+{% block title %}
+Properties
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+    ARK.PAGE = new ARK.Properties_page_list;
+</script>
+{% endblock %}
+
+{% block body %}
+<h1>Properties</h1>
+{% include 'properties/parts/create.html' %}
+{% include 'properties/parts/list.html' %}
+{% endblock %}
+
