@@ -11,7 +11,7 @@
     <tr>
         <td><a href="{{ url_for('.read_update_property', id=property.id) }}">{{ property.property }}</a>
         </td>
-        <td>{{ property.paths | length }}</td>
+        <td>{{ property.paths }}</td>
         <td><a href="{{ url_for('.delete_property', id=property.id) }}">Delete</a>
         </td>
     </tr>
@@ -31,7 +31,7 @@
 </ul>
 {% endif %}
 
-<form method="POST">
+<form method="POST" action="{{ url_for('.create_property') }}">
     {{ form.csrf_token }} {{ form.form }}
 
     <ol>

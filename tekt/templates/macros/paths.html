@@ -36,7 +36,7 @@
         </ul>
     {% endif %}
 
-    <form method="POST">
+    <form method="POST" action="{{ url_for('.create_property') }}">
         {{ form.csrf_token }}
         {{ form.form }}
         {{ form.property_id if showProperty == False }}

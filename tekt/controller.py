@@ -5,9 +5,8 @@ from flask import Blueprint
 from flask import render_template
 from flask import redirect
 from flask import url_for
-from flask import request
 from tekt.models import db
-from tekt.forms import PropertyForm
+from tekt.queries import PropertyQuery
 from tekt.forms import PathForm
 from tekt.forms import PathFormForProperty
 from tekt.forms import PageForm
@@ -27,39 +26,12 @@ def dashboard():
     return render_template("dashboard.html")
 
 
-@controller.before_request
-def before_request():
-    count_properties = PropertyModel.query.count()
-    if count_properties == 0 and request.endpoint != 'controller.start':
-        return redirect(url_for('.start'))
-
-
-@controller.route('/start', methods=['GET', 'POST'])
-def start():
-    """ Start building your site """
-
-    form = PropertyForm()
-    if form.validate_on_submit():
-        record = PropertyModel(property=form.property.data)
-        db.session.add(record)
-        db.session.commit()
-        return redirect(url_for('.list_properties'))
-
-    return render_template("start.html", form=form)
-
-
 @controller.route('/properties', methods=['GET', 'POST'])
 def list_properties():
     """ properties list """
 
-    form = PropertyForm()
-    if form.validate_on_submit():
-        record = PropertyModel(property=form.property.data)
-        db.session.add(record)
-        db.session.commit()
-
-    properties = PropertyModel.query.all()
-    return render_template("properties.html", form=form, properties=properties)
+    properties = db.engine.execute(PropertyQuery.list())
+    return render_template("properties.html", properties=properties)
 
 
 @controller.route('/properties/<int:id>', methods=['GET', 'POST'])
@@ -67,7 +39,6 @@ def read_update_property(id):
     """ Show a property """
 
     form = PathFormForProperty()
-    
     if form.validate_on_submit():
         record = PathModel(
             path=form.path.data,
@@ -87,9 +58,7 @@ def read_update_property(id):
 def delete_property(id):
     """ Delete a property """
 
-    property = PropertyModel.query.get(id)
-    db.session.delete(property)
-    db.session.commit()
+    db.engine.executemany(PropertyQuery.delete(), id=id)
     return redirect(url_for('.list_properties'))
 
 

@@ -35,7 +35,6 @@
 
 //         ARK.messenger(response);
 //         this.currentForm.reset();
-//         window.location.reload();
 
 //     };
 
@@ -62,8 +61,8 @@
 
 //     module.init = function(){
 
-//         DOM.forms = $('form');
-//         _.each($('form'), function(v, k){ module.register_form(DOM.forms[k]); });
+//         DOM.forms = _.map($('form'), function(v, k){ return v; });
+//         _.each(DOM.forms, module.register_form);
 
 //     };
 
