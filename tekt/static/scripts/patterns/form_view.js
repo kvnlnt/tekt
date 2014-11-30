@@ -1,13 +1,12 @@
 ARK.FormView = Backbone.View.extend({
 
-    initialize: function() {
+    save_error: function(model, xhr, options){
 
-        this.form = this.$el.find('form');
-        this.errors = this.$el.find('.errors');
+        options.context.resetErrors(xhr.responseJSON.errors);
 
     },
 
-    reset: function(){
+    resetForm: function(){
 
         this.form.trigger('reset');
         this.errors.empty();
@@ -15,7 +14,7 @@ ARK.FormView = Backbone.View.extend({
 
     },
 
-    renderErrors:function(errors){
+    resetErrors:function(errors){
 
         var that = this;
 
@@ -27,13 +26,20 @@ ARK.FormView = Backbone.View.extend({
 
         // now render all errors
         _.each(errors, function(error, key){
+
+            // get field
             var field = that.$el.find('[name="'+key+'"]');
+
+            // add error class
             field.addClass('error');
+
+            // render each error
             _.each(error, function(msg){
                 that.errors.append('<li>'+msg+'</li>');
             });
+            
         });
 
-    }
+    },
 
 });

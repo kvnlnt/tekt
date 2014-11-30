@@ -6,7 +6,7 @@
 ARK.Properties_page_list = Backbone.Router.extend({
 
   routes: {
-    "": "list",    // #list page
+    "": "list",
   },
 
   initialize: function(){
