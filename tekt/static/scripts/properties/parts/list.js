@@ -10,8 +10,8 @@ ARK.Properties_part_list_item = Backbone.View.extend({
 
   delete:function(){
 
-    // var prompt = ARK.Prompt('To delete this property, please type DELETE');
-    if(true){
+    var prompt = ARK.Prompt('Are you sure you want to delete this property? This will also delete any paths connected to this property. Any pages, parts and pieces used by this property will NOT be deleted, however they may be orphaned if they are not used by any other property. To confirm this deletion, type DELETE');
+    if(prompt){
       this.remove();
       this.model.destroy({wait: true});
     } else {

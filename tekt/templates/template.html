@@ -21,11 +21,17 @@
 
     <body>
         
-        {% include 'parts/menu.html' %}
+        <div id="menu">
+            {% include 'parts/menu.html' %}
+        </div>
 
         <div id="body">
             {% block body %}
             {% endblock %}
+        </div>
+
+        <div id="footer">
+            {% include 'parts/utility_menu.html' %}
         </div>
 
         {% block scripts %}

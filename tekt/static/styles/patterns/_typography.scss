@@ -1,8 +1,12 @@
 // defaults
-html, body {}
+html, body {
+    text-align: center;
+}
 
 // headers
-h1, .h1 {}
+h1, .h1 {
+    font-size: 2rem;
+}
 h2, .h2 {}
 h3, .h3 {}
 a, .a {

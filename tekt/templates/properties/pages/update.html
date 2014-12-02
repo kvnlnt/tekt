@@ -1,17 +1,17 @@
 {% extends "template.html" %}
 
 {% block title %}
-Edit Property
+Property
 {% endblock %}
 
 {% block page_scripts %}
 <script>
-    var PAGE = new ARK.Properties_page_update({ id: 2});
+    ARK.PAGE = new ARK.Properties_page_update({id:{{id}}});
 </script>
 {% endblock %}
 
 {% block body %}
-<h1>Edit Property</h1>
+<h1>Property</h1>
 {% include 'properties/parts/update.html' %}
 {% endblock %}
 

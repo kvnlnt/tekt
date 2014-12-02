@@ -8,9 +8,9 @@ ARK.FormView = Backbone.View.extend({
 
     resetForm: function(){
 
-        this.form.trigger('reset');
-        this.errors.empty();
-        this.form.find('*').removeClass('error');
+        this.dom.form.trigger('reset');
+        this.dom.errors.empty();
+        this.dom.form.find('*').removeClass('error');
 
     },
 
@@ -19,23 +19,23 @@ ARK.FormView = Backbone.View.extend({
         var that = this;
 
         // empty it
-        this.errors.empty();
+        this.dom.errors.empty();
 
         // remove all errors
-        this.form.find('*').removeClass('error');
+        this.dom.form.find('*').removeClass('error');
 
         // now render all errors
         _.each(errors, function(error, key){
 
             // get field
-            var field = that.$el.find('[name="'+key+'"]');
+            var field = that.dom.form.find('[name="'+key+'"]');
 
             // add error class
             field.addClass('error');
 
             // render each error
             _.each(error, function(msg){
-                that.errors.append('<li>'+msg+'</li>');
+                that.dom.errors.append('<li>'+msg+'</li>');
             });
             
         });

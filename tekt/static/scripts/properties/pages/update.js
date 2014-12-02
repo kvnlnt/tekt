@@ -6,7 +6,7 @@
 ARK.Properties_page_update = Backbone.Router.extend({
 
   routes: {
-    "": "update",    // #list page
+    "": "update",
   },
 
   initialize: function(args){

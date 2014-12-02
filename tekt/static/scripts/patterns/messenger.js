@@ -3,7 +3,7 @@
 * @function ARK.Messenger
 * @version 1.0
 */
-ARK.Messenger = function() {
+ARK.Messenger = function(msg) {
 
     if(console){
         console.log.apply(console, arguments);

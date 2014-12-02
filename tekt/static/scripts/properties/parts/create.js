@@ -14,9 +14,10 @@ ARK.Properties_part_create = ARK.FormView.extend({
 
     initialize: function() {
 
-        // create new model
-        this.form = this.$el.find('form');
-        this.errors = this.$el.find('.errors');
+        // elements
+        this.dom        = {};
+        this.dom.form   = this.$el.find('form');
+        this.dom.errors = this.$el.find('.errors');
 
     },
 
@@ -27,7 +28,7 @@ ARK.Properties_part_create = ARK.FormView.extend({
 
         // prep
         var that  = this;
-        var data  = this.form.serializeJSON();
+        var data  = this.dom.form.serializeJSON();
         var model = new ARK.Property();
 
         // on success
