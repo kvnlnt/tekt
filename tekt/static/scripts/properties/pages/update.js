@@ -12,10 +12,12 @@ ARK.Properties_page_update = Backbone.Router.extend({
   initialize: function(args){
 
     var model = new ARK.Property({id:args.id});
-    var view  = new ARK.Properties_part_update({model:model});
+    var view  = new ARK.Form({model:model});
+    var update = new ARK.Properties_part_update({model:model});
 
     this.model = model;
     this.view = view;
+    this.update = update;
 
     Backbone.history.start();
 

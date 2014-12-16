@@ -10,8 +10,8 @@ ARK.Properties_part_list_item = Backbone.View.extend({
 
   delete:function(){
 
-    var prompt = ARK.Prompt('Are you sure you want to delete this property? This will also delete any paths connected to this property. Any pages, parts and pieces used by this property will NOT be deleted, however they may be orphaned if they are not used by any other property. To confirm this deletion, type DELETE');
-    if(prompt){
+    // var prompt = ARK.Prompt('Are you sure you want to delete this property? This will also delete any paths connected to this property. Any pages, parts and pieces used by this property will NOT be deleted, however they may be orphaned if they are not used by any other property. To confirm this deletion, type DELETE');
+    if(true){
       this.remove();
       this.model.destroy({wait: true});
     } else {
@@ -64,13 +64,14 @@ ARK.Properties_part_list = Backbone.View.extend({
     this.renderItem(item);
     this.items[model.cid] = item;
 
+    return item;
+
   },
 
   addAll: function() {
 
     this.$el.empty();
     _.each(this.collection.models, this.addOne, this);
-    this.render();
 
   },
 
@@ -81,9 +82,6 @@ ARK.Properties_part_list = Backbone.View.extend({
   },  
 
   render: function() {
-
-    // fill container
-    $(this.container).html(this.el);
 
     return this;
 

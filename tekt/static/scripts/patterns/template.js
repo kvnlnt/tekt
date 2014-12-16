@@ -9,4 +9,4 @@ ARK.Template = function(source, data) {
     var compiled = template(data);
 
     return compiled;
-}
+};

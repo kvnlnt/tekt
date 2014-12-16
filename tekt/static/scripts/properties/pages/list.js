@@ -13,7 +13,10 @@ ARK.Properties_page_list = Backbone.Router.extend({
 
     var listCollection = new ARK.Properties();
     var listView       = new ARK.Properties_part_list({collection:listCollection});
-    var createView     = new ARK.Properties_part_create({collection:listCollection});
+    var createView     = new ARK.Form({
+      collection:listCollection, 
+      el:'.properties_part_create',
+    });
 
     this.listCollection = listCollection;
     this.listView = listView;
