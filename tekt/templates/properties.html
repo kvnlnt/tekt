@@ -1,0 +1,15 @@
+{% extends 'template.html' %}
+{% block body %}
+<h1>Properties</h1>
+<a href="{{ url_for('.create_property') }}">create</a>
+<table>
+    <tr>
+        <th>Property</th>
+    </tr>
+{% for record in properties.result %}
+    <tr>
+        <td>{{ record.property }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

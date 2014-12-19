@@ -1,0 +1,12 @@
+table, .table { 
+    display : table;
+    width: 100%;
+    tr, .tr             { display : table-row; }
+    thead, .thead       { display : table-header-group; }
+    tbody, .tbody       { display : table-row-group; }
+    tfoot, .tfoot       { display : table-footer-group; }
+    col, .col           { display : table-column; }
+    colgroup, .colgroup { display : table-column-group; }
+    td, .td, th, .th    { display : table-cell; }
+    caption, .caption   { display : table-caption; }
+}
