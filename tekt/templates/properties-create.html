@@ -1,3 +1,4 @@
+
 {% from "macros/forms.html" import render_field %} 
 {% extends 'template.html' %} 
 
@@ -11,7 +12,8 @@
         </ul>
     </fieldset>
     <fieldset>
-        <input type=submit value=Save>
+        <input type="submit" value="save">
+        <a href="{{ url_for('.properties') }}">cancel</a>
     </fieldset>
 </form>
 {% endblock %}

@@ -6,10 +6,13 @@
     <tr>
         <th>Property</th>
     </tr>
-{% for record in properties.result %}
+    {% for record in properties %}
     <tr>
-        <td>{{ record.property }}</td>
+        <td>
+            <a href="{{ url_for('.read_property', id=record.id) }}">{{ record.property }}</a>
+            <a href="{{ url_for('.delete_property', id=record.id )}}">delete</a>
+        </td>
     </tr>
-{% endfor %}
+    {% endfor %}
 </table>
 {% endblock %}
