@@ -1,0 +1,1 @@
+py.test -q -s  tests/test_controller.py::TestController::test_properties

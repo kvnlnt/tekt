@@ -7,7 +7,6 @@ class Tektonik:
         self.url = app.config['TEKTONIK']
         self.headers = {'content-type': 'application/json'}
 
-
 tektonik = Tektonik()
 
 
@@ -19,10 +18,10 @@ def list_properties():
     return resp
 
 
-def create_property(property):
+def create_property(record):
 
     endpoint = tektonik.url + "properties"
-    data = json.dumps(property)
+    data = json.dumps(record)
     req = requests.post(endpoint, headers=tektonik.headers, data=data)
     resp = json.loads(req.text)
     return resp
@@ -36,10 +35,10 @@ def read_property(id):
     return resp
 
 
-def update_property(property, id):
+def update_property(record, id):
 
     endpoint = tektonik.url + "properties/" + str(id)
-    data = json.dumps(property)
+    data = json.dumps(record)
     req = requests.put(endpoint, headers=tektonik.headers, data=data)
     resp = json.loads(req.text)
     return resp
