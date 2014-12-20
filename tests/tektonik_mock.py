@@ -1,4 +1,16 @@
+from mock import MagicMock
+from tekt import tektonik
+
+
 class TektonikMock():
+
+    def mock(self):
+
+        tektonik.list_properties = MagicMock(side_effect=self.properties)
+        tektonik.create_property = MagicMock(side_effect=self.create_property)
+        tektonik.read_property = MagicMock(side_effect=self.read_property)
+        tektonik.update_property = MagicMock(side_effect=self.update_property)
+        tektonik.delete_property = MagicMock(side_effect=self.delete_property)
 
     properties = """{
         "result": [
@@ -43,7 +55,7 @@ class TektonikMock():
 
     delete_property = """{
         "result": {
-            "id": 5,
+            "id": 3,
             "property": "kevinlint.com"
         }
     }"""
