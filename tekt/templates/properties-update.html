@@ -3,10 +3,11 @@
 {% extends 'template.html' %} 
 
 {% block body %}
-<h1>Create Property</h1>
-<form method="post" action="{{ url_for('.create_property') }}">
+<h1>Update Property</h1>
+<form method="post" action="{{ url_for('.update_property', id=property.id) }}">
+    {{ form.id }}
     <fieldset>
-        <legend>Create Property</legend>
+        <legend>Update Property</legend>
         <ul>
             {{ render_field(form.property) }}
         </ul>

@@ -7,6 +7,7 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flask import url_for
+from werkzeug.datastructures import MultiDict
 import forms
 import tektonik
 
@@ -19,7 +20,7 @@ def dashboard():
     return render_template("dashboard.html")
 
 
-@controller.route('/properties/')
+@controller.route('/properties')
 def properties():
     """ get list of properties """
     records = tektonik.list_properties()['result']
@@ -31,8 +32,8 @@ def create_property():
     """ create a property """
     form = forms.PropertyForm(request.form)
     if request.method == 'POST':
-        record = tektonik.create_property(request.form)
-        is_valid = forms.validate(form, record)
+        new_record = tektonik.create_property(request.form)
+        is_valid = forms.is_valid(form, new_record)
         if is_valid:
             return redirect(url_for('.properties'))
     return render_template("properties-create.html", form=form)
@@ -45,10 +46,22 @@ def read_property(id):
     return render_template("properties-read.html", property=record)
 
 
-@controller.route('/properties/<int:id>/update')
+@controller.route('/properties/<int:id>/update', methods=['GET', 'POST'])
 def update_property(id):
     """ edit a property """
-    return render_template("properties-update.html", id=id)
+
+    record = tektonik.read_property(id)['result']
+    form = forms.PropertyForm(MultiDict(record))
+
+    if request.method == 'POST':
+        form = forms.PropertyForm(request.form)
+        update_record = tektonik.update_property(request.form, id)
+        is_valid = forms.is_valid(form, update_record)
+        if is_valid:
+            return redirect(url_for('.properties'))
+
+    template = "properties-update.html"
+    return render_template(template, form=form, property=record)
 
 
 @controller.route('/properties/<int:id>/delete')

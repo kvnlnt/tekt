@@ -3,6 +3,7 @@ import os
 
 from flask import Flask
 from tekt.controller import controller
+from tekt.tektonik import tektonik
 
 
 def create_app(object_name, env="prod"):
@@ -21,6 +22,9 @@ def create_app(object_name, env="prod"):
 
     app.config.from_object(object_name)
     app.config['ENV'] = env
+
+    # register tektonik
+    tektonik.init_app(app)
 
     # register our blueprints
     app.register_blueprint(controller)

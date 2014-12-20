@@ -1,39 +1,53 @@
-import requests
 import json
+import requests
 
 
-url = "http://127.0.0.1:5001/v1_0/"
-headers = {'content-type': 'application/json'}
+class Tektonik:
+    def init_app(self, app):
+        self.url = app.config['TEKTONIK']
+        self.headers = {'content-type': 'application/json'}
+
+
+tektonik = Tektonik()
 
 
 def list_properties():
 
-    endpoint = url + "properties"
-    req = requests.get(endpoint, headers=headers)
+    endpoint = tektonik.url + "properties"
+    req = requests.get(endpoint, headers=tektonik.headers)
     resp = json.loads(req.text)
     return resp
 
 
 def create_property(property):
 
-    endpoint = url + "properties"
+    endpoint = tektonik.url + "properties"
     data = json.dumps(property)
-    req = requests.post(endpoint, headers=headers, data=data)
+    req = requests.post(endpoint, headers=tektonik.headers, data=data)
     resp = json.loads(req.text)
     return resp
 
 
 def read_property(id):
 
-    endpoint = url + "properties/" + str(id)
-    req = requests.get(endpoint, headers=headers)
+    endpoint = tektonik.url + "properties/" + str(id)
+    req = requests.get(endpoint, headers=tektonik.headers)
+    resp = json.loads(req.text)
+    return resp
+
+
+def update_property(property, id):
+
+    endpoint = tektonik.url + "properties/" + str(id)
+    data = json.dumps(property)
+    req = requests.put(endpoint, headers=tektonik.headers, data=data)
     resp = json.loads(req.text)
     return resp
 
 
 def delete_property(id):
 
-    endpoint = url + "properties/" + str(id)
-    req = requests.delete(endpoint, headers=headers)
+    endpoint = tektonik.url + "properties/" + str(id)
+    req = requests.delete(endpoint, headers=tektonik.headers)
     resp = json.loads(req.text)
     return resp

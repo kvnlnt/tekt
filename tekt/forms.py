@@ -1,7 +1,7 @@
-from wtforms import Form, TextField
+from wtforms import Form, TextField, HiddenField
 
 
-def validate(form, record):
+def is_valid(form, record):
 
     """ Check if record has any errors, if so add to wtform object """
 
@@ -20,4 +20,5 @@ def validate(form, record):
 
 class PropertyForm(Form):
 
+    id = HiddenField('id')
     property = TextField('property')
