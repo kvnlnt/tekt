@@ -4,12 +4,11 @@
 
 from flask import Blueprint
 from flask import render_template
-from flask import request
 from flask import redirect
+from flask import request
 from flask import url_for
-from werkzeug.datastructures import MultiDict
+from tektonik import tektonik
 import forms
-import tektonik
 
 controller = Blueprint('router', __name__, template_folder='templates')
 
@@ -51,14 +50,14 @@ def update_property(id):
     """ edit a property """
 
     record = tektonik.read_property(id)['result']
-    form = forms.PropertyForm(MultiDict(record))
+    form = forms.PropertyForm(request.form, data=record)
 
-    if request.method == 'POST':
-        form = forms.PropertyForm(request.form)
-        update_record = tektonik.update_property(request.form, id)
-        is_valid = forms.is_valid(form, update_record)
-        if is_valid:
-            return redirect(url_for('.properties'))
+    # if request.method == 'POST':
+    #     form = forms.PropertyForm(request.form)
+    #     update_record = tektonik.update_property(request.form, id)
+    #     is_valid = forms.is_valid(form, update_record)
+    #     if is_valid:
+    #         return redirect(url_for('.properties'))
 
     template = "properties-update.html"
     return render_template(template, form=form, property=record)

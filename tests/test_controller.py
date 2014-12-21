@@ -1,6 +1,7 @@
 #! ../env/bin/python
 # -*- coding: utf-8 -*-
 from tekt import create_app
+from tekt import tektonik
 from tektonik_mock import tektonik_mock
 
 
@@ -11,10 +12,17 @@ class TestController:
         # get app test config
         app = create_app('tekt.settings.TestConfig', env='dev')
 
-        # mock tektonik
-        tektonik_mock.mock()
+        # register tektonik
+        tektonik.init_app(app)
 
-        # create test app
+        # patch tektonik calls
+        tektonik.list_properties = tektonik_mock.list_properties
+        tektonik.create_property = tektonik_mock.create_property
+        tektonik.read_property = tektonik_mock.read_property
+        tektonik.update_property = tektonik_mock.update_property
+        tektonik.delete_property = tektonik_mock.delete_property
+
+        # test client
         self.app = app.test_client()
 
     def teardown(self):
@@ -23,6 +31,7 @@ class TestController:
         print "TESTING COMPLETE"
 
     def test_dashboard(self):
+
         endpoint = '/'
         response = self.app.get(endpoint)
         assert response.status_code == 200
@@ -34,6 +43,7 @@ class TestController:
         assert response.status_code == 200
 
     def test_create_property(self):
+
         endpoint = '/properties/create'
         response = self.app.get(endpoint)
         assert response.status_code == 200
@@ -42,11 +52,13 @@ class TestController:
         assert response.status_code == 200
 
     def test_read_property(self):
+
         endpoint = '/properties/1'
         response = self.app.get(endpoint)
         assert response.status_code == 200
 
     def test_update_property(self):
+
         endpoint = '/properties/1/update'
         response = self.app.get(endpoint)
         assert response.status_code == 200
@@ -55,6 +67,7 @@ class TestController:
         assert response.status_code == 200
 
     def test_delete_property(self):
+
         endpoint = '/properties/1/delete'
         response = self.app.get(endpoint)
         assert response.status_code == 302

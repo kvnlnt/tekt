@@ -1,63 +1,62 @@
-from mock import MagicMock
-from tekt import tektonik
-
-
 class TektonikMock():
 
-    def mock(self):
+    def list_properties(self):
+        result = {
+            "result": [
+                {
+                    "id": 1,
+                    "property": "1.test.com"
+                },
+                {
+                    "id": 2,
+                    "property": "2.test.com"
+                },
+                {
+                    "id": 3,
+                    "property": "3.test.com"
+                }
+            ]
+        }
+        return result
 
-        tektonik.list_properties = MagicMock(side_effect=self.properties)
-        tektonik.create_property = MagicMock(side_effect=self.create_property)
-        tektonik.read_property = MagicMock(side_effect=self.read_property)
-        tektonik.update_property = MagicMock(side_effect=self.update_property)
-        tektonik.delete_property = MagicMock(side_effect=self.delete_property)
-
-    properties = """{
-        "result": [
-            {
-                "id": 3,
-                "property": "music.kevinlint.com"
-            },
-            {
-                "id": 4,
-                "property": "art.kevinlint.com"
-            },
-            {
-                "id": 5,
-                "property": "kevinlint.com"
-            }
-        ]
-    }"""
-
-    create_property = """{
-        "result": {
-            "message": "Property successfully added",
-            "record": {
-                "id": 13,
-                "property": "kevinlint4.com"
+    def create_property(self, record):
+        result = {
+            "result": {
+                "message": "Property successfully added",
+                "record": {
+                    "id": 1,
+                    "property": "1.test.com"
+                }
             }
         }
-    }"""
+        return result
 
-    read_property = """{
-        "result": {
-            "id": 3,
-            "property": "music.kevinlint.com"
+    def read_property(self, id):
+        result = {
+            "result": {
+                "id": 1,
+                "property": "1.test.com"
+            }
         }
-    }"""
+        return result
 
-    update_property = """{
-        "result": {
-            "id": 3,
-            "property": "updated"
+    def update_property(self, record, id):
+        result = {
+            "result": {
+                "id": 1,
+                "property": "1.test-updated.com"
+            }
         }
-    }"""
+        return result
 
-    delete_property = """{
-        "result": {
-            "id": 3,
-            "property": "kevinlint.com"
+    def delete_property(self, id):
+        result = {
+            "result": {
+                "id": 1,
+                "property": "1.test.com"
+            }
         }
-    }"""
+        return result
+
 
 tektonik_mock = TektonikMock()
