@@ -16,11 +16,7 @@ class TestController:
         tektonik.init_app(app)
 
         # patch tektonik calls
-        tektonik.list_properties = tektonik_mock.list_properties
-        tektonik.create_property = tektonik_mock.create_property
-        tektonik.read_property = tektonik_mock.read_property
-        tektonik.update_property = tektonik_mock.update_property
-        tektonik.delete_property = tektonik_mock.delete_property
+        tektonik_mock.init(tektonik)
 
         # test client
         self.app = app.test_client()

@@ -1,5 +1,12 @@
 class TektonikMock():
 
+    def init(self, tektonik):
+        tektonik.list_properties = self.list_properties
+        tektonik.create_property = self.create_property
+        tektonik.read_property = self.read_property
+        tektonik.update_property = self.update_property
+        tektonik.delete_property = self.delete_property
+
     def list_properties(self):
         result = {
             "result": [

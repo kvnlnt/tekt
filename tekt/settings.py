@@ -2,7 +2,7 @@ class Config(object):
     DEBUG = False
     SECRET_KEY = 'secret key'
     TESTING = False
-    TEKTONIK = "http://127.0.0.1:5001/v1_0/"
+    TEKTONIK = "http://127.0.0.1:5001/"
 
 
 class ProdConfig(Config):
