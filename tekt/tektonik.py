@@ -46,4 +46,41 @@ class Tektonik:
         resp = json.loads(req.text)
         return resp
 
+    def list_paths(self):
+
+        endpoint = self.url + "paths"
+        req = requests.get(endpoint, headers=self.headers)
+        resp = json.loads(req.text)
+        return resp
+
+    def create_path(self, record):
+
+        endpoint = self.url + "paths"
+        data = json.dumps(record)
+        req = requests.post(endpoint, headers=self.headers, data=data)
+        resp = json.loads(req.text)
+        return resp
+
+    def read_path(self, id):
+
+        endpoint = self.url + "paths/" + str(id)
+        req = requests.get(endpoint, headers=self.headers)
+        resp = json.loads(req.text)
+        return resp
+
+    def update_path(self, record, id):
+
+        endpoint = self.url + "paths/" + str(id)
+        data = json.dumps(record)
+        req = requests.put(endpoint, headers=self.headers, data=data)
+        resp = json.loads(req.text)
+        return resp
+
+    def delete_path(self, id):
+
+        endpoint = self.url + "paths/" + str(id)
+        req = requests.delete(endpoint, headers=self.headers)
+        resp = json.loads(req.text)
+        return resp
+
 tektonik = Tektonik()

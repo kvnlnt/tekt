@@ -1,0 +1,27 @@
+{% extends 'template.html' %}
+{% block body %}
+<div class="table">
+    <div class="tr">
+        <div class="td"><h1 class="td">Paths</h1></div>
+        <div class="td"><a class="button" href="{{ url_for('.create_path') }}">create</a></div>
+    </div>
+</div>
+
+<table>
+    <tr>
+        <th>Path</th>
+        <th>Actions</th>
+    </tr>
+    {% for record in paths %}
+    <tr>
+        <td>
+            <a href="{{ url_for('.read_path', id=record.id) }}">{{ record.path }}</a>
+        </td>
+        <td>
+            <a class="button" href="{{ url_for('.update_path', id=record.id )}}">edit</a>
+            <a class="button" href="{{ url_for('.delete_path', id=record.id )}}">delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

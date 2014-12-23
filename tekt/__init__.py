@@ -2,7 +2,9 @@
 import os
 
 from flask import Flask
-from tekt.controller import controller
+from tekt.controllers.main import blueprint as main_blueprint
+from tekt.controllers.properties import blueprint as properties_blueprint
+from tekt.controllers.paths import blueprint as paths_blueprint
 from tekt.tektonik import tektonik
 
 
@@ -27,7 +29,9 @@ def create_app(object_name, env="prod"):
     tektonik.init_app(app)
 
     # register our blueprints
-    app.register_blueprint(controller)
+    app.register_blueprint(main_blueprint, url_prefix='/')
+    app.register_blueprint(properties_blueprint, url_prefix='/properties')
+    app.register_blueprint(paths_blueprint, url_prefix='/paths')
 
     return app
 

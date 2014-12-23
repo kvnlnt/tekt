@@ -22,3 +22,9 @@ class PropertyForm(Form):
 
     id = HiddenField('id')
     property = TextField('property')
+
+
+class PathForm(Form):
+
+    id = HiddenField('id')
+    path = TextField('path')
