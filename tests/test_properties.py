@@ -34,7 +34,7 @@ class TestController:
 
     def test_properties(self):
 
-        endpoint = '/properties'
+        endpoint = '/properties/'
         response = self.app.get(endpoint)
         assert response.status_code == 200
 
