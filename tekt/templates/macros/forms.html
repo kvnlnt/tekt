@@ -1,6 +1,7 @@
 {% macro render_field(field) %}
   <li>
-  {{ field.label }}
+  <label for="{{ field.name }}">{{ field.label }}</label>
+  <p>{{ field.description }}</p>
   {{ field(**kwargs)|safe }}
   {% if field.errors %}
     <ul class=errors>

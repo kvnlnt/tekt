@@ -1,4 +1,8 @@
-from wtforms import Form, TextField, HiddenField
+from wtforms import Form
+from wtforms import TextField
+from wtforms import HiddenField
+from wtforms import SelectField
+from tekt.tektonik import tektonik
 
 
 def is_valid(form, record):
@@ -12,19 +16,38 @@ def is_valid(form, record):
             field_errors = list()
             for error in record['errors'][field]:
                 field_errors.append(error)
-        form[field].errors = tuple(field_errors)
+            form[field].errors = tuple(field_errors)
 
     # toggle flag
     return not has_errors
+
+descriptions = {
+    'property': 'The URL of this property. Example: www.mywebsite.com',
+    'path': 'A URL path. Example: /some/page'
+}
 
 
 class PropertyForm(Form):
 
     id = HiddenField('id')
-    property = TextField('property')
+    property = TextField('Property', description=descriptions['property'])
 
 
 class PathForm(Form):
 
-    id = HiddenField('id')
-    path = TextField('path')
+    id = HiddenField(u'id')
+    path = TextField(u'Path', description=descriptions['path'])
+    property_id = SelectField(
+        u'Property',
+        description=descriptions['property'],
+        default=(0))
+
+
+def PathFormFactory(request, data=None):
+
+    form = PathForm(request.form, data=data)
+    properties = tektonik.list_properties()['result']
+    choices = [(p['id'], p['property']) for p in properties]
+    choices.insert(0, (0, ''))
+    form.property_id.choices = choices
+    return form

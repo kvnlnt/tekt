@@ -15,7 +15,7 @@
     {% for record in paths %}
     <tr>
         <td>
-            <a href="{{ url_for('.read_path', id=record.id) }}">{{ record.path }}</a>
+           {{ record.property.property }} <a href="{{ url_for('.read_path', id=record.id) }}">{{ record.path }}</a>
         </td>
         <td>
             <a class="button" href="{{ url_for('.update_path', id=record.id )}}">edit</a>

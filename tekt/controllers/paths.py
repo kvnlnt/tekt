@@ -27,7 +27,7 @@ def create_path():
 
     """ create a path """
 
-    form = forms.PathForm(request.form)
+    form = forms.PathFormFactory(request)
     if request.method == 'POST':
         new_record = tektonik.create_path(request.form)
         is_valid = forms.is_valid(form, new_record)
@@ -51,10 +51,10 @@ def update_path(id):
     """ edit a path """
 
     record = tektonik.read_path(id)['result']
-    form = forms.PathForm(request.form, data=record)
+    form = forms.PathFormFactory(request, data=record)
 
     if request.method == 'POST':
-        form = forms.PathForm(request.form)
+        form = forms.PathFormFactory(request)
         update_record = tektonik.update_path(request.form, id)
         is_valid = forms.is_valid(form, update_record)
         if is_valid:
