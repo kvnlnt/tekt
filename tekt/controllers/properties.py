@@ -15,7 +15,7 @@ blueprint = Blueprint('properties', __name__, template_folder='templates')
 
 
 @blueprint.route('/')
-def properties():
+def list_properties():
 
     """ get list of properties """
 
@@ -33,7 +33,7 @@ def create_property():
         new_record = tektonik.create_property(request.form)
         is_valid = forms.is_valid(form, new_record)
         if is_valid:
-            return redirect(url_for('.properties'))
+            return redirect(url_for('.list_properties'))
     return render_template("properties/create.html", form=form)
 
 
@@ -71,4 +71,4 @@ def delete_property(id):
     """ delete a property """
 
     tektonik.delete_property(id)
-    return redirect(url_for('.properties'))
+    return redirect(url_for('.list_properties'))

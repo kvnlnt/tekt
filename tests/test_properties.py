@@ -21,26 +21,22 @@ class TestController:
         # test client
         self.app = app.test_client()
 
+        # prefix
+        self.prefix = '/properties/'
+
     def teardown(self):
 
         # destroy session and tables
         print "TESTING COMPLETE"
 
-    def test_dashboard(self):
-
-        endpoint = '/'
-        response = self.app.get(endpoint)
-        assert response.status_code == 200
-
     def test_properties(self):
 
-        endpoint = '/properties/'
-        response = self.app.get(endpoint)
+        response = self.app.get(self.prefix)
         assert response.status_code == 200
 
     def test_create_property(self):
 
-        endpoint = '/properties/create'
+        endpoint = self.prefix + 'create'
         response = self.app.get(endpoint)
         assert response.status_code == 200
         data = {"property": 'test.property'}
@@ -49,13 +45,13 @@ class TestController:
 
     def test_read_property(self):
 
-        endpoint = '/properties/1'
+        endpoint = self.prefix + '1'
         response = self.app.get(endpoint)
         assert response.status_code == 200
 
     def test_update_property(self):
 
-        endpoint = '/properties/1/update'
+        endpoint = self.prefix + '1/update'
         response = self.app.get(endpoint)
         assert response.status_code == 200
         data = {"id": 3, "property": "updated"}
@@ -64,6 +60,6 @@ class TestController:
 
     def test_delete_property(self):
 
-        endpoint = '/properties/1/delete'
+        endpoint = self.prefix + '1/delete'
         response = self.app.get(endpoint)
         assert response.status_code == 302

@@ -21,6 +21,9 @@ class TestController:
         # test client
         self.app = app.test_client()
 
+        # url prefix
+        self.prefix = '/paths/'
+
     def teardown(self):
 
         # destroy session and tables
@@ -28,13 +31,12 @@ class TestController:
 
     def test_paths(self):
 
-        endpoint = '/paths'
-        response = self.app.get(endpoint)
+        response = self.app.get(self.prefix)
         assert response.status_code == 200
 
     def test_create_path(self):
 
-        endpoint = '/paths/create'
+        endpoint = self.prefix + 'create'
         response = self.app.get(endpoint)
         assert response.status_code == 200
         data = {"path": "test.path", "property_id": 1}
@@ -43,13 +45,13 @@ class TestController:
 
     def test_read_path(self):
 
-        endpoint = '/paths/1'
+        endpoint = self.prefix + '1'
         response = self.app.get(endpoint)
         assert response.status_code == 200
 
     def test_update_path(self):
 
-        endpoint = '/paths/1/update'
+        endpoint = self.prefix + '1/update'
         response = self.app.get(endpoint)
         assert response.status_code == 200
         data = {"id": 1, "path": "updated", "property_id": 1}
@@ -58,6 +60,6 @@ class TestController:
 
     def test_delete_path(self):
 
-        endpoint = '/paths/1/delete'
+        endpoint = self.prefix + '1/delete'
         response = self.app.get(endpoint)
         assert response.status_code == 302

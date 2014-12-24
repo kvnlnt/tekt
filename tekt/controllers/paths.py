@@ -13,8 +13,8 @@ from tekt import forms
 blueprint = Blueprint('paths', __name__, template_folder='templates')
 
 
-@blueprint.route('')
-def paths():
+@blueprint.route('/')
+def list_paths():
 
     """ get list of paths """
 
@@ -32,7 +32,7 @@ def create_path():
         new_record = tektonik.create_path(request.form)
         is_valid = forms.is_valid(form, new_record)
         if is_valid:
-            return redirect(url_for('.paths'))
+            return redirect(url_for('.list_paths'))
     return render_template("paths/create.html", form=form)
 
 
@@ -70,4 +70,4 @@ def delete_path(id):
     """ delete a path """
 
     tektonik.delete_path(id)
-    return redirect(url_for('.paths'))
+    return redirect(url_for('.list_paths'))
