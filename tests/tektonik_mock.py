@@ -110,7 +110,8 @@ class TektonikMock():
                 "message": "Property successfully added",
                 "record": {
                     "id": 1,
-                    "path": "1.test.com"
+                    "path": "/four",
+                    "property_id": 1
                 }
             }
         }
@@ -120,7 +121,12 @@ class TektonikMock():
         result = {
             "result": {
                 "id": 1,
-                "path": "1.test.com"
+                "path": "1.test.com",
+                "property_id": 1,
+                "property": {
+                    "id": 1,
+                    "property": "test1.com"
+                }
             }
         }
         return result
@@ -129,7 +135,12 @@ class TektonikMock():
         result = {
             "result": {
                 "id": 1,
-                "path": "1.test-updated.com"
+                "path": "1.test-upda",
+                "property_id": 1,
+                "property": {
+                    "id": 1,
+                    "property": "test1.com"
+                }
             }
         }
         return result
@@ -138,7 +149,7 @@ class TektonikMock():
         result = {
             "result": {
                 "id": 1,
-                "path": "1.test.com"
+                "path": "/one"
             }
         }
         return result

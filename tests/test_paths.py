@@ -32,32 +32,32 @@ class TestController:
         response = self.app.get(endpoint)
         assert response.status_code == 200
 
-    # def test_create_path(self):
+    def test_create_path(self):
 
-    #     endpoint = '/paths/create'
-    #     response = self.app.get(endpoint)
-    #     assert response.status_code == 200
-    #     data = {"path": 'test.path'}
-    #     response = self.app.post(endpoint, data=data, follow_redirects=True)
-    #     assert response.status_code == 200
+        endpoint = '/paths/create'
+        response = self.app.get(endpoint)
+        assert response.status_code == 200
+        data = {"path": "test.path", "property_id": 1}
+        response = self.app.post(endpoint, data=data, follow_redirects=True)
+        assert response.status_code == 200
 
-    # def test_read_path(self):
+    def test_read_path(self):
 
-    #     endpoint = '/paths/1'
-    #     response = self.app.get(endpoint)
-    #     assert response.status_code == 200
+        endpoint = '/paths/1'
+        response = self.app.get(endpoint)
+        assert response.status_code == 200
 
-    # def test_update_path(self):
+    def test_update_path(self):
 
-    #     endpoint = '/paths/1/update'
-    #     response = self.app.get(endpoint)
-    #     assert response.status_code == 200
-    #     data = {"id": 3, "path": "updated"}
-    #     response = self.app.post(endpoint, data=data, follow_redirects=True)
-    #     assert response.status_code == 200
+        endpoint = '/paths/1/update'
+        response = self.app.get(endpoint)
+        assert response.status_code == 200
+        data = {"id": 1, "path": "updated", "property_id": 1}
+        response = self.app.post(endpoint, data=data, follow_redirects=True)
+        assert response.status_code == 200
 
-    # def test_delete_path(self):
+    def test_delete_path(self):
 
-    #     endpoint = '/paths/1/delete'
-    #     response = self.app.get(endpoint)
-    #     assert response.status_code == 302
+        endpoint = '/paths/1/delete'
+        response = self.app.get(endpoint)
+        assert response.status_code == 302
