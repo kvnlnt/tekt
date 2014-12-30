@@ -1,6 +1,8 @@
 table, .table { 
     display : table;
     width: 100%;
+    margin:0;
+    padding:0;
     tr, .tr             { display : table-row; }
     thead, .thead       { display : table-header-group; }
     tbody, .tbody       { display : table-row-group; }

@@ -3,15 +3,24 @@
     padding:0;
     text-align: right;
     width:200px;
+    min-width: 200px;
     .tr {
+        height: 40px;
         line-height: 40px;
         font-size: 18px;
         .td {
             vertical-align: middle;
         }
+        .td:nth-child(even) {
+            width:50px;
+            text-align: center;
+        }
     }
-    i {
+    &.collapsed {
+        min-width: 50px;
         width:50px;
-        text-align: center;
-    }  
+        .td:nth-child(odd) {
+            display:none;
+        }
+    }
 }

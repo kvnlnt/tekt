@@ -1,26 +1,22 @@
-<ul id="menu" class="table">
-    <li class="tr">
-        <a class="td item" href="{{ url_for('main.dashboard') }}">ARK</a>
-        <i class="td glyphicon glyphicon-asterisk"></i>
-    </li>
-    <li class="tr">
-      <a class="td item" href="{{ url_for('properties.list_properties') }}">Properties</a>
-      <i class="td glyphicon glyphicon-asterisk"></i>
-    </li>
-    <li class="tr">
-      <a class="td item" href="{{ url_for('paths.list_paths') }}">Paths</a>
-      <i class="td glyphicon glyphicon-asterisk"></i>
-    </li>
-    <li class="tr">
-      <a class="td item" href="{{ url_for('pages.list_pages') }}">Pages</a>
-      <i class="td glyphicon glyphicon-asterisk"></i>
-    </li>
-    <li class="tr">
-      <a class="td item" href="">Parts</a>
-      <i class="td glyphicon glyphicon-asterisk"></i>
-    </li>
-    <li class="tr item">
-      <a class="td" href="">Pieces</a>
-      <i class="td glyphicon glyphicon-asterisk"></i>
-    </li>
-</ul>
+<div class="table">
+  <a href="#" id="menu-toggle" class="tr">
+      <span class="td"></span>
+      <i class="td fa fa-bars"></i>
+  </a>
+  <a class="tr" href="{{ url_for('main.dashboard') }}">
+    <span class="td">ARK</span>
+    <span class="td glyphicon glyphicon-dashboard"></span>
+  </a>
+  <a class="tr" href="{{ url_for('properties.list_properties') }}">
+    <span class="td">Properties</span>
+    <span class="td glyphicon glyphicon-tree-conifer"></span>
+  </a>
+  <a class="tr" href="{{ url_for('paths.list_paths') }}">
+    <span class="td">Paths</span>
+    <span class="td glyphicon glyphicon-random"></span>
+  </a>
+  <a class="tr" href="{{ url_for('pages.list_pages') }}">
+    <span class="td">Pages</span>
+    <span class="td glyphicon glyphicon-asterisk"></span>
+  </a>
+</div>
