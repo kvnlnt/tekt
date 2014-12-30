@@ -4,6 +4,7 @@
 
 from flask import Blueprint
 from flask import render_template
+from tekt.tektonik import tektonik
 
 
 blueprint = Blueprint('main', __name__, template_folder='templates')
@@ -14,4 +15,5 @@ def dashboard():
 
     """ home page """
 
-    return render_template("dashboard.html")
+    properties = tektonik.list_properties()['result']
+    return render_template("dashboard.html", properties=properties)

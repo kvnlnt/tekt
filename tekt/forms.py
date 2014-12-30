@@ -2,6 +2,7 @@ from wtforms import Form
 from wtforms import TextField
 from wtforms import HiddenField
 from wtforms import SelectField
+from wtforms import SelectMultipleField
 from tekt.tektonik import tektonik
 
 
@@ -21,9 +22,12 @@ def is_valid(form, record):
     # toggle flag
     return not has_errors
 
+
 descriptions = {
     'property': 'The URL of this property. Example: www.mywebsite.com',
-    'path': 'A URL path. Example: /some/page'
+    'path': 'A URL path. Example: /some/page',
+    'page': 'Name of this page. Example: aboutus',
+    'page_selector': 'Select a page'
 }
 
 
@@ -41,13 +45,31 @@ class PathForm(Form):
         u'Property',
         description=descriptions['property'],
         default=(0))
+    pages = SelectMultipleField(
+        u'Pages',
+        default=(0))
+
+
+class PathPageForm(Form):
+
+    id = HiddenField(u'id')
+    path_id = HiddenField(u'path_id')
+    page_id = TextField(
+        'Page',
+        description=descriptions['page_selector'])
 
 
 def PathFormFactory(request, data=None):
 
     form = PathForm(request.form, data=data)
     properties = tektonik.list_properties()['result']
-    choices = [(p['id'], p['property']) for p in properties]
-    choices.insert(0, (0, ''))
-    form.property_id.choices = choices
+    properties_choices = [(p['id'], p['property']) for p in properties]
+    properties_choices.insert(0, (0, ''))
+    form.property_id.choices = properties_choices
     return form
+
+
+class PageForm(Form):
+
+    id = HiddenField(u'id')
+    page = TextField(u'Page', description=descriptions['page'])

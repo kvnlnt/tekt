@@ -1,0 +1,19 @@
+
+{% from "macros/forms.html" import render_field %} 
+{% extends 'template.html' %} 
+
+{% block body %}
+<h1>Create Page</h1>
+<form method="post" action="{{ url_for('.create_page') }}">
+    <fieldset>
+        <legend>Create Page</legend>
+        <ul>
+            {{ render_field(form.page, autofocus='autofocus') }}
+        </ul>
+    </fieldset>
+    <fieldset>
+        <input class="button" type="submit" value="save">
+        <a class="button" href="{{ url_for('.list_pages') }}">cancel</a>
+    </fieldset>
+</form>
+{% endblock %}

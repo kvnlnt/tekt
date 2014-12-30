@@ -1,0 +1,14 @@
+
+{% from "macros/forms.html" import render_field %} 
+{% extends 'template.html' %} 
+
+{% block body %}
+
+<div class="table">
+    <div class="tr">
+        <div class="td"><h1>{{ page.page }}</h1></div>
+        <div class="td"><a class="button" href="{{ url_for('.update_page', id=page.id )}}">edit</a></div>
+    </div>
+</div>
+
+{% endblock %}

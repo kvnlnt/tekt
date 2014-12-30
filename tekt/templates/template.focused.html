@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        
+        <title>{% block title %}ARK{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        {% block meta %}
+            <meta name="description" content="">
+            <meta name="author" content="">
+        {% endblock %}
+
+        {% block styles %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/vendor.min.css') }}" />
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/styles.min.css') }}" />
+        {% endblock %}
+
+    </head>
+
+    <body>
+        
+        <div class="table">
+            
+            <div class="tr">
+
+                <div id="body" class="td">
+                    {% block body %}
+                    {% endblock %}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        {% block scripts %}
+            <script src="{{ url_for('static', filename='assets/vendor.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='assets/scripts.min.js') }}"></script>
+            {% if config.DEBUG %}<script src="//localhost:35729/livereload.js"></script>{% endif %}
+        {% endblock %}
+        {% block page_scripts %}{% endblock %}
+
+    </body>
+</html>

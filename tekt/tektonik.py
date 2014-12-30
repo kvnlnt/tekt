@@ -61,6 +61,14 @@ class Tektonik:
         resp = json.loads(req.text)
         return resp
 
+    def create_path_page(self, record):
+
+        endpoint = self.url + "path_pages"
+        data = json.dumps(record)
+        req = requests.post(endpoint, headers=self.headers, data=data)
+        resp = json.loads(req.text)
+        return resp
+
     def read_path(self, id):
 
         endpoint = self.url + "paths/" + str(id)
@@ -79,6 +87,50 @@ class Tektonik:
     def delete_path(self, id):
 
         endpoint = self.url + "paths/" + str(id)
+        req = requests.delete(endpoint, headers=self.headers)
+        resp = json.loads(req.text)
+        return resp
+
+    def delete_path_page(self, id):
+
+        endpoint = self.url + "path_pages/" + str(id)
+        req = requests.delete(endpoint, headers=self.headers)
+        resp = json.loads(req.text)
+        return resp
+
+    def list_pages(self):
+
+        endpoint = self.url + "pages"
+        req = requests.get(endpoint, headers=self.headers)
+        resp = json.loads(req.text)
+        return resp
+
+    def create_page(self, record):
+
+        endpoint = self.url + "pages"
+        data = json.dumps(record)
+        req = requests.post(endpoint, headers=self.headers, data=data)
+        resp = json.loads(req.text)
+        return resp
+
+    def read_page(self, id):
+
+        endpoint = self.url + "pages/" + str(id)
+        req = requests.get(endpoint, headers=self.headers)
+        resp = json.loads(req.text)
+        return resp
+
+    def update_page(self, record, id):
+
+        endpoint = self.url + "pages/" + str(id)
+        data = json.dumps(record)
+        req = requests.put(endpoint, headers=self.headers, data=data)
+        resp = json.loads(req.text)
+        return resp
+
+    def delete_page(self, id):
+
+        endpoint = self.url + "pages/" + str(id)
         req = requests.delete(endpoint, headers=self.headers)
         resp = json.loads(req.text)
         return resp

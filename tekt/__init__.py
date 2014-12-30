@@ -5,6 +5,7 @@ from flask import Flask
 from tekt.controllers.main import blueprint as main_blueprint
 from tekt.controllers.properties import blueprint as properties_blueprint
 from tekt.controllers.paths import blueprint as paths_blueprint
+from tekt.controllers.pages import blueprint as pages_blueprint
 from tekt.tektonik import tektonik
 
 
@@ -32,6 +33,7 @@ def create_app(object_name, env="prod"):
     app.register_blueprint(main_blueprint, url_prefix='/')
     app.register_blueprint(properties_blueprint, url_prefix='/properties')
     app.register_blueprint(paths_blueprint, url_prefix='/paths')
+    app.register_blueprint(pages_blueprint, url_prefix='/pages')
 
     return app
 
