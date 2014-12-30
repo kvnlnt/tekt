@@ -1,17 +1,26 @@
-
-<a href="{{ url_for('main.dashboard') }}" id="logo">ARK</a>
-
-<ul class="main">
-    <li><a href="{{ url_for('properties.list_properties') }}">Properties</a></li>
-    <li><a href="{{ url_for('paths.list_paths') }}">Paths</a></li>
-    <li><a href="{{ url_for('pages.list_pages') }}">Pages</a></li>
-    <li><a href="">Parts</a></li>
-    <li><a href="">Pieces</a></li>
-</ul>
-
-<ul class="utility">
-    <li><a href="">People</a></li>
-    <li><a href="">Perspectives</a></li>
-    <li><a href="">Plans</a></li>
-    <li><a href="">Primers</a></li>
+<ul id="menu" class="table">
+    <li class="tr">
+        <a class="td item" href="{{ url_for('main.dashboard') }}">ARK</a>
+        <i class="td glyphicon glyphicon-asterisk"></i>
+    </li>
+    <li class="tr">
+      <a class="td item" href="{{ url_for('properties.list_properties') }}">Properties</a>
+      <i class="td glyphicon glyphicon-asterisk"></i>
+    </li>
+    <li class="tr">
+      <a class="td item" href="{{ url_for('paths.list_paths') }}">Paths</a>
+      <i class="td glyphicon glyphicon-asterisk"></i>
+    </li>
+    <li class="tr">
+      <a class="td item" href="{{ url_for('pages.list_pages') }}">Pages</a>
+      <i class="td glyphicon glyphicon-asterisk"></i>
+    </li>
+    <li class="tr">
+      <a class="td item" href="">Parts</a>
+      <i class="td glyphicon glyphicon-asterisk"></i>
+    </li>
+    <li class="tr item">
+      <a class="td" href="">Pieces</a>
+      <i class="td glyphicon glyphicon-asterisk"></i>
+    </li>
 </ul>

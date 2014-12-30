@@ -20,25 +20,15 @@
     </head>
 
     <body>
-        
-        <div class="table">
-            
+
+        <div id="layout" class="table">
             <div class="tr">
-
-                <div id="menu" class="td">
-                    {% include 'menu.html' %}
-                </div>
-
-                <div id="body" class="td">
-                    {% block body %}
-                    {% endblock %}
-                    <div id="footer" class="td">
-                        {% include 'footer.html' %}
-                    </div>
-                </div>
-
+                <div id="menu" class="td">{% include 'menu.html' %}</div>
+                <div id="body" class="td">{% block body %}{% endblock %}</div>
             </div>
-
+            <div class="tr">
+                <div id="footer" class="td">Footer</div>
+            </div>
         </div>
 
         {% block scripts %}

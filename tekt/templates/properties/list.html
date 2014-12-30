@@ -1,27 +1,27 @@
-{% extends 'template.html' %}
-{% block body %}
-<div class="table">
-    <div class="tr">
-        <div class="td"><h1 class="td">Properties</h1></div>
-        <div class="td"><a class="button" href="{{ url_for('.create_property') }}">create</a></div>
+{% extends 'template.html' %} {% block body %}
+<div class="row">
+    <div class="col-sm-12 text-center">
+        <h1>Properties</h1>
     </div>
 </div>
 
-<table>
-    <tr>
-        <th>Property</th>
-        <th>Actions</th>
-    </tr>
-    {% for record in properties %}
-    <tr>
-        <td>
-            <a href="{{ url_for('.read_property', id=record.id) }}">{{ record.property }}</a>
-        </td>
-        <td>
-            <a class="button" href="{{ url_for('.update_property', id=record.id )}}">edit</a>
-            <a class="button" href="{{ url_for('.delete_property', id=record.id )}}">delete</a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="row">
+    <div class="col-sm-12 text-center">
+        <ul class="nav nav-pills nav-stacked">
+            {% for record in properties %}
+            <li><a href="{{ url_for('.read_property', id=record.id) }}">{{ record.property }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<hr/>
+
+<div class="row">
+    <div class="col-sm-12 text-center">
+        <a class="btn btn-default" href="{{ url_for('.create_property') }}">New Property</a>
+    </div>
+</div>
+
 {% endblock %}
