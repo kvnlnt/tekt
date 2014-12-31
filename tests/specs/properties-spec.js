@@ -1,5 +1,5 @@
-describe("Properties :", function() {
+// describe("Properties :", function() {
 
-    console.warn(this.description, 'no test');
+//     console.warn(this.description, 'no test');
 
-});
+// });

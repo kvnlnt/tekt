@@ -20,8 +20,7 @@
     </head>
 
     <body>
-
-        {% set collapsed = 'collapsed' if request.cookies.get('menu_collapsed') == 'true' %}
+        {% set collapsed = 'collapsed' if request.cookies.get('ARK.menu-toggle') == 'true' %}
         <div id="layout" class="table">
             <div class="tr">
                 <div id="menu" class="td {{collapsed}}">{% include 'menu.html' %}</div>
