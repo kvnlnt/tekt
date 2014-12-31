@@ -19,7 +19,7 @@ def list_pages():
     """ get list of pages """
 
     records = tektonik.list_pages()['result']
-    return render_template("pages/list.html", pages=records)
+    return render_template("pages/list.html", pages=records, section='pages')
 
 
 @blueprint.route('/create', methods=['GET', 'POST'])
@@ -33,7 +33,7 @@ def create_page():
         is_valid = forms.is_valid(form, new_record)
         if is_valid:
             return redirect(url_for('.list_pages'))
-    return render_template("pages/create.html", form=form)
+    return render_template("pages/create.html", form=form, section='pages')
 
 
 @blueprint.route('/<int:id>')
@@ -42,7 +42,7 @@ def read_page(id):
     """ read a page """
 
     record = tektonik.read_page(id)['result']
-    return render_template("pages/read.html", page=record)
+    return render_template("pages/read.html", page=record, section='pages')
 
 
 @blueprint.route('/<int:id>/update', methods=['GET', 'POST'])
@@ -61,7 +61,7 @@ def update_page(id):
             return redirect(url_for('.read_page', id=id))
 
     template = "pages/update.html"
-    return render_template(template, form=form, page=record)
+    return render_template(template, form=form, page=record, section='pages')
 
 
 @blueprint.route('/<int:id>/delete')

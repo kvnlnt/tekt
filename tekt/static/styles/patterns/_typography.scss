@@ -1,0 +1,73 @@
+$font_main: 'Helvetica Neue', 'Franklin Gothic Medium', 'Franklin Gothic', 'ITC Franklin Gothic', 'Trebuchet MS', Arial, sans-serif;
+
+.font-regular { font-family: $font_main; }
+.font-bold { font-family: $font_main; font-weight:bold; }
+
+// defaults
+html, body {
+    font-size: 10px;
+    @extend .font-regular;
+}
+
+// headers
+h1, .h1 {
+    @extend .font-bold;
+    @include rem(font-size,3);
+    @include rem(line-height,3.5);
+    color:$primary;
+    margin:0;
+    padding:0;
+}
+
+h2, .h2 {
+    @extend .font-bold;
+    @include rem(font-size,3.6);
+    @include rem(line-height,4);
+    color:$primary;
+    margin:0;
+    padding:0;
+}
+
+h3, .h3 {
+    @extend .font-bold;
+    @include rem(font-size,2.4);
+    @include rem(line-height,3);
+    color:$primary;
+    margin:0;
+    padding:0;
+}
+
+h4, .h4 {
+    @extend .font-bold;
+    @include rem(font-size,2);
+    @include rem(line-height,3);
+    color:$primary;
+    font-family: 'ProximaNova-Regular', 'Proxima Nova', 'Proxima', 'Montserrat', sans-serif;
+    margin:0;
+    padding:0;
+}
+
+p, .p {
+    @include rem(font-size, 1.5);
+    @include rem(line-height, 2.4);
+    color:lighten($primary,35%);
+    @include rem(margin, 0, 0, 3);
+    padding:0;
+}
+
+strong, .strong {
+    font-family: 'ProximaNova-Bold', 'Proxima Nova', 'Proxima', 'Montserrat', sans-serif;
+}
+
+blockquote, .blockquote {
+    @include rem(font-size,2.4);
+    color: $primary;
+    font-family: 'ProximaNova-Light', 'Proxima Nova', 'Proxima', 'Montserrat', sans-serif;
+    text-align: center;
+    margin:0;
+    padding:0;
+}
+
+a, .a {
+    color:$primary;
+}

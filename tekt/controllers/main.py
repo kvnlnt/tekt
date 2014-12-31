@@ -16,4 +16,7 @@ def dashboard():
     """ home page """
 
     properties = tektonik.list_properties()['result']
-    return render_template("dashboard.html", properties=properties)
+    return render_template(
+        "dashboard.html",
+        properties=properties,
+        section='main')

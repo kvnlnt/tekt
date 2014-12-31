@@ -8,15 +8,19 @@
         height: 40px;
         line-height: 40px;
         font-size: 14px;
+        letter-spacing: 1px;
         text-transform: uppercase;
         text-decoration: none;
         &.current, 
         &:hover {
-            background: #000;
+            background: $primary;
             color:#FFF;
         }
         .td {
             vertical-align: middle;
+        }
+        .td:nth-child(odd) {
+            text-indent: 0px;
         }
         .td:nth-child(even) {
             width:50px;
@@ -25,10 +29,11 @@
         }
     }
     &.collapsed {
+        transition: all 0.5s ease;
         min-width: 50px;
         width:50px;
         .td:nth-child(odd) {
-            display:none;
+            text-indent: -150px;
         }
     }
 }

@@ -21,9 +21,10 @@
 
     <body>
 
+        {% set collapsed = 'collapsed' if request.cookies.get('menu_collapsed') == 'true' %}
         <div id="layout" class="table">
             <div class="tr">
-                <div id="menu" class="td">{% include 'menu.html' %}</div>
+                <div id="menu" class="td {{collapsed}}">{% include 'menu.html' %}</div>
                 <div id="body" class="td">{% block body %}{% endblock %}</div>
             </div>
             <div class="tr">

@@ -19,7 +19,7 @@ def list_paths():
     """ get list of paths """
 
     records = tektonik.list_paths()['result']
-    return render_template("paths/list.html", paths=records)
+    return render_template("paths/list.html", paths=records, section='paths')
 
 
 @blueprint.route('/create', methods=['GET', 'POST'])
@@ -33,7 +33,7 @@ def create_path():
         is_valid = forms.is_valid(form, new_record)
         if is_valid:
             return redirect(url_for('.list_paths'))
-    return render_template("paths/create.html", form=form)
+    return render_template("paths/create.html", form=form, section='paths')
 
 
 @blueprint.route('/<int:id>', methods=['GET', 'POST'])
@@ -51,7 +51,11 @@ def read_path(id):
         if is_valid:
             return redirect(url_for('.read_path', id=id))
 
-    return render_template("paths/read.html", path=record, form=form)
+    return render_template(
+        "paths/read.html",
+        path=record,
+        form=form,
+        section='paths')
 
 
 @blueprint.route('/<int:id>/remove/<int:path_page_id>', methods=['GET'])
@@ -79,7 +83,7 @@ def update_path(id):
             return redirect(url_for('.read_path', id=id))
 
     template = "paths/update.html"
-    return render_template(template, form=form, path=record)
+    return render_template(template, form=form, path=record, section='paths')
 
 
 @blueprint.route('/<int:id>/delete')
