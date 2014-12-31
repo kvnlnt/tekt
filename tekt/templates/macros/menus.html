@@ -1,0 +1,8 @@
+{% macro render_menu_link(text='', link='#', icon='', id='') %}
+{% set current = "current" if request.endpoint == link else '' %}
+{% set url = url_for(link) if link != '#' else link %}
+  <a href="{{url}}" id="{{id}}" class="tr item {{current}}">
+      <span class="td">{{text}}</span>
+      <span class="td {{icon}}"></span>
+  </a>
+{% endmacro %}

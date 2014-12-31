@@ -4,16 +4,24 @@
     text-align: right;
     width:200px;
     min-width: 200px;
-    .tr {
+    .item {
         height: 40px;
         line-height: 40px;
-        font-size: 18px;
+        font-size: 14px;
+        text-transform: uppercase;
+        text-decoration: none;
+        &.current, 
+        &:hover {
+            background: #000;
+            color:#FFF;
+        }
         .td {
             vertical-align: middle;
         }
         .td:nth-child(even) {
             width:50px;
             text-align: center;
+            font-size:18px;
         }
     }
     &.collapsed {

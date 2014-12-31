@@ -1,22 +1,9 @@
+{% from "macros/menus.html" import render_menu_link %} 
+
 <div class="table">
-  <a href="#" id="menu-toggle" class="tr">
-      <span class="td"></span>
-      <i class="td fa fa-bars"></i>
-  </a>
-  <a class="tr" href="{{ url_for('main.dashboard') }}">
-    <span class="td">ARK</span>
-    <span class="td glyphicon glyphicon-dashboard"></span>
-  </a>
-  <a class="tr" href="{{ url_for('properties.list_properties') }}">
-    <span class="td">Properties</span>
-    <span class="td glyphicon glyphicon-tree-conifer"></span>
-  </a>
-  <a class="tr" href="{{ url_for('paths.list_paths') }}">
-    <span class="td">Paths</span>
-    <span class="td glyphicon glyphicon-random"></span>
-  </a>
-  <a class="tr" href="{{ url_for('pages.list_pages') }}">
-    <span class="td">Pages</span>
-    <span class="td glyphicon glyphicon-asterisk"></span>
-  </a>
+  {{ render_menu_link(id='menu-toggle', icon='fa fa-bars') }}
+  {{ render_menu_link(text='ARK', link='main.dashboard', icon='glyphicon glyphicon-dashboard') }}
+  {{ render_menu_link(text='Properties', link='properties.list_properties', icon='glyphicon glyphicon-tree-conifer') }}
+  {{ render_menu_link(text='Paths', link='paths.list_paths', icon='glyphicon glyphicon-random') }}
+  {{ render_menu_link(text='Pages', link='pages.list_pages', icon='fa fa-file-o') }}
 </div>
