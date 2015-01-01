@@ -27,7 +27,7 @@ table, .table {
             }
         }
         tr th {
-            background-color: $white;
+            background-color: darken($white, 5);
         }
     }
 }

@@ -4,12 +4,9 @@
 
 {% block body %}
 <h1>Property</h1>
-<form method="post" action="{{ url_for('.update_property', id=property.id) }}">
+<form method="post" action="{{ url_for('.update_property', id=property.id) }}" class="card">
     {{ form.id }}
     <legend>Edit</legend>
-    {% if form.errors %}
-    <div class="errors">Form contains errors. Please fix.</div>
-    {% endif %}
     <fieldset>
         <ul>
             {{ render_field(form.property, autofocus="autofocus") }}

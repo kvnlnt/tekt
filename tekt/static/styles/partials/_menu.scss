@@ -1,9 +1,10 @@
 #menu {
+    background-color: $black;
     margin:0;
+    min-width: 200px;
     padding:0;
     text-align: right;
     width:200px;
-    min-width: 200px;
     .item {
         height: 40px;
         line-height: 40px;
@@ -11,18 +12,11 @@
         letter-spacing: 1px;
         text-transform: uppercase;
         text-decoration: none;
-        color:lighten($primary, 30);
-        &.current {
+        color:transparentize($white, .5);
+        &.current,
+        &:hover  {
             color:$primary;
-            .td:nth-child(even) {
-                border-right:2px solid lighten($primary,30);
-            }
-        }
-        &:hover {
-            color:$primary;
-            .td:nth-child(even) {
-                border-right:2px solid lighten($primary,50);
-            }
+            background-color: $black;
         }
         .td {
             vertical-align: middle;

@@ -7,6 +7,7 @@ $font_main: 'Helvetica Neue', 'Franklin Gothic Medium', 'Franklin Gothic', 'ITC 
 html, body {
     font-size: 10px;
     @extend .font-regular;
+    color:$neutral;
 }
 
 // headers
@@ -16,7 +17,7 @@ h1, .h1 {
     @include rem(letter-spacing, 0.5);
     @include rem(line-height, 3.5);
     @include rem(margin, 0, 0, 2, 0);
-    color:$primary;
+    color: $black;
     padding:0;
     text-align: left;
     text-transform: uppercase;
@@ -26,7 +27,6 @@ h2, .h2 {
     @extend .font-regular;
     @include rem(font-size, 1.8);
     @include rem(line-height, 3);
-    color:$primary;
     padding:0;
     text-align: left;
     text-transform: uppercase;
@@ -36,7 +36,6 @@ h3, .h3 {
     @extend .font-bold;
     @include rem(font-size,2.4);
     @include rem(line-height,3);
-    color:$primary;
     margin:0;
     padding:0;
 }
@@ -45,7 +44,6 @@ h4, .h4 {
     @extend .font-bold;
     @include rem(font-size,2);
     @include rem(line-height,3);
-    color:$primary;
     font-family: 'ProximaNova-Regular', 'Proxima Nova', 'Proxima', 'Montserrat', sans-serif;
     margin:0;
     padding:0;
@@ -54,7 +52,6 @@ h4, .h4 {
 p, .p {
     @include rem(font-size, 1.5);
     @include rem(line-height, 2.4);
-    color:lighten($black, 50);
     @include rem(margin, 0, 0, 3);
     padding:0;
 }
@@ -65,7 +62,6 @@ strong, .strong {
 
 blockquote, .blockquote {
     @include rem(font-size,2.4);
-    color: $primary;
     font-family: 'ProximaNova-Light', 'Proxima Nova', 'Proxima', 'Montserrat', sans-serif;
     text-align: center;
     margin:0;
@@ -73,11 +69,13 @@ blockquote, .blockquote {
 }
 
 a, .a {
-    color:$primary;
     @include rem(font-size, 1.4);
+    color:$black;
     text-decoration: none;
     &:hover {
-        text-decoration: underline;
+        transition: all 0.5s ease;
+        background-color: $black;
+        color:$white;
     }
 }
 

@@ -24,9 +24,9 @@ def is_valid(form, record):
 
 
 descriptions = {
-    'property': 'The URL of this property. Example: www.mywebsite.com',
-    'path': 'A URL path. Example: /some/page',
-    'page': 'Name of this page. Example: aboutus',
+    'property': 'Example: www.mywebsite.com',
+    'path': 'Example: /some/page',
+    'page': 'Example: aboutus',
     'page_selector': 'Select a page'
 }
 

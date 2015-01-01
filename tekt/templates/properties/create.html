@@ -4,14 +4,11 @@
 
 {% block body %}
 <h1>Property</h1>
-<form method="post" action="{{ url_for('.create_property') }}">
+<form method="post" action="{{ url_for('.create_property') }}" class="card">
     <legend>New</legend>
-    {% if form.errors %}
-    <div class="errors">Form contains errors. Please fix.</div>
-    {% endif %}
     <fieldset>
         <ul>
-            {{ render_field(form.property, autofocus='autofocus') }}
+            {{ render_field(form.property, autofocus='autofocus', placeholder=form.property.description) }}
         </ul>
     </fieldset>
     <fieldset>

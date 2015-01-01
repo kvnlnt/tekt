@@ -7,10 +7,12 @@
 
 <h1>Properties</h1>
 
+<div class="card">
 <ul>
 {% for record in properties %}
 <li><a href="{{ url_for('.read_property', id=record.id) }}">{{record.property}}</a></li>
 {% endfor %}
 </ul>
+</div>
 
 {% endblock %}

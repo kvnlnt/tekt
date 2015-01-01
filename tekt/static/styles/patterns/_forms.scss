@@ -1,13 +1,13 @@
 form {
     legend {
-        @include rem(margin, 2, 0);
+        @include rem(margin, 0, 0, 2);
         text-transform: uppercase;
-        color: lighten($black, 50);
+        color: $primary;
     }
     fieldset {
         border: 0;
         margin: 0;
-        @include rem(padding, 2, 0);
+        @include rem(padding, 2, 0, 0);
     }
     label {
         @include rem(font-size, 1.6);
