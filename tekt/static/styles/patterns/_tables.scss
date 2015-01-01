@@ -3,6 +3,7 @@ table, .table {
     width: 100%;
     margin:0;
     padding:0;
+    @include rem(font-size, 1.4);
     tr, .tr             { display : table-row; }
     thead, .thead       { display : table-header-group; }
     tbody, .tbody       { display : table-row-group; }
@@ -11,4 +12,24 @@ table, .table {
     colgroup, .colgroup { display : table-column-group; }
     td, .td, th, .th    { display : table-cell; vertical-align:top; }
     caption, .caption   { display : table-caption; }
+
+    &.data {
+        border:1px solid darken($white, 10);
+        tr td,
+        tr th {
+            border-bottom:1px solid darken($white, 10);
+            border-right:1px solid darken($white, 10);
+            @include rem(padding, 0, 2);
+            @include rem(line-height, 4);
+            text-align: left;
+            .button {
+                @include rem(line-height, 2);
+                @include rem(padding, 0.5, 2);
+                @include rem(margin, 0.5, 0);
+            }
+        }
+        tr th {
+            background-color: $white;
+        }
+    }
 }

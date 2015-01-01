@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     margin:0;
     padding:0;
+    background-color: $white;
 }
 
 #layout {
@@ -12,4 +13,14 @@ html, body {
 
 #body {
     padding:40px;
+    background-color: lighten($white, 20);
+}
+
+.actions {
+    text-align: right;
+    background-color: $white;
+    @include rem(border-radius, 2);
+    @include rem(padding, 1, 2);
+    @include rem(margin, 2, 0);
+    text-transform: uppercase;
 }

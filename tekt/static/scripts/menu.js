@@ -7,6 +7,12 @@ ARK.menu = (function(module){
 
     module.toggle = function(e){
         module.el.$menu.toggleClass('collapsed');
+        var btn = module.el.$toggle.children('.fa');
+        if(btn.hasClass('fa-chevron-left')){
+            btn.removeClass('fa-chevron-left').addClass('fa-chevron-right');
+        } else {
+            btn.removeClass('fa-chevron-right').addClass('fa-chevron-left');
+        }
         var collapsed = ARK.cookie.get(module.collapse_key) === "true" ? "false" : "true";
         ARK.cookie.set(module.collapse_key, collapsed);
     };

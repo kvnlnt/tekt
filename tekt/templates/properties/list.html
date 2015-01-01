@@ -1,27 +1,13 @@
 {% extends 'template.html' %} {% block body %}
-<div class="row">
-    <div class="col-sm-12 text-center">
-        <h1>Properties</h1>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-sm-12 text-center">
-        <ul class="nav nav-pills nav-stacked">
-            {% for record in properties %}
-            <li><a href="{{ url_for('.read_property', id=record.id) }}">{{ record.property }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
+<h1>Properties</h1>
+<div class="actions">
+<a href="{{ url_for('.create_property') }}">new</a>
 </div>
-
-<hr/>
-
-<div class="row">
-    <div class="col-sm-12 text-center">
-        <a class="btn btn-default" href="{{ url_for('.create_property') }}">New Property</a>
-    </div>
-</div>
+<ul>
+{% for record in properties %}
+<li><a href="{{ url_for('.read_property', id=record.id) }}">{{record.property}}</a></li>
+{% endfor %}
+</ul>
 
 {% endblock %}

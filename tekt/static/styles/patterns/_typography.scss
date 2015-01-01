@@ -1,6 +1,6 @@
 $font_main: 'Helvetica Neue', 'Franklin Gothic Medium', 'Franklin Gothic', 'ITC Franklin Gothic', 'Trebuchet MS', Arial, sans-serif;
 
-.font-regular { font-family: $font_main; }
+.font-regular { font-family: $font_main; font-weight:normal; }
 .font-bold { font-family: $font_main; font-weight:bold; }
 
 // defaults
@@ -11,16 +11,19 @@ html, body {
 
 // headers
 h1, .h1 {
-    @extend .font-bold;
-    @include rem(font-size,3);
-    @include rem(line-height,3.5);
+    @extend .font-regular;
+    @include rem(font-size, 2);
+    @include rem(letter-spacing, 0.5);
+    @include rem(line-height, 3.5);
+    @include rem(margin, 0, 0, 2, 0);
     color:$primary;
-    margin:0;
     padding:0;
+    text-align: left;
+    text-transform: uppercase;
 }
 
 h2, .h2 {
-    @extend .font-bold;
+    @extend .font-regular;
     @include rem(font-size,3.6);
     @include rem(line-height,4);
     color:$primary;
@@ -70,4 +73,17 @@ blockquote, .blockquote {
 
 a, .a {
     color:$primary;
+    @include rem(font-size, 1.4);
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.align-left {
+    text-align-left: left;
+}
+
+.text-align-right {
+    text-align: right;
 }
