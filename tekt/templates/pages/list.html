@@ -1,10 +1,12 @@
 {% extends 'template.html' %}
 {% block body %}
 
-<h1>Pages</h1>
 <div class="actions">
-<a href="{{ url_for('.create_page') }}">new</a>
+<a class="button" href="{{ url_for('.create_page') }}">new</a>
 </div>
+
+<h1>Pages</h1>
+
 <ul>
 {% for record in pages %}
 <li><a href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a></li>

@@ -1,26 +1,35 @@
 html, body {
     height: 100%;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     background-color: $white;
 }
-
 #layout {
     height: 100%;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
-
 #body {
-    padding:40px;
+    padding: 40px;
     background-color: lighten($white, 20);
 }
 
+hr, 
+.hr {
+    border:0;
+    height:1px;
+    background-color: lighten($black, 70);
+    @include rem(margin, 4, 0);
+}
+
 .actions {
-    text-align: right;
-    background-color: $white;
-    @include rem(border-radius, 2);
-    @include rem(padding, 1, 2);
-    @include rem(margin, 2, 0);
-    text-transform: uppercase;
+    @include mq(mobile) {
+        text-align: left;
+    }
+    @include mq(mobile-landscape) {
+        text-align: right;
+        float:right;
+    }
+    @include rem(margin-bottom, 2);
+    display:inline-block;
 }

@@ -2,7 +2,6 @@
   <li>
   <label for="{{ field.name }}">{{ field.label }}</label>
   <p>{{ field.description }}</p>
-  {{ field(**kwargs)|safe }}
   {% if field.errors %}
     <ul class=errors>
     {% for error in field.errors %}
@@ -10,6 +9,7 @@
     {% endfor %}
     </ul>
   {% endif %}
+  {{ field(**kwargs)|safe }}
   </li>
 {% endmacro %}
 

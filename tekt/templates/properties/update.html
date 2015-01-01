@@ -3,18 +3,21 @@
 {% extends 'template.html' %} 
 
 {% block body %}
-<h1>Update Property</h1>
+<h1>Property</h1>
 <form method="post" action="{{ url_for('.update_property', id=property.id) }}">
     {{ form.id }}
+    <legend>Edit</legend>
+    {% if form.errors %}
+    <div class="errors">Form contains errors. Please fix.</div>
+    {% endif %}
     <fieldset>
-        <legend>Update Property</legend>
         <ul>
             {{ render_field(form.property, autofocus="autofocus") }}
         </ul>
     </fieldset>
     <fieldset>
         <input class="button" type="submit" value="save">
-        <a class="button" href="{{ url_for('.list_properties') }}">cancel</a>
+        <a class="button" href="{{ url_for('.read_property', id=property.id) }}">cancel</a>
     </fieldset>
 </form>
 {% endblock %}

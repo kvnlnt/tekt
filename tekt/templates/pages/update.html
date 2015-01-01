@@ -3,11 +3,14 @@
 {% extends 'template.html' %} 
 
 {% block body %}
-<h1>Update Page</h1>
+<h1>Page</h1>
 <form method="post" action="{{ url_for('.update_page', id=page.id) }}">
     {{ form.id }}
+    <legend>Edit</legend>
+    {% if form.errors %}
+    <div class="errors">Form contains errors. Please fix.</div>
+    {% endif %}
     <fieldset>
-        <legend>Update Page</legend>
         <ul>
             {{ render_field(form.page, autofocus="autofocus") }}
         </ul>

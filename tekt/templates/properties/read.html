@@ -4,13 +4,22 @@
 
 {% block body %}
 
-<div class="table">
-    <div class="tr">
-        <div class="td"><h1>{{ property.property }}</h1></div>
-    </div>
+<div class="actions">
+    <a class="button" href="{{ url_for('.update_property', id=property.id )}}">edit</a>
+    <a class="button" href="{{ url_for('.delete_property', id=property.id )}}">delete</a>
 </div>
 
-<a class="btn btn-default" href="{{ url_for('.update_property', id=property.id )}}">edit</a>
-                            <a class="btn btn-default" href="{{ url_for('.delete_property', id=property.id )}}">delete</a>
+<h1>Property</h1>
+
+<table class="data">
+    <tr>
+        <th>#</th>
+        <th>Property</th>
+    </tr>
+    <tr>
+        <td>{{ property.id }}</td>
+        <td>{{ property.property }}</td>
+    </tr>
+</table>
 
 {% endblock %}

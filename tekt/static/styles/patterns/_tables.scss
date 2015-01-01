@@ -1,8 +1,6 @@
 table, .table { 
     display : table;
     width: 100%;
-    margin:0;
-    padding:0;
     @include rem(font-size, 1.4);
     tr, .tr             { display : table-row; }
     thead, .thead       { display : table-header-group; }

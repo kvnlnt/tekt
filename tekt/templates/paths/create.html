@@ -2,12 +2,19 @@
 {% extends 'template.html' %} 
 
 {% block body %}
-<h1>Create Path</h1>
+<h1>Path</h1>
 <form method="post" action="{{ url_for('.create_path') }}">
+    <legend>Create</legend>
+    {% if form.errors %}
+    <div class="errors">Form contains errors. Please fix.</div>
+    {% endif %}
     <fieldset>
-        <legend>Create Path</legend>
         <ul>
             {{ render_field(form.path, autofocus='autofocus') }}
+        </ul>
+    </fieldset>
+    <fieldset>
+        <ul>
             {{ render_field(form.property_id) }}
         </ul>
     </fieldset>

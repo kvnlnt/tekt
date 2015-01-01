@@ -1,6 +1,13 @@
 button, .button {
-   @include rem(padding, 1);
-   border:1px solid lighten($black, 80);
-   display:inline-block;
+    @include rem(padding, 1);
+    border: 1px solid lighten($black, 80);
+    display: inline-block;
+    background-color: $white;
+    @include rem(border-radius, 0.5);
+    @include rem(padding, 1);
+    @include rem(font-size, 1.2);
+    text-transform: uppercase;
+    i {
+        @include rem(margin-right, 0.5);
+    }
 }
-

@@ -3,10 +3,13 @@
 {% extends 'template.html' %} 
 
 {% block body %}
-<h1>Create Page</h1>
+<h1>Page</h1>
 <form method="post" action="{{ url_for('.create_page') }}">
+    <legend>Create</legend>
+    {% if form.errors %}
+    <div class="errors">Form contains errors. Please fix.</div>
+    {% endif %}
     <fieldset>
-        <legend>Create Page</legend>
         <ul>
             {{ render_field(form.page, autofocus='autofocus') }}
         </ul>

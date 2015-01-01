@@ -3,10 +3,13 @@
 {% extends 'template.html' %} 
 
 {% block body %}
-<h1>Create Property</h1>
+<h1>Property</h1>
 <form method="post" action="{{ url_for('.create_property') }}">
+    <legend>New</legend>
+    {% if form.errors %}
+    <div class="errors">Form contains errors. Please fix.</div>
+    {% endif %}
     <fieldset>
-        <legend>Create Property</legend>
         <ul>
             {{ render_field(form.property, autofocus='autofocus') }}
         </ul>

@@ -1,9 +1,12 @@
 {% extends 'template.html' %} {% block body %}
 
-<h1>Properties</h1>
+
 <div class="actions">
-<a href="{{ url_for('.create_property') }}">new</a>
+    <a class="button" href="{{ url_for('.create_property') }}">new</a>
 </div>
+
+<h1>Properties</h1>
+
 <ul>
 {% for record in properties %}
 <li><a href="{{ url_for('.read_property', id=record.id) }}">{{record.property}}</a></li>

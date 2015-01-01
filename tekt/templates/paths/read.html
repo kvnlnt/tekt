@@ -5,14 +5,14 @@
 {% block body %}
 
 
-<div class="table">
-    <div class="tr">
-        <div class="td"><h1>Path</h1></div>
-        <div class="td"><a class="button" href="{{ url_for('.update_path', id=path.id )}}">edit</a></div>
-    </div>
+<div class="actions">
+    <a class="button" href="{{ url_for('.update_path', id=path.id )}}">edit</a>
+    <a class="button" href="{{ url_for('.delete_path', id=path.id )}}">delete</a>
 </div>
 
-<table>
+<h1>Path</h1>
+
+<table class="data">
     <tr>
         <th>Path</th>
         <td>{{ path.path }}</td>
@@ -23,24 +23,11 @@
     </tr>
 </table>
 
+<hr/>
 
 <h2>Pages</h2>
 
-<form method="post" action="{{ url_for('.read_path', id=path.id) }}">
-<fieldset>
-    <legend>Add Page</legend>
-    <ul>
-    {{ render_field(form.page_id, placeholder="Enter page ID", class="page_selector") }}
-    {{ render_hidden_field(form.path_id) }}
-    </ul>
-</fieldset>
-<fieldset>
-    <input class="button" type="submit" value="save">
-    <a class="button" href="{{ url_for('.list_paths') }}">cancel</a>
-</fieldset>
-</form>
-
-<table>
+<table class="data">
     <tr>
         <th>page</th>
         <th>effective date</th>
@@ -52,9 +39,22 @@
         <td><a href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a></td>
         <td></td>
         <td></td>
-        <td><a class="button" href="{{ url_for('.remove_page_from_path', id=path.id, path_page_id=page.path_page_id )}}">delete</a></td>
+        <td><a href="{{ url_for('.remove_page_from_path', id=path.id, path_page_id=page.path_page_id )}}">delete</a></td>
     </tr>
     {% endfor %}
 </table>
+
+<form method="post" action="{{ url_for('.read_path', id=path.id) }}">
+<fieldset>
+    <ul>
+    {{ render_field(form.page_id, placeholder="Enter page ID", class="page_selector") }}
+    {{ render_hidden_field(form.path_id) }}
+    </ul>
+</fieldset>
+<fieldset>
+    <input class="button" type="submit" value="save">
+    <a class="button" href="{{ url_for('.list_paths') }}">cancel</a>
+</fieldset>
+</form>
 
 {% endblock %}
