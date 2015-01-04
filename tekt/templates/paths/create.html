@@ -2,12 +2,15 @@
 {% extends 'template.html' %} 
 
 {% block body %}
-<h1>Path</h1>
-<form method="post" action="{{ url_for('.create_path') }}">
-    <legend>Create</legend>
-    {% if form.errors %}
-    <div class="errors">Form contains errors. Please fix.</div>
-    {% endif %}
+<h1><a href="{{ url_for('.list_paths') }}">Paths</a></h1>
+
+<form method="post" action="{{ url_for('.create_path') }}" class="card">
+    <div class="header table">
+        <div class="tr">
+            <legend class="title td">New</legend>
+        </div>
+    </div>
+    <div class="body">
     <fieldset>
         <ul>
             {{ render_field(form.path, autofocus='autofocus') }}
@@ -18,9 +21,14 @@
             {{ render_field(form.property_id) }}
         </ul>
     </fieldset>
-    <fieldset>
-        <input class="button" type="submit" value="save">
-        <a class="button" href="{{ url_for('.list_paths') }}">cancel</a>
-    </fieldset>
+    </div>
+    <div class="footer table">
+        <div class="tr">
+            <div class="actions td">
+                <input class="button" type="submit" value="save">
+                <a class="button" href="{{ url_for('.list_paths') }}">cancel</a>
+            </div>
+        </div>
+    </div>
 </form>
 {% endblock %}

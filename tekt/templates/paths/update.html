@@ -3,19 +3,33 @@
 {% extends 'template.html' %} 
 
 {% block body %}
-<h1>Update Path</h1>
-<form method="post" action="{{ url_for('.update_path', id=path.id) }}">
+<h1><a href="{{ url_for('.list_paths') }}">Paths</a></h1>
+<form method="post" action="{{ url_for('.update_path', id=path.id) }}" class="card">
     {{ form.id }}
-    <fieldset>
-        <legend>Update Path</legend>
-        <ul>
-            {{ render_field(form.path, autofocus="autofocus") }}
-            {{ render_field(form.property_id) }}
-        </ul>
-    </fieldset>
-    <fieldset>
-        <input class="button" type="submit" value="save">
-        <a class="button" href="{{ url_for('.list_paths') }}">cancel</a>
-    </fieldset>
+    <div class="header table">
+        <div class="tr">
+            <legend class="title td">Edit</legend>
+        </div>
+    </div>
+    <div class="body">
+        <fieldset>
+            <ul>
+                {{ render_field(form.path, autofocus="autofocus") }}
+            </ul>
+        </fieldset>
+        <fieldset>
+            <ul>
+                {{ render_field(form.property_id) }}
+            </ul>
+        </fieldset>
+    </div>
+    <div class="footer table">
+        <div class="tr">
+            <div class="actions td">
+                <input class="button" type="submit" value="save">
+                <a class="button" href="{{ url_for('.list_paths') }}">cancel</a>
+            </div>
+        </div>
+    </div>
 </form>
 {% endblock %}

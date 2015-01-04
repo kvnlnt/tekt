@@ -4,14 +4,18 @@
 
 {% block body %}
 
+<h1><a href="{{ url_for('.list_paths') }}">Paths</a></h1>
 
-<div class="actions">
-    <a class="button" href="{{ url_for('.update_path', id=path.id )}}">edit</a>
-    <a class="button" href="{{ url_for('.delete_path', id=path.id )}}">delete</a>
+<div class="card">
+<div class="header table">
+    <div class="tr">
+        <h2 class="title td">Details</h2>
+        <div class="actions td">
+            <a class="button" href="{{ url_for('.update_path', id=path.id )}}">edit</a>
+            <a class="button" href="{{ url_for('.delete_path', id=path.id )}}">delete</a>
+        </div>
+    </div>
 </div>
-
-<h1>Path</h1>
-
 <table class="data">
     <tr>
         <th>Path</th>
@@ -22,13 +26,18 @@
         <td>{{ path.property.property }}</td>
     </tr>
 </table>
+</div>
 
-<hr/>
 
-<h2>Pages</h2>
-
+<div class="card">
+<div class="header table">
+    <div class="tr">
+        <h2 class="title td">Pages</h2>
+    </div>
+</div>
 <table class="data">
     <tr>
+        <th>#</th>
         <th>page</th>
         <th>effective date</th>
         <th>expiration date</th>
@@ -36,25 +45,35 @@
     </tr>
     {% for page in path.pages %}
     <tr>
+        <td>{{ page.id }}</td>
         <td><a href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a></td>
         <td></td>
         <td></td>
-        <td><a href="{{ url_for('.remove_page_from_path', id=path.id, path_page_id=page.path_page_id )}}">delete</a></td>
+        <td><a href="{{ url_for('.remove_page_from_path', id=path.id, path_page_id=page.path_page_id )}}">remove</a></td>
     </tr>
     {% endfor %}
 </table>
+</div>
 
-<form method="post" action="{{ url_for('.read_path', id=path.id) }}">
+
+<form method="post" action="{{ url_for('.read_path', id=path.id) }}" class="card">
+    <div class="header table">
+        <div class="tr">
+            <h2 class="title td">Add Page</h2>
+            <div class="actions td">
+                <input class="button" type="submit" value="Add">
+            </div>
+        </div>
+    </div>
+<div class="body">
 <fieldset>
     <ul>
     {{ render_field(form.page_id, placeholder="Enter page ID", class="page_selector") }}
     {{ render_hidden_field(form.path_id) }}
     </ul>
 </fieldset>
-<fieldset>
-    <input class="button" type="submit" value="save">
-    <a class="button" href="{{ url_for('.list_paths') }}">cancel</a>
-</fieldset>
+</div>
 </form>
+
 
 {% endblock %}

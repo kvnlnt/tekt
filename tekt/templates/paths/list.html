@@ -1,16 +1,26 @@
 {% extends 'template.html' %}
 {% block body %}
 
-<div class="actions">
-<a class="button" href="{{ url_for('.create_path') }}">new</a>
+
+<h1><a href="{{ url_for('.list_paths') }}">Paths</a></h1>
+
+<div class="card">
+    <div class="header table">
+        <div class="tr">
+            <h2 class="title td">Current</h2>
+            <div class="actions td">
+                <a class="button" href="{{ url_for('.create_path') }}">new</a>
+            </div>
+        </div>
+    </div>
+    <ul>
+        {% for record in paths %}
+        <li><a href="{{ url_for('.read_path', id=record.id) }}">{{record.property.property}}{{record.path}}</a>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 
-<h1>Paths</h1>
 
-<ul>
-{% for record in paths %}
-<li><a href="{{ url_for('.read_path', id=record.id) }}">{{record.property.property}}{{record.path}}</a></li>
-{% endfor %}
-</ul>
 
 {% endblock %}

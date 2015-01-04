@@ -8,6 +8,10 @@ form {
         margin: 0;
         @include rem(padding, 2, 0, 0);
     }
+    fieldset + fieldset {
+        border-top:1px solid lighten($black, 70);
+        @include rem(margin, 2, 0);
+    }
     label {
         @include rem(font-size, 1.6);
     }
