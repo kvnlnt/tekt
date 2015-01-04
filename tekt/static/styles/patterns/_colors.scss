@@ -1,9 +1,10 @@
 // Color Scheme
 
-$primary:#46E0DE;
-$secondary:desaturate(adjust-hue($primary, 40deg), 40%);
-$accent:complement($primary);
-$white:#FCFCFC;
+/* Neutrals */
+$white:#FDFDFD;
 $black:#222222;
-$neutral:grayscale($primary);
-$error: #ff8888;
+$blue:#0077AA;
+
+/* Helpers */
+$color-error-text: #FF0000;
+

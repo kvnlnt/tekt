@@ -2,7 +2,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: darken($white, 5);
+    background-color: darken($white, 1);
 }
 
 #layout {
@@ -13,30 +13,4 @@ html, body {
 
 #body {
     padding: 40px;
-}
-
-hr, 
-.hr {
-    border:0;
-    height:1px;
-    background-color: lighten($black, 70);
-    @include rem(margin, 4, 0);
-}
-
-.card {
-    @include rem(padding, 3);
-    box-shadow: 0px 1px 2px lighten($black, 60);
-    background: $white;
-}
-
-.actions {
-    @include mq(mobile) {
-        text-align: left;
-    }
-    @include mq(mobile-landscape) {
-        text-align: right;
-        float:right;
-    }
-    @include rem(margin-bottom, 2);
-    display:inline-block;
 }

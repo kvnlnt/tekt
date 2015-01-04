@@ -3,17 +3,27 @@
 {% extends 'template.html' %} 
 
 {% block body %}
-<h1>Property</h1>
+<h1><a href="{{ url_for('.list_properties') }}">Properties</a></h1>
 <form method="post" action="{{ url_for('.create_property') }}" class="card">
-    <legend>New</legend>
-    <fieldset>
-        <ul>
-            {{ render_field(form.property, autofocus='autofocus', placeholder=form.property.description) }}
-        </ul>
-    </fieldset>
-    <fieldset>
-        <input class="button" type="submit" value="save">
-        <a class="button" href="{{ url_for('.list_properties') }}">cancel</a>
-    </fieldset>
+    <div class="header table">
+        <div class="tr">
+            <legend class="title td">New</legend>
+        </div>
+    </div>
+    <div class="body">
+        <fieldset>
+            <ul>
+                {{ render_field(form.property, autofocus='autofocus', placeholder=form.property.description) }}
+            </ul>
+        </fieldset>
+    </div>
+    <div class="footer table">
+        <div class="tr">
+            <div class="actions td">
+                <input class="button" type="submit" value="save">
+                <a class="button" href="{{ url_for('.list_properties') }}">cancel</a>
+            </div>
+        </div>
+    </div>
 </form>
 {% endblock %}

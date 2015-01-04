@@ -7,10 +7,10 @@ ul {
 ul li a {
     display: block;
     text-decoration: none;
-    line-height: 40px;
+    @include rem(line-height, 4);
     border-top-style: solid;
     border-top-width: 1px;
     border-top-color: lighten($black, 80);
-    padding-left: 10px;
+    @include rem(text-indent, 2);
     cursor: pointer;
 }

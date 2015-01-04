@@ -1,0 +1,34 @@
+.card {
+    @include rem(padding, 0);
+    .header {
+        border-bottom:5px solid darken($white, 10);
+        @include rem(line-height, 5);
+        @include rem(font-size, 1.8);
+        color:lighten($black, 20);
+        vertical-align: middle;
+        .title {
+            @include rem(text-indent, 2);
+            @include rem(line-height, 5);
+            margin:0;
+            padding:0;
+        }
+        .actions {
+            text-align: right;
+            @include rem(padding, 0, 0.5);
+        }
+    }
+    .body {
+        @include rem(margin, 0, 3);
+    }
+    .footer {
+        border-top:2px solid darken($white, 10);
+        @include rem(margin-top, 2);
+        @include rem(line-height, 5);
+        @include rem(font-size, 1.8);
+        color:lighten($black, 20);
+        vertical-align: middle;
+        .actions {
+            @include rem(padding, 0, 0.5);
+        }
+    }
+}

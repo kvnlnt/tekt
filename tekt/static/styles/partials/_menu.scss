@@ -1,5 +1,6 @@
 #menu {
     background-color: $black;
+    background-image:url(images/fake_brick.png);
     margin:0;
     min-width: 200px;
     padding:0;
@@ -12,11 +13,11 @@
         letter-spacing: 1px;
         text-transform: uppercase;
         text-decoration: none;
-        color:transparentize($white, .5);
+        color:darken($white, 50);
         &.current,
         &:hover  {
-            color:$primary;
-            background-color: $black;
+            color:$white;
+            background-color: transparent;
         }
         .td {
             vertical-align: middle;

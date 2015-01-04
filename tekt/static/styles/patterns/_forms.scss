@@ -1,8 +1,7 @@
 form {
     legend {
         @include rem(margin, 0, 0, 2);
-        text-transform: uppercase;
-        color: $primary;
+        @extend .font-bold;
     }
     fieldset {
         border: 0;
@@ -25,10 +24,10 @@ form {
     }
     ul.errors {
         @include rem(margin-top, 1);
-        color:$error;
+        color:#FF0000;
     }
     div.errors {
         @include rem(margin-bottom, 1);
-        color:$error;
+        color:#FF0000;
     }
 }

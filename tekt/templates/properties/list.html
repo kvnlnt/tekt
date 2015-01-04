@@ -1,18 +1,22 @@
 {% extends 'template.html' %} {% block body %}
 
-
-<div class="actions">
-    <a class="button" href="{{ url_for('.create_property') }}">new</a>
-</div>
-
-<h1>Properties</h1>
+<h1><a href="{{ url_for('.list_properties') }}">Properties</a></h1>
 
 <div class="card">
-<ul>
-{% for record in properties %}
-<li><a href="{{ url_for('.read_property', id=record.id) }}">{{record.property}}</a></li>
-{% endfor %}
-</ul>
+    <div class="header table">
+        <div class="tr">
+            <h2 class="title td">Current</h2>
+            <div class="actions td">
+                <a class="button" href="{{ url_for('.create_property') }}">new</a>
+            </div>
+        </div>
+    </div>
+    <ul>
+        {% for record in properties %}
+        <li><a href="{{ url_for('.read_property', id=record.id) }}">{{record.property}}</a>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}

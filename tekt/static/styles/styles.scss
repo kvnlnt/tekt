@@ -1,14 +1,23 @@
-@import "patterns/colors";
-@import "patterns/dimensions";
+// resets
+@import "patterns/normalize";
+
+// functions & settings
 @import "patterns/utilities";
 @import "patterns/mq";
-@import "patterns/normalize";
-@import "patterns/forms";
-@import "patterns/typography";
+@import "patterns/dimensions";
+@import "patterns/colors";
+
+// elements
 @import "patterns/buttons";
 @import "patterns/images";
-@import "patterns/layout";
-@import "patterns/tables";
 @import "patterns/lists";
 @import "patterns/tables";
+@import "patterns/typography";
+
+// constructs
+@import "patterns/forms";
+@import "patterns/layout";
+@import "patterns/cards";
+
+// partials
 @import "partials/menu";

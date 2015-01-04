@@ -7,29 +7,27 @@ $font_main: 'Helvetica Neue', 'Franklin Gothic Medium', 'Franklin Gothic', 'ITC 
 html, body {
     font-size: 10px;
     @extend .font-regular;
-    color:$neutral;
+    color:$black;
 }
 
 // headers
 h1, .h1 {
-    @extend .font-regular;
-    @include rem(font-size, 2);
-    @include rem(letter-spacing, 0.5);
+    @extend .font-bold;
+    @include rem(font-size, 3.5);
     @include rem(line-height, 3.5);
     @include rem(margin, 0, 0, 2, 0);
-    color: $black;
     padding:0;
     text-align: left;
-    text-transform: uppercase;
 }
 
 h2, .h2 {
-    @extend .font-regular;
+    @extend .font-bold;
     @include rem(font-size, 1.8);
     @include rem(line-height, 3);
+    @include rem(margin, 0, 0, 2);
+    color:lighten($black, 20);
     padding:0;
     text-align: left;
-    text-transform: uppercase;
 }
 
 h3, .h3 {
@@ -69,13 +67,12 @@ blockquote, .blockquote {
 }
 
 a, .a {
-    @include rem(font-size, 1.4);
-    color:$black;
+    color:$blue;
     text-decoration: none;
     &:hover {
         transition: all 0.5s ease;
-        background-color: $black;
-        color:$white;
+        color:$black;
+        text-decoration: underline;
     }
 }
 
