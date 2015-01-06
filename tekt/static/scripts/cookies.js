@@ -1,11 +1,11 @@
 /**
 * Cookie facade
-* @module cookie
+* @module cookies
 * @version 1.0
 */
-ARK.cookie = (function(module){
+ARK.cookies = (function(module){
 
-    /* exports cookie */
+    /* exports cookies */
 
     module.name = 'ARK';
     module.json = {};
@@ -16,7 +16,7 @@ ARK.cookie = (function(module){
      * @param {string} val  cookie val
      * @param {string} path cookie path
      * @function set
-     * @memberOf module:cookie
+     * @memberOf module:cookies
      */
     module.set = function(key, val, path){
         key = module.name + '.' + key;
@@ -31,7 +31,7 @@ ARK.cookie = (function(module){
      * @param {string} val  cookie val
      * @param {string} path cookie path
      * @function default
-     * @memberOf module:cookie
+     * @memberOf module:cookies
      */
     module.default = function(key, val, path){
         if($.cookie( module.name + '.' + key) === void 0){
@@ -44,7 +44,7 @@ ARK.cookie = (function(module){
      * @param  {string} key cookie string
      * @return {object}     cookie contents
      * @function get
-     * @memberOf module:cookie
+     * @memberOf module:cookies
      */
     module.get = function(key){
         key = module.name + '.' + key;
@@ -53,4 +53,4 @@ ARK.cookie = (function(module){
 
     return module;
 
-}(ARK.menu || {}));
+}(ARK.cookies || {}));

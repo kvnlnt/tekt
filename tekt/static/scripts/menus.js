@@ -1,11 +1,11 @@
 /**
 * Menu logic
-* @module menu
+* @module menus
 * @version 1.0
 */
-ARK.menu = (function(module){
+ARK.menus = (function(module){
 
-    /* exports menu */
+    /* exports menus */
 
     module.el = {};
     module.el.menu = '#menu';
@@ -16,7 +16,7 @@ ARK.menu = (function(module){
      * Toggle menu
      * @param  {object} e jquery click event
      * @function toggle
-     * @memberOf module:menu
+     * @memberOf module:menus
      */
     module.toggle = function(e){
         module.el.$menu.toggleClass('collapsed');
@@ -26,24 +26,24 @@ ARK.menu = (function(module){
         } else {
             btn.removeClass('fa-chevron-right').addClass('fa-chevron-left');
         }
-        var collapsed = ARK.cookie.get(module.collapse_key) === "true" ? "false" : "true";
-        ARK.cookie.set(module.collapse_key, collapsed);
+        var collapsed = ARK.cookies.get(module.collapse_key) === "true" ? "false" : "true";
+        ARK.cookies.set(module.collapse_key, collapsed);
     };
 
     /**
      * Initialize menu
      * @function init
-     * @memberOf module:menu
+     * @memberOf module:menus
      */
     module.init = function(){
         module.el.$menu = $(module.el.menu);
         module.el.$toggle = $(module.el.toggle);
         module.el.$toggle.click(module.toggle);
-        ARK.cookie.default(module.collapse_key, "false");
+        ARK.cookies.default(module.collapse_key, "false");
     };
 
     module.init();
 
     return module;
 
-}(ARK.menu || {}));
+}(ARK.menus || {}));
