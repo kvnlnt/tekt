@@ -1,9 +1,11 @@
 /**
 * Typeahead / AJAX selector
-* @module Selector
+* @module selector
 * @version 1.0
 */
-ARK.Selector = (function(module) {
+ARK.selector = (function(module) {
+
+    /* exports selector */
 
     // keep track of registered selectors
     module.selectors = [];
@@ -18,10 +20,15 @@ ARK.Selector = (function(module) {
 
     /**
      * Creates an ajax selector 
-     * @param  {object} config configuration object
+     * @param  {object} config           
+     * @param  {string} config.el        jquery element of object
+     * @param  {string} config.endpoint  endpoint to call for key, val
+     * @param  {number} config.delay     debounce delay
      * @return {object}        selector function instance
+     * @function Selector
+     * @memberOf module:selector
      */
-    module.selector = function(config){
+    module.Selector = function(config){
 
         // default settings
         var that     = this;
@@ -33,7 +40,11 @@ ARK.Selector = (function(module) {
         this.endpoint = this.settings.endpoint;
         this.delay    = this.settings.delay;
 
-        // fetch function
+        /**
+         * Fetch results
+         * @function Selector.fetch
+         * @memberOf module:selector
+         */
         this.fetch = function(){
 
             var field = $(this);
@@ -48,11 +59,16 @@ ARK.Selector = (function(module) {
 
     };
 
+    /**
+     * Initialize selector module
+     * @function init
+     * @memberOf module:selector
+     */
     module.init = function() {
 
         // init selectors
         _.each(module.auto_registered_selectors, function(v, k){
-            var selector = new module.selector({
+            var selector = new module.Selector({
                 el:$(v.selector),
                 endpoint:v.endpoint
             });

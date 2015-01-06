@@ -1,10 +1,23 @@
-ARK.Menu = (function(module){
+/**
+* Menu logic
+* @module menu
+* @version 1.0
+*/
+ARK.menu = (function(module){
+
+    /* exports menu */
 
     module.el = {};
     module.el.menu = '#menu';
     module.el.toggle = '#menu-toggle';
     module.collapse_key = 'menu-toggle';
 
+    /**
+     * Toggle menu
+     * @param  {object} e jquery click event
+     * @function toggle
+     * @memberOf module:menu
+     */
     module.toggle = function(e){
         module.el.$menu.toggleClass('collapsed');
         var btn = module.el.$toggle.children('.fa');
@@ -17,6 +30,11 @@ ARK.Menu = (function(module){
         ARK.cookie.set(module.collapse_key, collapsed);
     };
 
+    /**
+     * Initialize menu
+     * @function init
+     * @memberOf module:menu
+     */
     module.init = function(){
         module.el.$menu = $(module.el.menu);
         module.el.$toggle = $(module.el.toggle);
