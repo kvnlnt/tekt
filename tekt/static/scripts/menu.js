@@ -1,4 +1,4 @@
-ARK.menu = (function(module){
+ARK.Menu = (function(module){
 
     module.el = {};
     module.el.menu = '#menu';

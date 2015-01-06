@@ -1,4 +1,4 @@
-ARK.cookie = (function(module){
+ARK.Cookie = (function(module){
 
     module.name = 'ARK';
     module.json = {};

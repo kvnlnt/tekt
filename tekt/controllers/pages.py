@@ -7,6 +7,7 @@ from flask import redirect
 from flask import render_template
 from flask import request
 from flask import url_for
+from flask import jsonify
 from tekt.tektonik import tektonik
 from tekt import forms
 
@@ -20,6 +21,14 @@ def list_pages():
 
     records = tektonik.list_pages()['result']
     return render_template("pages/list.html", pages=records, section='pages')
+
+
+@blueprint.route('/search/<string:term>')
+def search_pages(term):
+
+    """ get list of pages """
+    search = tektonik.search_pages(term)
+    return jsonify(search)
 
 
 @blueprint.route('/create', methods=['GET', 'POST'])

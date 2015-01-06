@@ -1,16 +1,27 @@
 class TektonikMock():
 
     def init(self, tektonik):
+
+        # properties
         tektonik.list_properties = self.list_properties
         tektonik.create_property = self.create_property
         tektonik.read_property = self.read_property
         tektonik.update_property = self.update_property
         tektonik.delete_property = self.delete_property
+
+        # paths
         tektonik.list_paths = self.list_paths
         tektonik.create_path = self.create_path
         tektonik.read_path = self.read_path
         tektonik.update_path = self.update_path
         tektonik.delete_path = self.delete_path
+
+        # pages
+        tektonik.list_pages = self.list_pages
+        tektonik.create_page = self.create_page
+        tektonik.read_page = self.read_page
+        tektonik.update_page = self.update_page
+        tektonik.delete_page = self.delete_page
 
     def list_properties(self):
         result = {
@@ -150,6 +161,116 @@ class TektonikMock():
             "result": {
                 "id": 1,
                 "path": "/one"
+            }
+        }
+        return result
+
+    def list_pages(self):
+        result = {
+            "result": [
+                {
+                    "id": 1,
+                    "page": "page one",
+                    "paths": [
+                        {
+                            "id": 1,
+                            "path": "/one"
+                        },
+                        {
+                            "id": 2,
+                            "path": "/two"
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "page": "page one",
+                    "paths": [
+                        {
+                            "id": 1,
+                            "path": "/one"
+                        },
+                        {
+                            "id": 2,
+                            "path": "/two"
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "page": "page one",
+                    "paths": [
+                        {
+                            "id": 1,
+                            "path": "/one"
+                        },
+                        {
+                            "id": 2,
+                            "path": "/two"
+                        }
+                    ]
+                },
+            ]
+        }
+        return result
+
+    def create_page(self, record):
+        result = {
+            "result": {
+                "message": "Page successfully added",
+                "record": {
+                    "id": 1,
+                    "page": "newpage",
+                    "paths": []
+                }
+            }
+        }
+        return result
+
+    def read_page(self, id):
+        result = {
+            "result": {
+                "id": 1,
+                "page": "newpage",
+                "paths": [
+                    {
+                        "id": 1,
+                        "path": "/one"
+                    },
+                    {
+                        "id": 2,
+                        "path": "/two"
+                    }
+                ]
+            }
+        }
+        return result
+
+    def update_page(self, record, id):
+        result = {
+            "result": {
+                "id": 1,
+                "page": "updated",
+                "paths": [
+                    {
+                        "id": 1,
+                        "path": "/one"
+                    },
+                    {
+                        "id": 2,
+                        "path": "/two"
+                    }
+                ]
+            }
+        }
+        return result
+
+    def delete_page(self, id):
+        result = {
+            "result": {
+                "id": 1,
+                "page": "newpage",
+                "paths": []
             }
         }
         return result
