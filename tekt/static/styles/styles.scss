@@ -6,6 +6,7 @@
 @import "patterns/mq";
 @import "patterns/dimensions";
 @import "patterns/colors";
+@import "patterns/display";
 
 // elements
 @import "patterns/buttons";
@@ -21,3 +22,6 @@
 
 // partials
 @import "partials/menu";
+@import "partials/header";
+@import "partials/logo";
+@import "partials/selector";

@@ -10,7 +10,7 @@ module.exports = {
     app_files: {
         src: [
             'tekt/static/scripts/scripts.js',
-            'tekt/static/scripts/patterns/*.js',
+            'tekt/static/scripts/errors.js',
             'tekt/static/scripts/**/*.js',
         ],
         dest: 'tekt/static/assets/scripts.min.js',

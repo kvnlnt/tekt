@@ -10,7 +10,7 @@ from tekt.tektonik import tektonik
 blueprint = Blueprint('main', __name__, template_folder='templates')
 
 
-@blueprint.route('/')
+@blueprint.route('')
 def dashboard():
 
     """ home page """
@@ -19,4 +19,12 @@ def dashboard():
     return render_template(
         "dashboard.html",
         properties=properties,
-        section='main')
+        section='dashboard')
+
+
+@blueprint.route('primers')
+def primers():
+
+    """ Help tutorials """
+
+    return render_template("primers.html", section='primers')

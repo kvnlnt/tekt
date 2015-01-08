@@ -14,9 +14,22 @@ ARK.selectors = (function(module) {
     module.selectors = [
         {
             selector: '.page_selector', 
-            endpoint: '/pages/search/'
+            endpoint: '/pages/search/',
+            callback: module.on_select,
+            label:'Find Page'
         }
     ];
+
+    /**
+     * On select handler
+     * @function on_select
+     * @memberOf module:selectors
+     */
+    module.on_select = function(obj){
+
+        console.log('selected', obj);
+
+    };
 
     /**
      * Initialize selectors
@@ -33,7 +46,9 @@ ARK.selectors = (function(module) {
                 key:'id',
                 val:'page',
                 el:$(v.selector),
-                endpoint:v.endpoint
+                endpoint:v.endpoint,
+                callback:v.callback,
+                label:v.label
             });
 
             // add to collection

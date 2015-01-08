@@ -43,7 +43,7 @@ def read_path(id):
 
     record = tektonik.read_path(id)['result']
     data = {'path_id': id}
-    form = forms.PathPageForm(request.form, data=data)
+    form = forms.PathPageFormFactory(request, data=data)
 
     if request.method == 'POST':
         new_record = tektonik.create_path_page(request.form)

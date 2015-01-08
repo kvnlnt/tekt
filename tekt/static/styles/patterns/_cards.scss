@@ -1,7 +1,7 @@
 .card {
     @include rem(padding, 0);
     .header {
-        border-bottom:5px solid $blue;
+        border-bottom:5px solid $primary;
         @include rem(line-height, 5);
         @include rem(font-size, 1.8);
         color:lighten($black, 20);

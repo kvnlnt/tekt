@@ -67,7 +67,8 @@ blockquote, .blockquote {
 }
 
 a, .a {
-    color:$blue;
+    cursor: pointer;
+    color:$primary;
     text-decoration: none;
     &:hover {
         transition: all 0.5s ease;

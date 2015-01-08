@@ -44,28 +44,41 @@ class PathForm(Form):
     property_id = SelectField(
         u'Property',
         description=descriptions['property'],
-        default=(0))
+        default=(0),
+        choices=[])
     pages = SelectMultipleField(
         u'Pages',
         default=(0))
-
-
-class PathPageForm(Form):
-
-    id = HiddenField(u'id')
-    path_id = HiddenField(u'path_id')
-    page_id = TextField(
-        'Page',
-        description=descriptions['page_selector'])
 
 
 def PathFormFactory(request, data=None):
 
     form = PathForm(request.form, data=data)
     properties = tektonik.list_properties()['result']
-    properties_choices = [(p['id'], p['property']) for p in properties]
-    properties_choices.insert(0, (0, ''))
-    form.property_id.choices = properties_choices
+    property_choices = [(p['id'], p['property']) for p in properties]
+    property_choices.insert(0, (0, ''))
+    form.property_id.choices = property_choices
+    return form
+
+
+class PathPageForm(Form):
+
+    id = HiddenField(u'id')
+    path_id = HiddenField(u'path_id')
+    page_id = SelectField(
+        u'Page',
+        default=(0),
+        choices=[],
+        description=descriptions['page_selector'])
+
+
+def PathPageFormFactory(request, data=None):
+
+    form = PathPageForm(request.form, data=data)
+    pages = tektonik.list_pages()['result']
+    page_choices = [(p['id'], p['page']) for p in pages]
+    page_choices.insert(0, (0, ''))
+    form.page_id.choices = page_choices
     return form
 
 

@@ -3,7 +3,7 @@ button, .button {
     @include rem(line-height, 4);
     @include rem(padding, 0, 1.25);  
     letter-spacing: 1px;  
-    color:$blue;
+    color:$primary;
     border:0;
     background-color:transparent;
     display: inline-block;

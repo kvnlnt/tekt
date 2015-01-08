@@ -68,8 +68,8 @@
 <div class="body">
 <fieldset>
     <ul>
-    {{ render_field(form.page_id, placeholder="Enter page ID", class="page_selector") }}
     {{ render_hidden_field(form.path_id) }}
+    {{ render_field(form.page_id, class="page_selector", size="1") }}
     </ul>
 </fieldset>
 </div>

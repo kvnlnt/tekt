@@ -23,10 +23,16 @@
         {% set menu_is_collapsed = True if request.cookies.get('ARK.menu-toggle') == 'true' else False %}
         {% set menu_collapsed_class = 'collapsed' if menu_is_collapsed else '' %}
         {% set menu_collapsed_arrow_class = 'fa fa-chevron-right' if menu_is_collapsed else 'fa fa-chevron-left' %}
+        <a id="top">top <i class="fa fa-chevron-up"></i></a>
         <div id="layout" class="table">
             <div class="tr">
-                <div id="menu" class="td {{menu_collapsed_class}}">{% include 'menu.html' %}</div>
-                <div id="body" class="td">{% block body %}{% endblock %}</div>
+                <div id="menu" class="td {{menu_collapsed_class}}">
+                    {% include 'menu.html' %}
+                </div>
+                <div id="content" class="td">
+                    <div id="header">{% include 'header.html' %}</div>
+                    <div id="body">{% block body %}{% endblock %}</div>
+                </div>
             </div>
         </div>
 

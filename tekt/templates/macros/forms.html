@@ -18,7 +18,7 @@
 {% macro render_hidden_field(field) %}
   {{ field(**kwargs)|safe }}
   {% if field.errors %}
-    <ul class=errors>
+    <ul class="errors hidden">
     {% for error in field.errors %}
       <li>{{ error }}</li>
     {% endfor %}

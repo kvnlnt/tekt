@@ -12,33 +12,43 @@ ARK.Selector = function(config){
 
     // default settings
     var that     = this;
-    var defaults = { key:null, val:null, el:null, endpoint:null, delay:500, minlength:3 };
+    var defaults = {
+        key:null,
+        val:null,
+        el:null,
+        endpoint:null,
+        callback:null,
+        delay:500,
+        minlength:3,
+    };
 
     // settings
-    this.settings  = _.assign(defaults, config);
-    this.key       = this.settings.key;
-    this.val       = this.settings.val;
-    this.el        = this.settings.el;
-    this.endpoint  = this.settings.endpoint;
-    this.delay     = this.settings.delay;
-    this.minlength = this.settings.minlength;
+    this.settings    = _.assign(defaults, config);
+    this.key         = this.settings.key;
+    this.val         = this.settings.val;
+    this.el          = this.settings.el;
+    this.endpoint    = this.settings.endpoint;
+    this.delay       = this.settings.delay;
+    this.minlength   = this.settings.minlength;
+    this.callback    = this.settings.callback;
 
     // required settings
-    if(null === this.key){ throw new RequirementError('key is required'); }
-    if(null === this.val){ throw new RequirementError('val is required'); }
-    if(null === this.el){ throw new RequirementError('el is required'); }
-    if(null === this.endpoint){ throw new RequirementError('endpoint is required'); }
+    if(null === this.key){ throw new ARK.errors.RequirementError('key is required'); }
+    if(null === this.val){ throw new ARK.errors.RequirementError('val is required'); }
+    if(null === this.el){ throw new ARK.errors.RequirementError('el is required'); }
+    if(null === this.callback){ throw new ARK.errors.RequirementError('callback is required'); }
+    if(null === this.endpoint){ throw new ARK.errors.RequirementError('endpoint is required'); }
 
     // validate types
     if(false === this.el instanceof jQuery){ throw TypeError('el must be a jquery object'); }
 
     /**
-     * Show typeahead suggestions
+     * Search for suggestions
      * @function Selector.typeahead
      */
-    this.typeahead = function(){
+    this.search = function(){
 
-        var field = this.el;
+        var field = this.selector;
         var term = field.val();
         var url = this.endpoint + term;
 
@@ -49,21 +59,28 @@ ARK.Selector = function(config){
         var suggestions = this.fetch(url);
 
         // and render
-        this.render(suggestions);
-        
+        if(suggestions.length){
+            this.expand_target();
+            this.populate(suggestions);
+        }
+
     };
 
     /**
-     * Render suggestions
-     * @function Selector.render
+     * Populate the target select box with suggestions
+     * @function Selector.popoulate
      * @param {array} suggestions list of key:value objects for suggestion list
      */
-    this.render = function(suggestions){
+    this.populate = function(suggestions){
 
-        // XXX: hide suggestion box
         var that = this;
+
+        // flush current entries
+        this.el.empty();
+
         _.each(suggestions, function(suggestion){
-            console.log(suggestion[that.val]);
+            that.el.append($("<option />")
+                .val(suggestion[that.key]).text(suggestion[that.val]));
         });
 
     };
@@ -90,8 +107,57 @@ ARK.Selector = function(config){
 
     };
 
-    // register keyup
-    this.el.on('keyup', _.debounce(this.typeahead, this.delay).bind(this));
+    /**
+     * Create text box search selector
+     * @function Selector.create
+     * @return {object} selector dom object
+     */
+    this.create = function(){
+
+        var selector = $('<input>');
+            selector.prop('type', 'text');
+            selector.prop('id', this.el.attr('id') + '_selector');
+            selector.prop('class', 'selector');
+            selector.prop('placeholder', 'Search');
+            selector.data('target', this.el);
+
+        return selector;
+
+    };
+
+    /**
+     * Expand select box
+     * @function Selector.expand_target
+     * @return {[type]} [description]
+     */
+    this.expand_target = function(){
+        this.el.prop('size', 5);
+    };
+
+    /**
+     * Initialize selector
+     * @function Selector.init
+     */
+    this.init = function(){
+
+        // create the selector
+        this.selector = this.create();
+
+        // attach it to the dom
+        this.el.before(this.selector);
+
+        // register a keyup event on it for interactive searches
+        this.selector.on('keyup', _.debounce(this.search, this.delay).bind(this));
+
+        // manage size of select box
+        this.el.on('change', function(){
+            $(this).prop('size', 1);
+        });
+
+    };
+
+    // initialize this thing
+    this.init();
 
     return this;
 
