@@ -1,7 +1,15 @@
-#selector {
-    border:1px solid darken($white, 20);
+[ark-selector="page"]{
+    color:lighten($black, 50);
+    &.legit {
+        color:$black;
+    }
 }
 
-.selector {
-    cursor: pointer;
+[ark-selector-suggestions="page"] {
+    @include rem(margin, 2, 0);
+    border:1px solid darken($white, 20);
+    display: none;
+    @include rem(line-height, 4);
+    @include rem(text-indent, 2);
+    color: lighten($black, 50);
 }

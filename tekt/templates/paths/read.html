@@ -1,5 +1,3 @@
-
-{% from "macros/forms.html" import render_field, render_hidden_field %} 
 {% extends 'template.html' %} 
 
 {% block body %}
@@ -33,47 +31,24 @@
 <div class="header table">
     <div class="tr">
         <h2 class="title td">Pages</h2>
+        <div class="actions td">
+            <a class="button" href="{{ url_for('paths.manage_pages', id=path.id )}}">manage</a>
+        </div>
     </div>
 </div>
 <table class="data">
     <tr>
         <th>#</th>
         <th>page</th>
-        <th>effective date</th>
-        <th>expiration date</th>
-        <th>actions</th>
     </tr>
     {% for page in path.pages %}
     <tr>
         <td>{{ page.id }}</td>
         <td><a href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a></td>
-        <td></td>
-        <td></td>
-        <td><a href="{{ url_for('.remove_page_from_path', id=path.id, path_page_id=page.path_page_id )}}">remove</a></td>
     </tr>
     {% endfor %}
 </table>
 </div>
-
-
-<form method="post" action="{{ url_for('.read_path', id=path.id) }}" class="card">
-    <div class="header table">
-        <div class="tr">
-            <h2 class="title td">Add Page</h2>
-            <div class="actions td">
-                <input class="button" type="submit" value="Add">
-            </div>
-        </div>
-    </div>
-<div class="body">
-<fieldset>
-    <ul>
-    {{ render_hidden_field(form.path_id) }}
-    {{ render_field(form.page_id, class="page_selector", size="1") }}
-    </ul>
-</fieldset>
-</div>
-</form>
 
 
 {% endblock %}

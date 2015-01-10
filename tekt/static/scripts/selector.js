@@ -17,30 +17,44 @@ ARK.Selector = function(config){
         val:null,
         el:null,
         endpoint:null,
+        target:null,
         callback:null,
         delay:500,
-        minlength:3,
+        minlength:2,
+        suggestion_template:'<%= suggestion.id %>',
+        suggestions_wrapper:null,
     };
 
     // settings
     this.settings    = _.assign(defaults, config);
     this.key         = this.settings.key;
+    this.attr_key    = 'ark-key';
     this.val         = this.settings.val;
+    this.attr_val    = 'ark-val';
+    this.term        = '';
     this.el          = this.settings.el;
     this.endpoint    = this.settings.endpoint;
     this.delay       = this.settings.delay;
     this.minlength   = this.settings.minlength;
     this.callback    = this.settings.callback;
+    this.target      = this.settings.target;
 
     // required settings
     if(null === this.key){ throw new ARK.errors.RequirementError('key is required'); }
     if(null === this.val){ throw new ARK.errors.RequirementError('val is required'); }
     if(null === this.el){ throw new ARK.errors.RequirementError('el is required'); }
-    if(null === this.callback){ throw new ARK.errors.RequirementError('callback is required'); }
     if(null === this.endpoint){ throw new ARK.errors.RequirementError('endpoint is required'); }
+    if(null === this.target){ throw new ARK.errors.RequirementError('target is required'); }
 
     // validate types
     if(false === this.el instanceof jQuery){ throw TypeError('el must be a jquery object'); }
+
+    /**
+     * List template
+     * @memberOf  Selector.template
+     */
+    this.template_string = '<ul><% _.forEach(suggestions, function(suggestion) { %><li><a '+this.attr_key+'="<%= suggestion.'+this.key+' %>" '+this.attr_val+'="<%= suggestion.'+this.val+' %>">'+this.settings.suggestion_template+'</a></li><% }); %></ul>';
+    this.template = _.template(this.template_string);
 
     /**
      * Search for suggestions
@@ -48,43 +62,28 @@ ARK.Selector = function(config){
      */
     this.search = function(){
 
-        var field = this.selector;
+
+        var field = this.el;
         var term = field.val();
         var url = this.endpoint + term;
 
-        // if term meets length reqs, proceec
-        if(term.length < this.minlength){ return false; }
+        // stop if the term hasn't changed, no point
+        if(term === this.term){ return false; }
 
-        // get suggestions
-        var suggestions = this.fetch(url);
+        // reset target 
+        this.target.val(0);
+        this.el.removeClass('legit');
+
+        // fetch possible suggestions
+        var suggestions = term.length < this.minlength ? [] : this.fetch(url);
 
         // and render
-        if(suggestions.length){
-            this.expand_target();
-            this.populate(suggestions);
-        }
+        this.render(suggestions, term);
+
+        // update term
+        this.term = term;
 
     };
-
-    /**
-     * Populate the target select box with suggestions
-     * @function Selector.popoulate
-     * @param {array} suggestions list of key:value objects for suggestion list
-     */
-    this.populate = function(suggestions){
-
-        var that = this;
-
-        // flush current entries
-        this.el.empty();
-
-        _.each(suggestions, function(suggestion){
-            that.el.append($("<option />")
-                .val(suggestion[that.key]).text(suggestion[that.val]));
-        });
-
-    };
-
 
     /**
      * Fetch results
@@ -108,30 +107,70 @@ ARK.Selector = function(config){
     };
 
     /**
-     * Create text box search selector
-     * @function Selector.create
-     * @return {object} selector dom object
+     * Render suggestions
+     * @function Selector.render
+     * @param {array} suggestions list of key:value objects for suggestion list
      */
-    this.create = function(){
+    this.render = function(suggestions, term){
 
-        var selector = $('<input>');
-            selector.prop('type', 'text');
-            selector.prop('id', this.el.attr('id') + '_selector');
-            selector.prop('class', 'selector');
-            selector.prop('placeholder', 'Search');
-            selector.data('target', this.el);
+        if(term.length > this.minlength){
+            this.settings.suggestions_wrapper.show();
+        } else {
+            this.settings.suggestions_wrapper.hide();
+        }
 
-        return selector;
+        if(suggestions.length > 0){
+            var that = this;
+            var template = this.template({suggestions:suggestions});
+            this.settings.suggestions_wrapper.html(template);
+        } else {
+            this.settings.suggestions_wrapper.html('no results for "'+term+'"');
+        }
+        
 
     };
 
     /**
-     * Expand select box
-     * @function Selector.expand_target
+     * On suggestion selection
      * @return {[type]} [description]
      */
-    this.expand_target = function(){
-        this.el.prop('size', 5);
+    this.selected = function(e){
+
+        // stop tomfoolery
+        e.stopPropagation();
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        // get params
+        var scope = e.data.context;
+        var key = $(this).attr(scope.attr_key);
+        var val = $(this).attr(scope.attr_val);
+
+        // collect data
+        var result = {};
+        result[scope.key] = key;
+        result[scope.val] = val;
+
+        // assign key value back to target
+        scope.target.val(key);
+
+        // update the current term
+        scope.term = val;
+
+        // reset text in selector
+        scope.el.val(val);
+
+        // add legit class to show that this is a real value
+        scope.el.addClass('legit');
+
+        // send data back to any callbacks
+        if(null !== scope.callback){
+            scope.callback(result);
+        }
+
+        // hide selection
+        scope.settings.suggestions_wrapper.hide();
+
     };
 
     /**
@@ -140,25 +179,37 @@ ARK.Selector = function(config){
      */
     this.init = function(){
 
-        // create the selector
-        this.selector = this.create();
-
-        // attach it to the dom
-        this.el.before(this.selector);
-
         // register a keyup event on it for interactive searches
-        this.selector.on('keyup', _.debounce(this.search, this.delay).bind(this));
+        var that = this;
+        this.el.on('keyup', _.debounce(this.search, this.delay).bind(this));
+        this.el.val(this.term);
+        this.settings.suggestions_wrapper.on('click', 'a', {context:this}, this.selected);
 
-        // manage size of select box
-        this.el.on('change', function(){
-            $(this).prop('size', 1);
-        });
+    };
+
+    this.de_init = function(){
+
+        this.settings.suggestions_wrapper.hide();
+        this.settings.suggestions_wrapper.html('');
+        this.el.off('keyup');
+
+        if(this.target.val() === '0'){
+            this.el.val('');
+            this.term = '';
+        }
 
     };
 
     // initialize this thing
+    this.el.on('focus', this.init.bind(this));
+    this.el.on('blur', _.debounce(this.de_init, 100).bind(this));
     this.init();
 
     return this;
 
 };
+
+// - initialize on focus
+// - deinitialize on blur while capturing selected events
+// - only search when term changes
+// - 

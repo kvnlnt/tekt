@@ -1,1 +1,2 @@
 - csrf to wtforms
+- all "publishing" is done by invalidating cache

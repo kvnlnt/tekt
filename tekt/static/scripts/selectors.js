@@ -10,26 +10,29 @@ ARK.selectors = (function(module) {
     // keep track of registered selectors
     module.collection = [];
 
-    // auto register
-    module.selectors = [
-        {
-            selector: '.page_selector', 
-            endpoint: '/pages/search/',
-            callback: module.on_select,
-            label:'Find Page'
-        }
-    ];
-
     /**
      * On select handler
      * @function on_select
      * @memberOf module:selectors
      */
-    module.on_select = function(obj){
+    module.on_select = function(obj){};
 
-        console.log('selected', obj);
-
-    };
+    /**
+     * Selectors that are auto registered
+     * @member selectors
+     * @memberOf module:selectors
+     */
+    module.selectors = [
+        {
+            key: 'id',
+            val: 'page',
+            dom_selector: '[ark-selector="page"]', 
+            endpoint: '/pages/search/',
+            target:'#page_id',
+            suggestions_wrapper:'[ark-selector-suggestions="page"]',
+            suggestion_template:'<%= suggestion.page %>'
+        }
+    ];
 
     /**
      * Initialize selectors
@@ -41,15 +44,19 @@ ARK.selectors = (function(module) {
         // init selectors
         _.each(module.selectors, function(v, k){
 
-            // create new instance of Selecotr
-            var selector = new ARK.Selector({
-                key:'id',
-                val:'page',
-                el:$(v.selector),
+            // config selector
+            var config = {
+                key:v.key,
+                val:v.val,
+                el:$(v.dom_selector),
                 endpoint:v.endpoint,
-                callback:v.callback,
-                label:v.label
-            });
+                target:$(v.target),
+                suggestions_wrapper:$(v.suggestions_wrapper),
+                suggestion_template:v.suggestion_template
+            };
+
+            // create selector
+            var selector = new ARK.Selector(config);
 
             // add to collection
             module.collection.push(selector);

@@ -12,11 +12,9 @@ table, .table {
     caption, .caption   { display : table-caption; }
 
     &.data {
-        border:1px solid darken($white, 10);
         tr td,
         tr th {
-            border-bottom:1px solid darken($white, 10);
-            border-right:1px solid darken($white, 10);
+            border-bottom:1px solid darken($white, 5);
             @include rem(padding, 0, 2);
             @include rem(line-height, 4);
             text-align: left;
@@ -27,7 +25,13 @@ table, .table {
             }
         }
         tr th {
-            background-color: darken($white, 5);
+            background-color: darken($white, 2);
+        }
+        tr:nth-child(even) td{
+            background-color: lighten($white,1);
+        }
+        tr:nth-child(even) th{
+            background-color: $white;
         }
     }
 }

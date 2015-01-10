@@ -13,7 +13,7 @@
     <div class="body">
     <fieldset>
         <ul>
-            {{ render_field(form.path, autofocus='autofocus') }}
+            {{ render_field(form.path, autofocus='autofocus', placeholder=form.path.description) }}
         </ul>
     </fieldset>
     <fieldset>

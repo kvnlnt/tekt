@@ -6,9 +6,13 @@ from wtforms import SelectMultipleField
 from tekt.tektonik import tektonik
 
 
-def is_valid(form, record):
+def is_valid(form, record, reassign={}):
 
-    """ Check if record has any errors, if so add to wtform object """
+    """
+        Check if record has any errors, if so add to wtform object
+        reassign - dict of fields who's errors should be reassigned
+        to another field
+    """
 
     has_errors = 'errors' in record
 
@@ -18,16 +22,19 @@ def is_valid(form, record):
             for error in record['errors'][field]:
                 field_errors.append(error)
             form[field].errors = tuple(field_errors)
+            if field in reassign:
+                reassign_field = reassign[field]
+                form[reassign_field].errors = tuple(field_errors)
 
     # toggle flag
     return not has_errors
 
 
 descriptions = {
-    'property': 'Example: www.mywebsite.com',
-    'path': 'Example: /some/page',
-    'page': 'Example: aboutus',
-    'page_selector': 'Select a page'
+    'property': 'yourwebsite.com',
+    'path': '/path/to/your/page',
+    'page': 'page name',
+    'page_selector': 'Search for a page'
 }
 
 
@@ -65,21 +72,10 @@ class PathPageForm(Form):
 
     id = HiddenField(u'id')
     path_id = HiddenField(u'path_id')
-    page_id = SelectField(
+    page_id = HiddenField(u'page_id')
+    page_selector = TextField(
         u'Page',
-        default=(0),
-        choices=[],
         description=descriptions['page_selector'])
-
-
-def PathPageFormFactory(request, data=None):
-
-    form = PathPageForm(request.form, data=data)
-    pages = tektonik.list_pages()['result']
-    page_choices = [(p['id'], p['page']) for p in pages]
-    page_choices.insert(0, (0, ''))
-    form.page_id.choices = page_choices
-    return form
 
 
 class PageForm(Form):
