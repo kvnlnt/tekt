@@ -177,6 +177,7 @@ ARK.Selector = function(config){
      * Initialize selector
      * @function Selector.init
      */
+    
     this.init = function(){
 
         // register a keyup event on it for interactive searches
@@ -209,7 +210,24 @@ ARK.Selector = function(config){
 
 };
 
-// - initialize on focus
-// - deinitialize on blur while capturing selected events
-// - only search when term changes
-// - 
+
+// init -> 
+//     .on_focus() -> onkeyup()
+//     .set_term(this.term)
+//     .on_click() -> selected()
+// onkeyup -> 
+//     .reset_target()
+//     .get_suggestions() -> fetch()
+//     .render()
+//     .set_term()
+// render ->
+//     .reset_wrapper()
+//     .render_suggestions()
+// selected ->
+//     .get_selection()
+//     .set_target()
+//     .set_term()
+//     .reset_el()
+//     .sel_el_state(legit)
+//     .run_callback()
+//     .hide_suggestions()
