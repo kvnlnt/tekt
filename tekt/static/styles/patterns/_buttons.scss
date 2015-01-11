@@ -21,3 +21,13 @@ button, .button {
         @include rem(margin-right, 0.5);
     }
 }
+
+// special buttons
+button, .button {
+    &.close_iframe {
+        position: fixed;
+        top:0;
+        right:0;
+        @include rem(font-size, 2);
+    }
+}

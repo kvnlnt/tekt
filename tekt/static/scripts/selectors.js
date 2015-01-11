@@ -7,32 +7,70 @@ ARK.selectors = (function(module) {
 
     /* exports selectors */
 
-    // keep track of registered selectors
-    module.collection = [];
-
     /**
-     * On select handler
-     * @function on_select
+     * Current instances
+     * @member instances
      * @memberOf module:selectors
      */
-    module.on_select = function(obj){};
+    module.instances = [];
 
     /**
-     * Selectors that are auto registered
-     * @member selectors
+     * HTML directive
+     * @member directive
+     * @memberOf module:directive
+     */
+    module.directive = '[ark-selector]';
+
+    /**
+     * Callback
+     * @function pages_handler
      * @memberOf module:selectors
      */
-    module.selectors = [
-        {
-            key: 'id',
-            val: 'page',
-            dom_selector: '[ark-selector="page"]', 
-            endpoint: '/pages/search/',
-            target:'#page_id',
-            suggestions_wrapper:'[ark-selector-suggestions="page"]',
-            suggestion_template:'<%= suggestion.page %>'
+    module.pages_handler = function(){
+
+        console.log('callback');
+
+    };
+
+    /**
+     * Selector type configs
+     * @member  type
+     * @memberof module:selectors
+     */
+    module.type = {
+        page:{
+            src:'/pages/search',
+            callback:module.pages_handler,
         }
-    ];
+    };
+
+    /**
+     * Register a directive
+     * @param  {object} el dom element
+     * @function register
+     * @memberOf module:selectors
+     * @return {object}    selector instance
+     */
+    module.register = function(el){
+
+        var $el = $(el);
+        var type = module.type[$el.attr('ark-selector')];
+
+        // config selector
+        var config = {};
+            config.el = $el;
+            config.src = type.src;
+            config.callback = type.callback;
+
+        // create selector
+        var selector = new ARK.Selector(config);
+
+        // add to collection
+        module.instances.push(selector);
+
+        return selector;
+
+    };
 
     /**
      * Initialize selectors
@@ -41,26 +79,8 @@ ARK.selectors = (function(module) {
      */
     module.init = function() {
 
-        // init selectors
-        _.each(module.selectors, function(v, k){
-
-            // config selector
-            var config = {
-                key:v.key,
-                val:v.val,
-                el:$(v.dom_selector),
-                endpoint:v.endpoint,
-                target:$(v.target),
-                suggestions_wrapper:$(v.suggestions_wrapper),
-                suggestion_template:v.suggestion_template
-            };
-
-            // create selector
-            var selector = new ARK.Selector(config);
-
-            // add to collection
-            module.collection.push(selector);
-        });
+        var selectors = $(module.directive);
+        _.each(selectors, module.register);
 
     };
 

@@ -23,12 +23,17 @@ def list_pages():
     return render_template("pages/list.html", pages=records, section='pages')
 
 
+@blueprint.route('/search')
 @blueprint.route('/search/<string:term>')
-def search_pages(term):
+def search_pages(term=''):
 
     """ get list of pages """
-    search = tektonik.search_pages(term)
-    return jsonify(search)
+
+    if request.method == 'POST':
+        search = tektonik.search_pages(term)
+        return jsonify(search)
+
+    return render_template("pages/search.html")
 
 
 @blueprint.route('/create', methods=['GET', 'POST'])

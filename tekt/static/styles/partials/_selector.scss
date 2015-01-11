@@ -1,15 +1,7 @@
-[ark-selector="page"]{
-    color:lighten($black, 50);
-    &.legit {
-        color:$black;
-    }
-}
-
-[ark-selector-suggestions="page"] {
-    @include rem(margin, 2, 0);
-    border:1px solid darken($white, 20);
-    display: none;
-    @include rem(line-height, 4);
-    @include rem(text-indent, 2);
-    color: lighten($black, 50);
+[ark-selector-iframe] {
+    width:100%;
+    height: 100%;
+    background: $white;
+    position: fixed;
+    z-index: 1000;
 }

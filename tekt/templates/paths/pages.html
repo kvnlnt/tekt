@@ -40,8 +40,7 @@
     <ul>
     {{ render_hidden_field(form.path_id) }}
     {{ render_hidden_field(form.page_id) }}
-    {{ render_field(form.page_selector, placeholder=form.page_selector.description, **{'ark-selector':'page'}) }}
-    <div ark-selector-suggestions="page"></div>
+    {{ render_field(form.page_selector, placeholder=form.page_selector.description, readonly="readonly", **{'ark-selector':'page', 'ark-target':'page_id'}) }}
     </ul>
 </fieldset>
 </div>
