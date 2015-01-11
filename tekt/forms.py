@@ -34,7 +34,8 @@ descriptions = {
     'property': 'yourwebsite.com',
     'path': '/path/to/your/page',
     'page': 'page name',
-    'page_selector': 'Search for a page'
+    'page_selector': 'Search for a page',
+    'page_search': 'Enter page name'
 }
 
 
@@ -82,3 +83,7 @@ class PageForm(Form):
 
     id = HiddenField(u'id')
     page = TextField(u'Page', description=descriptions['page'])
+
+
+class PageSearchForm(Form):
+    term = TextField(u'Page', description=descriptions['page_search'])

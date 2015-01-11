@@ -107,8 +107,9 @@ class Tektonik:
 
     def search_pages(self, term):
 
-        endpoint = self.url + "pages/search/" + term
-        req = requests.get(endpoint, headers=self.headers)
+        endpoint = self.url + "pages/search"
+        data = json.dumps(term)
+        req = requests.post(endpoint, headers=self.headers, data=data)
         resp = json.loads(req.text)
         return resp
 
