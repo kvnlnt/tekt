@@ -29,7 +29,7 @@
     .footer {
         background-color: lighten($white, 3);
         border-top:1px solid darken($white, 5);
-        @include rem(margin-top, 0);
+        @include rem(margin-top, 3);
         @include rem(line-height, 5);
         @include rem(font-size, 1.8);
         color:lighten($black, 20);

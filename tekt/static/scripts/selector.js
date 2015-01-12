@@ -49,9 +49,12 @@ ARK.Selector = function(config){
      * Close iframe
      * @function Selector.teardown_iframe
      */
-    this.teardown_iframe = function(){
-        this.iframe.remove();
+    this.teardown_iframe = function(val){
+        var that = this;
         $('body').css('overflow','auto');
+        this.iframe.fadeOut('slow', function(){
+            that.iframe.remove();
+        });
     };
 
     /**
@@ -66,7 +69,7 @@ ARK.Selector = function(config){
         var key = item.attr('ark-key');
         var val = item.attr('ark-val');
         this.get('callback')({ key:key, val:val });
-        this.teardown_iframe();
+        this.teardown_iframe(val);
 
     };
 
@@ -80,6 +83,7 @@ ARK.Selector = function(config){
         close.on('click', this.teardown_iframe.bind(this));
         var item = this.iframe.contents().find('.item');
         item.on('click', this.callback.bind(this));
+        this.iframe.fadeIn();
     };
 
     /**
@@ -94,6 +98,7 @@ ARK.Selector = function(config){
         iframe.attr('ark-selector-iframe', 'selector');
         iframe.prop('src', this.get('src'));
         iframe.on('load', this.init_iframe.bind(this));
+        iframe.hide();
 
         // let's keep a copy to ref
         this.iframe = iframe;
