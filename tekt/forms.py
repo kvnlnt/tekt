@@ -34,7 +34,7 @@ descriptions = {
     'property': 'yourwebsite.com',
     'path': '/path/to/your/page',
     'page': 'page name',
-    'page_selector': 'Search for a page',
+    'page_selector': 'Click to search',
     'page_search': 'Enter page name'
 }
 

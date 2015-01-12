@@ -47,11 +47,27 @@ ARK.Selector = function(config){
 
     /**
      * Close iframe
-     * @function Selector.close_iframe
+     * @function Selector.teardown_iframe
      */
-    this.close_iframe = function(){
+    this.teardown_iframe = function(){
         this.iframe.remove();
         $('body').css('overflow','auto');
+    };
+
+    /**
+     * Run callback
+     * @function Selector.callback
+     */
+    this.callback = function(e){
+
+        e.preventDefault();
+        e.stopPropagation();
+        var item = $(e.target);
+        var key = item.attr('ark-key');
+        var val = item.attr('ark-val');
+        this.get('callback')({ key:key, val:val });
+        this.teardown_iframe();
+
     };
 
     /**
@@ -61,7 +77,9 @@ ARK.Selector = function(config){
      */
     this.init_iframe = function(e){
         var close = this.iframe.contents().find('.close_iframe');
-        close.on('click', this.close_iframe.bind(this));
+        close.on('click', this.teardown_iframe.bind(this));
+        var item = this.iframe.contents().find('.item');
+        item.on('click', this.callback.bind(this));
     };
 
     /**

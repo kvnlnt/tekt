@@ -22,13 +22,14 @@ ARK.selectors = (function(module) {
     module.directive = '[ark-selector]';
 
     /**
-     * Callback
+     * Pages callback
      * @function pages_handler
      * @memberOf module:selectors
      */
-    module.pages_handler = function(){
+    module.pages_handler = function(obj){
 
-        console.log('callback');
+        $('#page_id').val(obj.key);
+        $('[ark-selector="page"]').val(obj.val);
 
     };
 

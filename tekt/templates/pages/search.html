@@ -30,8 +30,7 @@
     </div>
     <ul>
         {% for record in pages %}
-        <li><a href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a>
-        </li>
+        <li><a class="item" ark-key="{{record.id}}" ark-val="{{record.page}}" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a></li>
         {% endfor %}
     </ul>
 </div>
