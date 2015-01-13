@@ -1,13 +1,7 @@
 .card {
     @include rem(padding, 0);
-    background-color:$white;
-    border-top:5px solid darken($white, 5);
-    border-bottom:5px solid darken($white, 5);
-    border-right:1px solid darken($white, 5);
-    border-left:1px solid darken($white, 5);
     .header {
-        border-bottom:1px solid darken($white, 5);
-        background-color: lighten($white, 3);
+        border-bottom:5px solid darken($white, 5);
         @include rem(line-height, 5);
         @include rem(font-size, 1.8);
         color:lighten($black, 20);
@@ -27,8 +21,7 @@
         @include rem(margin, 0, 3);
     }
     .footer {
-        background-color: lighten($white, 3);
-        border-top:1px solid darken($white, 5);
+        border-top:5px solid darken($white, 5);
         @include rem(margin-top, 3);
         @include rem(line-height, 5);
         @include rem(font-size, 1.8);

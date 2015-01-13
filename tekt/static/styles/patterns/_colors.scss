@@ -3,8 +3,14 @@
 $primary:#0077AA;
 
 /* Neutrals */
-$white:#F2F2F2;
+$white:#F4F4F4;
 $black:#222222;
+
+/* Messenger */
+$inform:lighten($primary, 10);
+$praise:#33AA33;
+$alarm:#DD5555;
+$warn:#BBBB22;
 
 /* Helpers */
 $color-error-text: #FF0000;

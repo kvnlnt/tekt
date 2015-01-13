@@ -3,12 +3,13 @@
 """
 
 from flask import Blueprint
+from flask import flash
 from flask import redirect
 from flask import render_template
 from flask import request
 from flask import url_for
-from tekt.tektonik import tektonik
 from tekt import forms
+from tekt.tektonik import tektonik
 
 blueprint = Blueprint('paths', __name__, template_folder='templates')
 
@@ -53,6 +54,8 @@ def read_path(id):
         )
         if is_valid:
             return redirect(url_for('.read_path', id=id))
+        else:
+            flash('Looks like there was an error', 'alarm')
 
     return render_template(
         "paths/read.html",

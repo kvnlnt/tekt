@@ -46,7 +46,7 @@ ARK.selectors = (function(module) {
     };
 
     /**
-     * Register a directive
+     * Register a selector
      * @param  {object} el dom element
      * @function register
      * @memberOf module:selectors
@@ -77,11 +77,14 @@ ARK.selectors = (function(module) {
      * Initialize selectors
      * @function init
      * @memberOf module:selectors
+     * @return {array} array of selectors to be registered
      */
     module.init = function() {
 
         var selectors = $(module.directive);
         _.each(selectors, module.register);
+
+        return selectors;
 
     };
 

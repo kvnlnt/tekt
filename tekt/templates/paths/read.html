@@ -50,10 +50,13 @@
 </table>
 </div>
 
-<form method="post" action="{{ url_for('paths.read_path', id=path.id) }}" class="card">
+<form id="add_page" method="post" action="{{ url_for('paths.read_path', id=path.id) }}" class="card">
     <div class="header table">
         <div class="tr">
             <h2 class="title td">Add Page</h2>
+            <div class="actions td">
+                <a class="button showhide fa fa-minus"></a>
+            </div>
         </div>
     </div>
     <div class="body">

@@ -7,18 +7,26 @@
 <div class="card">
     <div class="header table">
         <div class="tr">
-            <h2 class="title td">Current</h2>
+            <h2 class="title td">Active</h2>
             <div class="actions td">
                 <a class="button" href="{{ url_for('.create_path') }}">new</a>
             </div>
         </div>
     </div>
-    <ul>
+    <table class="data">
+        <tr>
+            <th>Path</th>
+            <th>Property</th>
+            <th>Page</th>
+        </tr>
         {% for record in paths %}
-        <li><a href="{{ url_for('.read_path', id=record.id) }}">{{record.property.property}}{{record.path}}</a>
-        </li>
+        <tr>
+            <td><a href="{{ url_for('.read_path', id=record.id) }}">{{record.path}}</a></td>
+            <td>{{record.property.property}}</td>
+            <td>{{record.pages[0].page}}</td>
+        </tr>
         {% endfor %}
-    </ul>
+    </table>
 </div>
 
 

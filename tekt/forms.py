@@ -64,7 +64,7 @@ def PathFormFactory(request, data=None):
     form = PathForm(request.form, data=data)
     properties = tektonik.list_properties()['result']
     property_choices = [(p['id'], p['property']) for p in properties]
-    property_choices.insert(0, (0, ''))
+    # property_choices.insert(0, (0, ''))
     form.property_id.choices = property_choices
     return form
 

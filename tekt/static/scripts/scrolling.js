@@ -1,9 +1,9 @@
 /**
-* Manages back to top button
-* @module back_to_top
+* Manages scrolling functions and tools
+* @module scrolling
 * @version 1.0
 */
-ARK.back_to_top = (function(module){
+ARK.scrolling = (function(module){
 
     /* exports cookies */
 
@@ -13,7 +13,7 @@ ARK.back_to_top = (function(module){
     /**
      * Manage show hide of toggle button
      * @function manage
-     * @memberOf module:back_to_top
+     * @memberOf module:scrolling
      * @return {boolean} button state (true = showing)
      */
     module.manage = function(){
@@ -24,21 +24,34 @@ ARK.back_to_top = (function(module){
             module.$el.fadeOut(200);
         }
 
+        // publish scrolling event
+        ARK.pubsub.publish('SCROLLING');
+
     };
 
     /** 
      * Scroll back to top
      * @function scrollTop
-     * @memberOf module:back_to_top
+     * @memberOf module:scrolling
     */
     module.scrollTop = function(){
-        module.$body.animate({scrollTop:0}, 500);
+        module.scrollTo(0, 500, 'swing');
+    };
+
+    /** 
+     * Scroll back to top
+     * @function scrollTop
+     * @memberOf module:scrolling
+    */
+    module.scrollTo = function(top, speed, easing){
+        var easing = easing || 'linear';
+        module.$body.animate({scrollTop:top}, speed, easing);
     };
 
     /**
      * Initialize scroll to top button
      * @function init
-     * @memberOf module:back_to_top
+     * @memberOf module:scrolling
      */
     module.init = function(key){
         module.$win = $(window);
@@ -52,4 +65,4 @@ ARK.back_to_top = (function(module){
 
     return module;
 
-}(ARK.back_to_top || {}));
+}(ARK.scrolling || {}));

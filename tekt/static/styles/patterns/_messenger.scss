@@ -1,0 +1,21 @@
+[ark-messenger="flash"]{
+    width:100%;
+    z-index: 99;
+    .flashes li {
+        @include rem(padding, 3);
+        @include rem(font-size, 2);
+        color: $white;
+    }
+    .inform{
+        background-color: $inform;
+    }
+    .praise{
+        background-color: $praise;
+    }
+    .alarm{
+        background-color: $alarm;
+    }
+    .warn{
+        background-color: $warn;
+    }
+}

@@ -1,2 +1,6 @@
+- name space all classes and ids just like in js
+- add masks to input fields
+- create flash messaging
 - csrf to wtforms
 - all "publishing" is done by invalidating cache
+- proper deletion of orphans

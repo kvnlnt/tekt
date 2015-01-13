@@ -3,12 +3,13 @@
 """
 
 from flask import Blueprint
+from flask import flash
 from flask import redirect
 from flask import render_template
 from flask import request
 from flask import url_for
-from tekt.tektonik import tektonik
 from tekt import forms
+from tekt.tektonik import tektonik
 
 
 blueprint = Blueprint('properties', __name__, template_folder='templates')
@@ -18,7 +19,6 @@ blueprint = Blueprint('properties', __name__, template_folder='templates')
 def list_properties():
 
     """ get list of properties """
-
     records = tektonik.list_properties()['result']
     return render_template(
         "properties/list.html",
@@ -36,7 +36,12 @@ def create_property():
         new_record = tektonik.create_property(request.form)
         is_valid = forms.is_valid(form, new_record)
         if is_valid:
+            flash(
+                "Awesome! You've just created a new website property",
+                "praise")
             return redirect(url_for('.list_properties'))
+        else:
+            flash("Whoops. Looks like there was an error", "alarm")
     return render_template(
         "properties/create.html",
         form=form,

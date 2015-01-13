@@ -1,5 +1,6 @@
-// resets
+// libs
 @import "patterns/normalize";
+@import "patterns/animate";
 
 // functions & settings
 @import "patterns/utilities";
@@ -20,6 +21,7 @@
 @import "patterns/forms";
 @import "patterns/layout";
 @import "patterns/cards";
+@import "patterns/messenger";
 
 // partials
 @import "partials/menu";

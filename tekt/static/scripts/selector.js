@@ -52,8 +52,12 @@ ARK.Selector = function(config){
     this.teardown_iframe = function(val){
         var that = this;
         $('body').css('overflow','auto');
-        this.iframe.fadeOut('slow', function(){
+        this.get('el').trigger('focus');
+        this.get('el').addClass('animated flash');
+        this.iframe.addClass('animated fadeOutDown');
+        this.iframe.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
             that.iframe.remove();
+            that.get('el').removeClass('animated flash');
         });
     };
 
@@ -83,7 +87,8 @@ ARK.Selector = function(config){
         close.on('click', this.teardown_iframe.bind(this));
         var item = this.iframe.contents().find('.item');
         item.on('click', this.callback.bind(this));
-        this.iframe.fadeIn();
+        this.iframe.show();
+        this.iframe.addClass('animated fadeInUp');
     };
 
     /**

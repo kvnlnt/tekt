@@ -30,6 +30,17 @@
                     {% include 'menu.html' %}
                 </div>
                 <div id="content" class="td">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div ark-messenger="flash">
+                            <ul class=flashes>
+                                {% for category, message in messages %}
+                                <li class="{{ category }}">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    {% endwith %}
                     <div id="header">{% include 'header.html' %}</div>
                     <div id="body">{% block body %}{% endblock %}</div>
                 </div>
