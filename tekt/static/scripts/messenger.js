@@ -26,11 +26,17 @@ ARK.messenger = (function(module){
      * @function fixate
      * @memberOf module:messenger
      */
-    module.fixate = function(){
+    module.fixate = function(top){
 
+        var threshold = 200;
+        var is_sticky = Boolean(module.$el.find('sticky').length);
+        if(true === is_sticky || top < threshold) { return false; }
+
+        // else continue
         module.$el
-        .css({ position:'fixed' })
-        .delay(2000)
+        .css({ position:'fixed', width:'100%' })
+        .addClass('animated fadeInDown')
+        .delay(5000)
         .queue(function(){
             module.$el.addClass('animated fadeOutUp').dequeue();
         });
@@ -45,7 +51,9 @@ ARK.messenger = (function(module){
     module.init = function() {
 
         module.$el = $(module.el);
-        ARK.pubsub.subscribe('SCROLLING', module.fixate);
+        ARK.pubsub.subscribe('SCROLLING', function(e, top){
+            module.fixate(top.top);
+        });
 
     };
 

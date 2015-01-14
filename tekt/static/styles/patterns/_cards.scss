@@ -1,7 +1,7 @@
 .card {
     @include rem(padding, 0);
     .header {
-        border-bottom:5px solid darken($white, 5);
+        border-bottom:5px solid $secondary;
         @include rem(line-height, 5);
         @include rem(font-size, 1.8);
         color:lighten($black, 20);
@@ -18,11 +18,11 @@
         }
     }
     .body {
-        @include rem(margin, 0, 3);
+        @include rem(margin, 1, 3, 2.3);
     }
     .footer {
         border-top:5px solid darken($white, 5);
-        @include rem(margin-top, 3);
+        @include rem(margin-top, 0);
         @include rem(line-height, 5);
         @include rem(font-size, 1.8);
         color:lighten($black, 20);

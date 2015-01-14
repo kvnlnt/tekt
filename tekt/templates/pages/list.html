@@ -6,18 +6,28 @@
 <div class="card">
     <div class="header table">
         <div class="tr">
-            <h2 class="title td">Current</h2>
+            <h2 class="title td">{{pages|length}} of {{metadata.total_records}}</h2>
             <div class="actions td">
                 <a class="button" href="{{ url_for('.create_page') }}">new</a>
             </div>
         </div>
     </div>
-    <ul>
+    <table class="data">
+        <tr>
+            <th>#</th>
+            <th>page</th>
+            <th>paths</th>
+            <th></th>
+        </tr>
         {% for record in pages %}
-        <li><a href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a>
-        </li>
+        <tr>
+            <td>{{record.id}}</th>
+            <td><a href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a></td>
+            <td>{{record.paths|length}}</td>
+            <td><a href="{{ url_for('.update_page', id=record.id) }}">settings</a></td>
+        </tr>
         {% endfor %}
-    </ul>
+    </table>
 </div>
 
 {% endblock %}

@@ -5,18 +5,30 @@
 <div class="card">
     <div class="header table">
         <div class="tr">
-            <h2 class="title td">Active</h2>
+            <h2 class="title td">{{properties|length}} of {{metadata.total_records}}</h2>
             <div class="actions td">
                 <a class="button" href="{{ url_for('.create_property') }}">new</a>
             </div>
         </div>
     </div>
-    <ul>
+    <table class="data">
+        <tr>
+            <th>#</th>
+            <th>property</th>
+            <th>paths</th>
+            <th>pages</th>
+            <th></th>
+        </tr>
         {% for record in properties %}
-        <li><a href="{{ url_for('.read_property', id=record.id) }}">{{record.property}}</a>
-        </li>
+        <tr>
+            <td>{{record.id}}</td>
+            <td><a href="{{ url_for('.read_property', id=record.id) }}">{{record.property}}</a></td>
+            <td>{{record.stats.total_paths}}</td>
+            <td>{{record.stats.total_pages}}</td>
+            <td><a href="{{ url_for('.update_property', id=record.id) }}">settings</a></td>
+        </tr>
         {% endfor %}
-    </ul>
+    </table>
 </div>
 
 {% endblock %}

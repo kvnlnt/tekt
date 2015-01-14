@@ -25,7 +25,7 @@ ARK.scrolling = (function(module){
         }
 
         // publish scrolling event
-        ARK.pubsub.publish('SCROLLING');
+        ARK.pubsub.publish('SCROLLING', {top:module.$win.scrollTop()});
 
     };
 

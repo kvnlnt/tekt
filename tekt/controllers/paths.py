@@ -19,8 +19,14 @@ def list_paths():
 
     """ get list of paths """
 
-    records = tektonik.list_paths()['result']
-    return render_template("paths/list.html", paths=records, section='paths')
+    paths = tektonik.list_paths()
+    records = paths['result']
+    metadata = paths['metadata']
+    return render_template(
+        "paths/list.html",
+        paths=records,
+        metadata=metadata,
+        section='paths')
 
 
 @blueprint.route('/create', methods=['GET', 'POST'])
@@ -33,7 +39,14 @@ def create_path():
         new_record = tektonik.create_path(request.form)
         is_valid = forms.is_valid(form, new_record)
         if is_valid:
+            flash(
+                "Awesome! You just created a new path",
+                "praise")
             return redirect(url_for('.list_paths'))
+        else:
+            flash(
+                "Whoops, something went wrong...try again",
+                "alarm")
     return render_template("paths/create.html", form=form, section='paths')
 
 
@@ -53,9 +66,14 @@ def read_path(id):
             {'page_id': 'page_selector'}
         )
         if is_valid:
+            flash(
+                "Good job. You just added a page to this path.",
+                "praise")
             return redirect(url_for('.read_path', id=id))
         else:
-            flash('Looks like there was an error', 'alarm')
+            flash(
+                'Looks like there was an error trying to add your page',
+                'alarm')
 
     return render_template(
         "paths/read.html",
@@ -70,6 +88,7 @@ def remove_page_from_path(id, path_page_id):
     """ remove a page from a path """
 
     tektonik.delete_path_page(path_page_id)
+    flash("Page removed from path", "warn")
     return redirect(url_for('.read_path', id=id))
 
 
@@ -86,7 +105,14 @@ def update_path(id):
         update_record = tektonik.update_path(request.form, id)
         is_valid = forms.is_valid(form, update_record)
         if is_valid:
+            flash(
+                "You just updated the settings for this path",
+                "inform")
             return redirect(url_for('.read_path', id=id))
+        else:
+            flash(
+                "Uh oh, looks like something needs to be fixed...",
+                "alarm")
 
     template = "paths/update.html"
     return render_template(template, form=form, path=record, section='paths')
@@ -98,4 +124,5 @@ def delete_path(id):
     """ delete a path """
 
     tektonik.delete_path(id)
+    flash("Path deleted", "inform")
     return redirect(url_for('.list_paths'))

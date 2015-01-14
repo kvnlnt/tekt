@@ -19,10 +19,13 @@ blueprint = Blueprint('properties', __name__, template_folder='templates')
 def list_properties():
 
     """ get list of properties """
-    records = tektonik.list_properties()['result']
+    properites = tektonik.list_properties()
+    records = properites['result']
+    metadata = properites['metadata']
     return render_template(
         "properties/list.html",
         properties=records,
+        metadata=metadata,
         section='properties')
 
 
@@ -73,7 +76,12 @@ def update_property(id):
         update_record = tektonik.update_property(request.form, id)
         is_valid = forms.is_valid(form, update_record)
         if is_valid:
+            flash(
+                "You just updated settings for this property",
+                "inform")
             return redirect(url_for('.read_property', id=id))
+        else:
+            flash("Whoops. Looks like there was an error", "alarm")
 
     template = "properties/update.html"
     return render_template(
@@ -89,4 +97,7 @@ def delete_property(id):
     """ delete a property """
 
     tektonik.delete_property(id)
+    flash(
+        "Bye, bye property",
+        "warn")
     return redirect(url_for('.list_properties'))

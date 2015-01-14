@@ -4,3 +4,4 @@
 - csrf to wtforms
 - all "publishing" is done by invalidating cache
 - proper deletion of orphans
+- I10N

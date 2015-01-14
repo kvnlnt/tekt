@@ -3,6 +3,7 @@
 """
 
 from flask import Blueprint
+from flask import flash
 from flask import redirect
 from flask import render_template
 from flask import request
@@ -18,8 +19,14 @@ def list_pages():
 
     """ get list of pages """
 
-    records = tektonik.list_pages()['result']
-    return render_template("pages/list.html", pages=records, section='pages')
+    pages = tektonik.list_pages()
+    records = pages['result']
+    metadata = pages['metadata']
+    return render_template(
+        "pages/list.html",
+        pages=records,
+        metadata=metadata,
+        section='pages')
 
 
 @blueprint.route('/search', methods=['GET', 'POST'])
@@ -48,7 +55,14 @@ def create_page():
         new_record = tektonik.create_page(request.form)
         is_valid = forms.is_valid(form, new_record)
         if is_valid:
+            flash(
+                "Success! You just created a new page",
+                "praise")
             return redirect(url_for('.list_pages'))
+        else:
+            flash(
+                "Oops! You might of missed something...",
+                "alarm")
     return render_template("pages/create.html", form=form, section='pages')
 
 
@@ -74,7 +88,14 @@ def update_page(id):
         update_record = tektonik.update_page(request.form, id)
         is_valid = forms.is_valid(form, update_record)
         if is_valid:
+            flash(
+                "Page settings were updated.",
+                "inform")
             return redirect(url_for('.read_page', id=id))
+        else:
+            flash(
+                "Uh oh...looks like there were some errors",
+                "alarm")
 
     template = "pages/update.html"
     return render_template(template, form=form, page=record, section='pages')
@@ -85,5 +106,8 @@ def delete_page(id):
 
     """ delete a page """
 
+    flash(
+        "page deleted",
+        "inform")
     tektonik.delete_page(id)
     return redirect(url_for('.list_pages'))
