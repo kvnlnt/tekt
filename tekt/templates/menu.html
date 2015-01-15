@@ -1,7 +1,7 @@
 {% from "macros/menus.html" import render_menu_link %} 
 <div class="main table">
   {{ render_menu_link(id='menu-toggle', icon=menu_collapsed_arrow_class) }}
-  {{ render_menu_link(text='Dashboard', link='main.dashboard', icon='fa fa-leaf', section=(section == 'dashboard')) }}
+  {{ render_menu_link(text='Dashboard', link='main.dashboard', icon='fa fa-dashboard', section=(section == 'dashboard')) }}
   {{ render_menu_link(text='Properties', link='properties.list_properties', icon='fa fa-tree', section=(section == 'properties')) }}
   {{ render_menu_link(text='Paths', link='paths.list_paths', icon='fa fa-code-fork', section=(section == 'paths')) }}
   {{ render_menu_link(text='Pages', link='pages.list_pages', icon='fa fa-file-o', section=(section == 'pages')) }}

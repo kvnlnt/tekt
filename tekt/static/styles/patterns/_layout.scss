@@ -5,6 +5,22 @@ html, body {
     background-color: $white;
 }
 
+[ark-layout="home"]{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color:$primary;
+    background: -webkit-linear-gradient(25deg, $purple 10%, $blue 90%); /* Chrome 10+, Saf5.1+ */
+    background:    -moz-linear-gradient(25deg, $purple 10%, $blue 90%); /* FF3.6+ */
+    background:     -ms-linear-gradient(25deg, $purple 10%, $blue 90%); /* IE10 */
+    background:      -o-linear-gradient(25deg, $purple 10%, $blue 90%); /* Opera 11.10+ */
+    background:         linear-gradient(25deg, $purple 10%, $blue 90%); /* W3C */
+    .body {
+        text-align: center;
+        vertical-align: middle;
+    }
+}
+
 #layout {
     height: 100%;
     margin: 0;

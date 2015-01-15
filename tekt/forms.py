@@ -39,6 +39,11 @@ descriptions = {
 }
 
 
+class SignInForm(Form):
+    username = TextField('Username')
+    password = TextField('Password')
+
+
 class PropertyForm(Form):
 
     id = HiddenField('id')

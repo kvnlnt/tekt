@@ -4,12 +4,14 @@
 
 {% block body %}
 <h1><a href="{{ url_for('.list_properties') }}">Properties</a></h1>
-<form method="post" action="{{ url_for('.create_property') }}" class="card">
+
+<div class="card">
     <div class="header table">
         <div class="tr">
-            <legend class="title td">New</legend>
+            <h2 class="title td">New</h2>
         </div>
     </div>
+    <form method="post" action="{{ url_for('.create_property') }}">
     <div class="body">
         <fieldset>
             <ul>
@@ -25,5 +27,7 @@
             </div>
         </div>
     </div>
-</form>
+    </form>
+</div>
+
 {% endblock %}
