@@ -14,6 +14,7 @@
         </div>
     </div>
 </div>
+<div class="body">
 <table class="data">
     <tr>
         <th>ID</th>
@@ -29,6 +30,7 @@
     </tr>
 </table>
 </div>
+</div>
 
 
 <div class="card">
@@ -37,39 +39,41 @@
             <h2 class="title td">Pages</h2>
         </div>
     </div>
-    <table class="data">
-        <tr>
-            <th>#</th>
-            <th>page</th>
-            <th>actions</th>
-        </tr>
-        {% for page in path.pages %}
-        <tr>
-            <td>{{ page.id }}</td>
-            <td><a href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a>
-            </td>
-            <td><a href="{{ url_for('paths.remove_page_from_path', id=path.id, path_page_id=page.path_page_id)}}">remove</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-
-    <form id="add_page" method="post" action="{{ url_for('paths.read_path', id=path.id) }}" class="card">
-        <div class="body">
-            <fieldset>
-                <ul>
-                    {{ render_hidden_field(form.path_id) }} {{ render_hidden_field(form.page_id) }} {{ render_field(form.page_selector, placeholder=form.page_selector.description, readonly="readonly", **{'ark-selector':'page', 'ark-target':'page_id'}) }}
-                </ul>
-            </fieldset>
+    <form id="add_page" method="post" action="{{ url_for('paths.read_path', id=path.id) }}">
+    <div class="body">
+        <table class="data">
+            <tr>
+                <th>#</th>
+                <th>page</th>
+                <th>actions</th>
+            </tr>
+            {% for page in path.pages %}
+            <tr>
+                <td>{{ page.id }}</td>
+                <td><a href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a>
+                </td>
+                <td><a href="{{ url_for('paths.remove_page_from_path', id=path.id, path_page_id=page.path_page_id)}}">remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <fieldset>
+            <ul>
+                {{ render_hidden_field(form.path_id) }} {{ render_hidden_field(form.page_id) }} {{ render_field(form.page_selector, placeholder=form.page_selector.description, readonly="readonly", **{'ark-selector':'page', 'ark-target':'page_id'}) }}
+            </ul>
+        </fieldset>
+    </div>
+    <div class="footer table">
+        <div class="tr">
+            <div class="actions td">
+                <input class="button" type="submit" value="Add Page">
+            </div>
         </div>
-        <div class="footer">
-            <input class="button" type="submit" value="Add Page">
-        </div>
+    </div>
     </form>
-
 </div>
 
-<div class="card">
-<a class="button" href="{{ url_for('.delete_path', id=path.id )}}">delete this path</a>
-
+<div style="margin:50px 0px;">
+    <a class="button alarm" href="{{ url_for('.delete_path', id=path.id )}}">delete this path</a>
+</div>
 {% endblock %}

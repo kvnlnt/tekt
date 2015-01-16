@@ -1,5 +1,11 @@
 .card {
     @include rem(padding, 0);
+    &:hover {
+        -webkit-box-shadow: 0px 20px 25px -30px $black;
+        -moz-box-shadow: 0px 20px 25px -30px $black;
+        box-shadow: 0px 20px 25px -30px $black;
+        transition: all 1s ease;
+    }
     .header {
         border-bottom:5px solid $secondary;
         @include rem(line-height, 5);
@@ -23,10 +29,13 @@
         background-color:lighten($white, 1);
     }
     .footer {
-        border-top:5px solid darken($white, 5);
+        border-left:1px solid darken($white, 10);
+        border-right:1px solid darken($white, 10);
+        border-bottom:1px solid darken($white, 10);
         @include rem(margin-top, 0);
         @include rem(line-height, 5);
         @include rem(font-size, 1.8);
+        @include rem(padding, 1);
         color:lighten($black, 20);
         vertical-align: middle;
         .actions {

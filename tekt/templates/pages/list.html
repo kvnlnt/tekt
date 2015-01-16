@@ -12,22 +12,24 @@
             </div>
         </div>
     </div>
-    <table class="data">
-        <tr>
-            <th>#</th>
-            <th>page</th>
-            <th>paths</th>
-            <th></th>
-        </tr>
-        {% for record in pages %}
-        <tr>
-            <td>{{record.id}}</th>
-            <td><a href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a></td>
-            <td>{{record.paths|length}}</td>
-            <td><a href="{{ url_for('.update_page', id=record.id) }}">settings</a></td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="body">
+        <table class="data">
+            <tr>
+                <th>#</th>
+                <th>page</th>
+                <th>paths</th>
+                <th></th>
+            </tr>
+            {% for record in pages %}
+            <tr>
+                <td>{{record.id}}</th>
+                <td><a href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a></td>
+                <td>{{record.paths|length}}</td>
+                <td><a href="{{ url_for('.update_page', id=record.id) }}">settings</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </div>
 
 {% endblock %}

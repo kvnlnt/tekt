@@ -8,8 +8,12 @@ form {
         margin: 0;
         @include rem(padding, 2);
     }
+    fieldset + fieldset {
+        @include rem(padding, 0, 2, 2);
+    }
     label {
         @include rem(font-size, 1.6);
+        color: lighten($black, 50);
     }
     label + p {
         @include rem(font-size, 1.4);
@@ -29,7 +33,8 @@ form {
         &:focus {
             transition: all 0.5s ease;
             outline: none;
-            border-bottom:5px solid $black;
+            border-color: $primary;
+            box-shadow: 0 0 10px $primary;
         }
     }
     select {

@@ -2,9 +2,9 @@ button, .button {
     @include rem(font-size, 1.6);
     @include rem(line-height, 4);
     @include rem(padding, 0, 1.25);  
+    border:1px solid $primary;
     letter-spacing: 1px;  
     color:$primary;
-    border:0;
     background-color:transparent;
     display: inline-block;
     text-align: center;
@@ -20,14 +20,8 @@ button, .button {
     i {
         @include rem(margin-right, 0.5);
     }
-}
-
-// special buttons
-button, .button {
-    &.close_iframe {
-        position: fixed;
-        top:0;
-        right:0;
-        @include rem(font-size, 2);
+    &.alarm {
+        border:1px solid $alarm;
+        color:$alarm;
     }
 }

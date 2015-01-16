@@ -3,15 +3,27 @@
 
 {% block body %}
 <a class="button close_iframe"><i class="fa fa-times"></i></a>
-<h1>Search Pages</h1>
 
 <form method="post" action="{{ url_for('.search_pages') }}" class="card">
+    <div class="header table">
+        <div class="tr">
+            <h2 class="title td">Search Pages</h2>
+            <div class="actions td">
+                {% if form.term.data != None %}{{ pages | length }} results for "{{form.term.data}}"{% endif %}
+            </div>
+        </div>
+    </div>
     <div class="body">
         <fieldset>
             <ul>
                 {{ render_field(form.term, autofocus='autofocus', placeholder=form.term.description) }}
             </ul>
         </fieldset>
+        <ul>
+            {% for record in pages %}
+            <li><a class="item" ark-key="{{record.id}}" ark-val="{{record.page}}" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a></li>
+            {% endfor %}
+        </ul>
     </div>
     <div class="footer table">
         <div class="tr">
@@ -22,17 +34,5 @@
     </div>
 </form>
 
-<div class="card">
-    <div class="header table">
-        <div class="tr">
-            <h2 class="title td">{{ pages | length }} results {% if form.term.data != '' %} for "{{form.term.data}}" {% endif %}</h2>
-        </div>
-    </div>
-    <ul>
-        {% for record in pages %}
-        <li><a class="item" ark-key="{{record.id}}" ark-val="{{record.page}}" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a></li>
-        {% endfor %}
-    </ul>
-</div>
 
 {% endblock %}

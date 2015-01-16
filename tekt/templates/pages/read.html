@@ -13,20 +13,22 @@
             </div>
         </div>
     </div>
-    <table class="data">
-        <tr>
-            <th>#</th>
-            <th>page</th>
-        </tr>
-        <tr>
-            <td>{{ page.id }}</td>
-            <td>{{ page.page }}</td>
-        </tr>
-    </table>
+    <div class="body">
+        <table class="data">
+            <tr>
+                <th>#</th>
+                <th>page</th>
+            </tr>
+            <tr>
+                <td>{{ page.id }}</td>
+                <td>{{ page.page }}</td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 
-<div class="card">
-     <a class="button" href="{{ url_for('.delete_page', id=page.id )}}">delete this page</a>
+<div style="margin:50px 0px;">
+     <a class="button alarm" href="{{ url_for('.delete_page', id=page.id )}}">delete this page</a>
 </div>
 {% endblock %}

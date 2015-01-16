@@ -18,6 +18,9 @@ table, .table {
             @include rem(padding, 0, 2);
             @include rem(line-height, 4);
             text-align: left;
+            white-space: nowrap;
+            overflow: hidden;  
+            text-overflow: ellipsis;
             .button {
                 @include rem(line-height, 2);
                 @include rem(padding, 0.5, 2);

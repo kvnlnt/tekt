@@ -19,13 +19,14 @@
     }
     a {
         border:0px;
-        color: darken($white, 20);
+        color: $white;
+        opacity:0.2;
         margin:0;
         padding:0;
         text-indent: 0;
         &:hover {
             transition: all 1s ease;
-            color:$black;
+            opacity:1;
         }
     }
 }
