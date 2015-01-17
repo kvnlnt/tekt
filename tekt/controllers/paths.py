@@ -56,30 +56,11 @@ def read_path(id):
     """ read a path and add page to path """
 
     record = tektonik.read_path(id)['result']
-    data = {'path_id': id, 'page_id': 0}
-    form = forms.PathPageForm(request.form, data=data)
-
-    if request.method == 'POST':
-        new_record = tektonik.create_path_page(request.form)
-        is_valid = forms.is_valid(
-            form, new_record,
-            {'page_id': 'page_selector'}
-        )
-        if is_valid:
-            flash(
-                "Good job. You just added a page to this path.",
-                "praise")
-            return redirect(url_for('.read_path', id=id))
-        else:
-            flash(
-                'Looks like there was an error trying to add your page',
-                'alarm')
 
     return render_template(
         "paths/read.html",
         path=record,
-        section='paths',
-        form=form)
+        section='paths')
 
 
 @blueprint.route('/<int:id>/remove/<int:path_page_id>', methods=['GET'])
@@ -98,7 +79,7 @@ def update_path(id):
     """ edit a path """
 
     record = tektonik.read_path(id)['result']
-    form = forms.PathFormFactory(request, data=record)
+    path_form = forms.PathFormFactory(request, data=record)
 
     if request.method == 'POST':
         form = forms.PathFormFactory(request)
@@ -114,8 +95,32 @@ def update_path(id):
                 "Uh oh, looks like something needs to be fixed...",
                 "alarm")
 
+    data = {'path_id': id, 'page_id': 0}
+    page_form = forms.PathPageForm(request.form, data=data)
+
+    if request.method == 'POST':
+        new_record = tektonik.create_path_page(request.form)
+        is_valid = forms.is_valid(
+            form, new_record,
+            {'page_id': 'page_selector'}
+        )
+        if is_valid:
+            flash(
+                "Good job. You just added a page to this path.",
+                "praise")
+            return redirect(url_for('.read_path', id=id))
+        else:
+            flash(
+                'Looks like there was an error trying to add your page',
+                'alarm')
+
     template = "paths/update.html"
-    return render_template(template, form=form, path=record, section='paths')
+    return render_template(
+        template,
+        path_form=path_form,
+        page_form=page_form,
+        path=record,
+        section='paths')
 
 
 @blueprint.route('/<int:id>/delete')

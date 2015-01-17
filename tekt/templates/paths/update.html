@@ -1,11 +1,10 @@
-
-{% from "macros/forms.html" import render_field %} 
+{% from "macros/forms.html" import render_field, render_hidden_field %} 
 {% extends 'template.html' %} 
 
 {% block body %}
 <h1><a href="{{ url_for('.list_paths') }}">Paths</a></h1>
-<form tekt-pattern="form" method="post" action="{{ url_for('.update_path', id=path.id) }}" tekt-part="card">
-    {{ form.id }}
+<form tekt-pattern="form" method="post" action="{{ url_for('paths.update_path', id=path.id) }}" tekt-part="card">
+    {{ path_form.id }}
     <div tekt-pattern="table" class="header">
         <div class="tr">
             <legend class="title td">Settings</legend>
@@ -14,12 +13,12 @@
     <div class="body">
         <fieldset>
             <ul tekt-pattern="list">
-                {{ render_field(form.path, autofocus="autofocus", placeholder=form.path.description) }}
+                {{ render_field(path_form.path, autofocus="autofocus", placeholder=path_form.path.description) }}
             </ul>
         </fieldset>
         <fieldset>
             <ul tekt-pattern="list">
-                {{ render_field(form.property_id) }}
+                {{ render_field(path_form.property_id) }}
             </ul>
         </fieldset>
     </div>
@@ -32,4 +31,50 @@
         </div>
     </div>
 </form>
+
+<div tekt-part="card">
+    <div tekt-pattern="table" class="header">
+        <div class="tr">
+            <h2 class="title td">Pages</h2>
+        </div>
+    </div>
+    <form tekt-pattern="form" id="add_page" method="post" action="{{ url_for('paths.update_path', id=path.id) }}">
+    <div class="body">
+        <table tekt-pattern="table" class="data">
+            <tr>
+                <th>#</th>
+                <th>page</th>
+                <th>actions</th>
+            </tr>
+            {% for page in path.pages %}
+            <tr>
+                <td>{{ page.id }}</td>
+                <td><a href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a>
+                </td>
+                <td><a href="{{ url_for('paths.remove_page_from_path', id=path.id, path_page_id=page.path_page_id)}}">remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <fieldset>
+            <ul tekt-pattern="list">
+                {{ render_hidden_field(page_form.path_id) }}
+                {{ render_hidden_field(page_form.page_id) }}
+                {{ render_field(page_form.page_selector, placeholder=page_form.page_selector.description, readonly="readonly", **{'tekt-selector':'page', 'tekt-target':'page_id'}) }}
+            </ul>
+        </fieldset>
+    </div>
+    <div tekt-pattern="table" class="footer">
+        <div class="tr">
+            <div class="actions td">
+                <input tekt-pattern="button" type="submit" value="Add Page">
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+<div style="margin:50px 0px;">
+    <a tekt-pattern="button" class="alarm" href="{{ url_for('.delete_path', id=path.id )}}">delete this path</a>
+</div>
 {% endblock %}

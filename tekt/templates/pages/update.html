@@ -8,7 +8,7 @@
     {{ form.id }}
 <div tekt-pattern="table" class="header">
     <div class="tr">
-        <legend class="title td">Edit</legend>
+        <legend class="title td">Settings</legend>
     </div>
 </div>
 <div class="body">
@@ -27,4 +27,8 @@
     </div>
 </div>
 </form>
+
+<div style="margin:50px 0px;">
+     <a tekt-pattern="button" tekt-dialog='delete-prompt|{"message":"Are you sure you want to permanently delete this page?"}' class="alarm" href="{{ url_for('.delete_page', id=page.id )}}">delete this page</a>
+</div>
 {% endblock %}

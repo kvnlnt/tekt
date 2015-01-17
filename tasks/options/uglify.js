@@ -23,6 +23,7 @@ module.exports = {
             'tekt/static/vendor/scripts/jquery-2.1.3.min.js',
             'tekt/static/vendor/scripts/jquery.cookie.js',
             'tekt/static/vendor/scripts/lodash.min.js',
+            'tekt/static/vendor/scripts/vex.combined.min.js'
         ],
         dest: 'tekt/static/assets/vendor.min.js'
     },

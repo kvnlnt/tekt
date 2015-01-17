@@ -16,7 +16,7 @@ TEKT.cards = (function(module){
 
     /**
      * Collection of instantiated cards
-     * @memberOf  el
+     * @member instances
      * @memberOf module:cards
      */
     module.instances = [];
