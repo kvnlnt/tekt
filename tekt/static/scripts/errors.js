@@ -4,7 +4,7 @@
 * @version 1.0
 */
 
-ARK.errors = (function(module){
+TEKT.errors = (function(module){
 
     /* exports errors */
 
@@ -12,7 +12,6 @@ ARK.errors = (function(module){
      * Requirement error
      * @param {string} message error message
      * @class RequirementError
-     * @memberOf module:errors
      */
     module.RequirementError = function(message) {
        this.message = message;
@@ -60,7 +59,7 @@ ARK.errors = (function(module){
 
             var first_error = module.instances[0];
             var top = first_error.position().top;
-            ARK.scrolling.scrollTo(top, 1000, 'swing');
+            TEKT.scrolling.scrollTo(top, 1000, 'swing');
 
         }
 
@@ -87,4 +86,4 @@ ARK.errors = (function(module){
 
     return module;
 
-}(ARK.errors || {}));
+}(TEKT.errors || {}));

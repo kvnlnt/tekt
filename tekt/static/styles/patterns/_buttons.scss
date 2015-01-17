@@ -1,8 +1,8 @@
-button, .button {
+[tekt-pattern="button"] {
     @include rem(font-size, 1.6);
-    @include rem(line-height, 4);
+    @include rem(line-height, 3);
     @include rem(padding, 0, 1.25);  
-    border:1px solid $primary;
+    border:2px solid $primary;
     letter-spacing: 1px;  
     color:$primary;
     background-color:transparent;

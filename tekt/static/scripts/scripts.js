@@ -1,10 +1,10 @@
 /** 
- * ARK is the global default namespace all modules should be attached to and accessed by. 
- * @namespace ARK
+ * TEKT is the global default namespace all modules should be attached to and accessed by. 
+ * @namespace TEKT
  */
-var ARK = {};
+var TEKT = {};
 
-// GLOBAL JSDOCS MARKUP
+// GLOBAL JSDOCS MTEKTUP
 /**
  * @name 1. External Docs
  * @global

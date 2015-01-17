@@ -3,7 +3,7 @@
   {{ field(**kwargs)|safe }}
   {{ field.label }}
   {% if field.errors %}
-    <ul class=errors>
+    <ul tekt-pattern="list" class=errors>
     {% for error in field.errors %}
       <li>{{ error }}</li>
     {% endfor %}

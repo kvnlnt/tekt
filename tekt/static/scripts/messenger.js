@@ -1,9 +1,9 @@
 /**
-* Menu logic
+* Messenger module
 * @module messenger
 * @version 1.0
 */
-ARK.messenger = (function(module){
+TEKT.messenger = (function(module){
 
     /* exports messenger */
 
@@ -12,11 +12,11 @@ ARK.messenger = (function(module){
      * @member el
      * @memberOf module:messenger
      */
-    module.el = '[ark-messenger]';
+    module.el = '[tekt-part="messenger"]';
 
     /**
      * Collection of instantiated messenger
-     * @memberOf  el
+     * @member instances
      * @memberOf module:messenger
      */
     module.instances = [];
@@ -51,7 +51,7 @@ ARK.messenger = (function(module){
     module.init = function() {
 
         module.$el = $(module.el);
-        ARK.pubsub.subscribe('SCROLLING', function(e, top){
+        TEKT.pubsub.subscribe('SCROLLING', function(e, top){
             module.fixate(top.top);
         });
 
@@ -61,4 +61,4 @@ ARK.messenger = (function(module){
 
     return module;
 
-}(ARK.messenger || {}));
+}(TEKT.messenger || {}));

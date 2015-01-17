@@ -1,32 +1,37 @@
-// libs
+// lib patterns
 @import "patterns/normalize";
 @import "patterns/animate";
-
-// functions & settings
-@import "patterns/utilities";
 @import "patterns/mq";
-@import "patterns/dimensions";
 @import "patterns/colors";
-@import "patterns/display";
+@import "patterns/dimensions";
+@import "patterns/utilities";
 @import "patterns/fx";
 
-// elements
+// element patterns
 @import "patterns/buttons";
+@import "patterns/display";
+@import "patterns/forms";
+@import "patterns/iframes";
 @import "patterns/images";
 @import "patterns/lists";
 @import "patterns/tables";
 @import "patterns/typography";
-@import "patterns/iframes";
 
-// constructs
-@import "patterns/forms";
-@import "patterns/layout";
+// compontent patterns
 @import "patterns/cards";
-@import "patterns/messenger";
+@import "patterns/layout";
+@import "patterns/pages";
+@import "patterns/selectors";
 
-// partials
-@import "partials/menu";
-@import "partials/header";
-@import "partials/logo";
-@import "partials/selector";
-@import "partials/sign_in_form";
+// pages
+@import "pages/home";
+
+// parts
+@import "parts/header";
+@import "parts/menu";
+@import "parts/messenger";
+@import "parts/sign_in_form";
+
+// pieces
+@import "pieces/logo";
+@import "pieces/scroll_to_top";

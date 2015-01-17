@@ -4,25 +4,25 @@
 
 {% block body %}
 <h1><a href="{{ url_for('.list_pages') }}">Pages</a></h1>
-<form method="post" action="{{ url_for('.update_page', id=page.id) }}" class="card">
+<form tekt-pattern="form" method="post" action="{{ url_for('.update_page', id=page.id) }}" tekt-part="card">
     {{ form.id }}
-<div class="header table">
+<div tekt-pattern="table" class="header">
     <div class="tr">
         <legend class="title td">Edit</legend>
     </div>
 </div>
 <div class="body">
     <fieldset>
-        <ul>
+        <ul tekt-pattern="list">
             {{ render_field(form.page, autofocus="autofocus") }}
         </ul>
     </fieldset>
 </div>
-<div class="footer table">
+<div tekt-pattern="table" class="footer">
     <div class="tr">
         <div class="actions td">
-            <input class="button" type="submit" value="save">
-            <a class="button" href="{{ url_for('.list_pages') }}">cancel</a>
+            <input tekt-pattern="button" type="submit" value="save">
+            <a tekt-pattern="button" href="{{ url_for('.list_pages') }}">cancel</a>
         </div>
     </div>
 </div>

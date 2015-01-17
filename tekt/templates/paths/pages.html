@@ -6,13 +6,13 @@
 <h1><a href="{{ url_for('.list_paths') }}">Paths</a></h1>
 <h2><a href="{{ url_for('paths.read_path', id=path.id) }}">{{path.property.property}}{{path.path}}</a></h2>
 
-<div class="card">
-<div class="header table">
+<div tekt-part="card">
+<div tekt-pattern="table" class="header">
     <div class="tr">
         <h2 class="title td">Pages</h2>
     </div>
 </div>
-<table class="data">
+<table tekt-pattern="table" class="data">
     <tr>
         <th>#</th>
         <th>page</th>
@@ -29,23 +29,23 @@
 </table>
 </div>
 
-<form method="post" action="{{ url_for('.manage_pages', id=path.id) }}" class="card">
-    <div class="header table">
+<form tekt-pattern="form" method="post" action="{{ url_for('.manage_pages', id=path.id) }}" tekt-part="card">
+    <div tekt-pattern="table" class="header">
         <div class="tr">
             <h2 class="title td">Add Page</h2>
         </div>
     </div>
 <div class="body">
 <fieldset>
-    <ul>
+    <ul tekt-pattern="list">
     {{ render_hidden_field(form.path_id) }}
     {{ render_hidden_field(form.page_id) }}
-    {{ render_field(form.page_selector, placeholder=form.page_selector.description, readonly="readonly", **{'ark-selector':'page', 'ark-target':'page_id'}) }}
+    {{ render_field(form.page_selector, placeholder=form.page_selector.description, readonly="readonly", **{'tekt-selector':'page', 'tekt-target':'page_id'}) }}
     </ul>
 </fieldset>
 </div>
 <div class="footer">
-    <input class="button" type="submit" value="Add">
+    <input tekt-pattern="button" type="submit" value="Add">
 </div>
 </form>
 

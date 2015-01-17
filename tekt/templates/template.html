@@ -2,7 +2,7 @@
 <html> 
     <head>
         
-        <title>{% block title %}ARK{% endblock %}</title>
+        <title>{% block title %}TEKT{% endblock %}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,19 +20,16 @@
     </head>
 
     <body>
-        {% set menu_is_collapsed = True if request.cookies.get('ARK.menu-toggle') == 'true' else False %}
-        {% set menu_collapsed_class = 'collapsed' if menu_is_collapsed else '' %}
-        {% set menu_collapsed_arrow_class = 'fa fa-chevron-right' if menu_is_collapsed else 'fa fa-chevron-left' %}
-        <a id="top">top <i class="fa fa-chevron-up"></i></a>
-        <div id="layout" class="table">
+        <a tekt-piece="scroll_to_top">top <i class="fa fa-chevron-up"></i></a>
+        <div tekt-layout="main" tekt-pattern="table">
             <div class="tr">
-                <div id="menu" class="td {{menu_collapsed_class}}">
+                <div class="td {{ g.template['menu-toggle'] }}">
                     {% include 'menu.html' %}
                 </div>
-                <div id="content" class="td">
-                    <div id="messenger">{% include 'messenger.html' %}</div>
-                    <div id="header">{% include 'header.html' %}</div>
-                    <div id="body">{% block body %}{% endblock %}</div>
+                <div class="td">
+                    {% include 'messenger.html' %}
+                    {% include 'header.html' %}
+                    <div tekt-pattern="page">{% block body %}{% endblock %}</div>
                 </div>
             </div>
         </div>

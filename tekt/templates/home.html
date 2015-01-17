@@ -4,7 +4,7 @@
 <html> 
     <head>
         
-        <title>{% block title %}ARK{% endblock %}</title>
+        <title>{% block title %}TEKT{% endblock %}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,16 +23,16 @@
 
     <body>
         
-        <div ark-layout="home" class="table">
+        <div tekt-layout="splash" tekt-pattern="table" tekt-page="home">
             <div class="tr">
                 <div class="body td">
-                    <a href="{{ url_for('main.dashboard') }}" id="logo" class="fa fa-play large animated fadeIn"></a>
-                    <form ark-form="signin" method="post" action="{{ url_for('main.home') }}">
+                    <a href="{{ url_for('main.dashboard') }}" tekt-piece="logo" class="fa fa-play large animated fadeIn"></a>
+                    <form tekt-pattern="form" tekt-part="sign_in_form" method="post" action="{{ url_for('main.home') }}">
                             <fieldset>
                                 <ul>
                                     <li>{{ form.username(placeholder='username') }}</li>
                                     <li>{{ form.password(placeholder='password') }}</li>
-                                    <li><input class="button" type="submit" value="sign in"/></li>
+                                    <li><input tekt-pattern="button" type="submit" value="sign in"/></li>
                                     <li><a>sign up</a></li>
                                 </ul>
                             </fieldset>

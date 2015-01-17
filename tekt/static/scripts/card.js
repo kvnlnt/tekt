@@ -1,5 +1,5 @@
 /**
- * The Card class provides typeahead ajax support for various selectors in ARK. 
+ * The Card class provides typeahead ajax support for various selectors in TEKT. 
  * @summary Typeahead / AJAX selector 
  * @param  {object} config           
  * @param  {string} config.el        jquery element of object
@@ -8,7 +8,7 @@
  * @return {object}                  selector function instance
  * @class Card
  */
-ARK.Card = function(config){
+TEKT.Card = function(config){
 
     // default settings
     var that     = this;
@@ -27,7 +27,7 @@ ARK.Card = function(config){
     };
 
     // required settings
-    if(null === this.el){ throw new ARK.errors.RequirementError('el is required'); }
+    if(null === this.el){ throw new TEKT.errors.RequirementError('el is required'); }
 
     /**
      * Getter
@@ -59,8 +59,8 @@ ARK.Card = function(config){
      */
     this.toggle = function(e){
 
-        this.get('body').toggleClass('hidden');
-        this.get('footer').toggleClass('hidden');
+        this.get('body').toggleClass('tekt-hidden');
+        this.get('footer').toggleClass('tekt-hidden');
         this.get('showhide').toggleClass('fa-minus');
         this.get('showhide').toggleClass('fa-plus');
 

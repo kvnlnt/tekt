@@ -1,18 +1,19 @@
-{% extends 'template.html' %} {% block body %}
+{% extends 'template.html' %} 
+{% block body %}
 
 <h1><a href="{{ url_for('.list_properties') }}">Properties</a></h1>
 
-<div class="card">
-    <div class="header table">
+<div tekt-part="card">
+    <div tekt-pattern="table" class="header">
         <div class="tr">
             <h2 class="title td">{{properties|length}} of {{metadata.total_records}}</h2>
             <div class="actions td">
-                <a class="button" href="{{ url_for('.create_property') }}">new</a>
+                <a tekt-pattern="button" href="{{ url_for('.create_property') }}">new</a>
             </div>
         </div>
     </div>
     <div class="body">
-    <table class="data">
+    <table tekt-pattern="table" class="data">
         <tr>
             <th>#</th>
             <th>property</th>

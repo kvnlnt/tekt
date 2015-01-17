@@ -2,7 +2,7 @@
 <html> 
     <head>
         
-        <title>{% block title %}ARK{% endblock %}</title>
+        <title>{% block title %}TEKT{% endblock %}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,11 +21,11 @@
 
     <body>
         
-        <div class="table">
+        <div tekt-layout="focused" tekt-pattern="table">
             
             <div class="tr">
 
-                <div id="body" class="td">
+                <div tekt-pattern="page" class="td">
                     {% block body %}
                     {% endblock %}
                     </div>

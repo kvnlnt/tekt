@@ -1,9 +1,9 @@
 /**
-* Menu logic
+* Cards module
 * @module cards
 * @version 1.0
 */
-ARK.cards = (function(module){
+TEKT.cards = (function(module){
 
     /* exports cards */
 
@@ -37,7 +37,7 @@ ARK.cards = (function(module){
             config.el = $el;
 
         // create selector
-        var card = new ARK.Card(config);
+        var card = new TEKT.Card(config);
 
         // add to collection
         module.instances.push(card);
@@ -56,7 +56,7 @@ ARK.cards = (function(module){
 
         var cards = $(module.el);
         _.each(cards, module.register);
-        ARK.fx.sequence(cards, 'animated fadeIn', 200);
+        TEKT.fx.sequence(cards, 'animated fadeIn', 200);
 
         return cards;
 
@@ -66,4 +66,4 @@ ARK.cards = (function(module){
 
     return module;
 
-}(ARK.cards || {}));
+}(TEKT.cards || {}));

@@ -5,7 +5,26 @@ html, body {
     background-color: $white;
 }
 
-[ark-layout="home"]{
+[tekt-layout="main"] {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    > .tr > .td:first-child {
+        background-color: $black;
+        width:200px;
+        min-width: 200px;
+        transition: all 1s ease;
+        &.collapsed {
+            min-width: 50px;
+            width:50px;
+            .td:nth-child(odd) {
+                text-indent: -150px;
+            }
+        }
+    }
+}
+
+[tekt-layout="splash"]{
     height: 100%;
     margin: 0;
     padding: 0;
@@ -38,31 +57,5 @@ html, body {
     .body {
         text-align: center;
         vertical-align: middle;
-    }
-}
-
-#layout {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-#body {
-    padding: 40px;
-}
-
-#top {
-    position:fixed;
-    background-color: $white;
-    border:1px solid darken($white, 10);
-    @include rem(border-radius, 1, 0, 0, 0);
-    display: none;
-    opacity:.6;
-    @include rem(padding, 0.8, 1.4);
-    @include rem(font-size, 1.2);
-    @include rem(right, 0);
-    @include rem(bottom, 0);
-    &:hover {
-        opacity: 1;
     }
 }

@@ -1,17 +1,18 @@
 /**
-* Lists all pubsub
+* Pubsub module
 * @module pubsub
 * @version 1.0
 */
 
 "use strict";
 
-ARK.pubsub = (function(module){
+TEKT.pubsub = (function(module){
 
     /** @exports pubsub */
 
     /**
      * Endpoints
+     * @member e
      * @memberOf module:pubsub
      * @type {Object}
      */
@@ -20,7 +21,7 @@ ARK.pubsub = (function(module){
     /**
      * pubsub subscribe to event
      * @function subscribe
-     * @memberOf pubsub
+     * @memberOf pubsub:subscribe
      */
     module.subscribe = function() {
       this.e.on.apply(this.e, arguments);
@@ -29,7 +30,7 @@ ARK.pubsub = (function(module){
     /**
      * pubsub unsubscribe from event
      * @function unsubscribe
-     * @memberOf pubsub
+     * @memberOf pubsub:unsubscribe
      */
     module.unsubscribe = function() {
       this.e.off.apply(this.e, arguments);
@@ -38,7 +39,7 @@ ARK.pubsub = (function(module){
     /**
      * pubsub publish an event
      * @function publish
-     * @memberOf pubsub
+     * @memberOf pubsub:publish
      */
     module.publish = function() {
       this.e.trigger.apply(this.e, arguments);
@@ -47,4 +48,4 @@ ARK.pubsub = (function(module){
     // export
     return module;
 
-})(ARK.pubsub || {});
+})(TEKT.pubsub || {});

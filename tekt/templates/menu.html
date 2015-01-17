@@ -1,12 +1,14 @@
 {% from "macros/menus.html" import render_menu_link %} 
-<div class="main table">
-  {{ render_menu_link(id='menu-toggle', icon=menu_collapsed_arrow_class) }}
+<div tekt-part="menu">
+<div tekt-pattern="table" class="main">
+  {{ render_menu_link(icon='fa ' + g.template['menu-toggle-button'], classes='toggle') }}
   {{ render_menu_link(text='Dashboard', link='main.dashboard', icon='fa fa-dashboard', section=(section == 'dashboard')) }}
   {{ render_menu_link(text='Properties', link='properties.list_properties', icon='fa fa-tree', section=(section == 'properties')) }}
   {{ render_menu_link(text='Paths', link='paths.list_paths', icon='fa fa-code-fork', section=(section == 'paths')) }}
   {{ render_menu_link(text='Pages', link='pages.list_pages', icon='fa fa-file-o', section=(section == 'pages')) }}
 </div>
 
-<div class="sub table">
+<div tekt-pattern="table" class="sub">
     {{ render_menu_link(text='Primers', link='main.primers', icon='fa fa-question', section=(section == 'primers')) }}
+</div>
 </div>

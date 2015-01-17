@@ -3,11 +3,11 @@
 * @module cookies
 * @version 1.0
 */
-ARK.cookies = (function(module){
+TEKT.cookies = (function(module){
 
     /* exports cookies */
 
-    module.name = 'ARK';
+    module.name = 'TEKT-';
     module.json = {};
 
     /**
@@ -19,7 +19,7 @@ ARK.cookies = (function(module){
      * @memberOf module:cookies
      */
     module.set = function(key, val, path){
-        key = module.name + '.' + key;
+        key = module.name + key;
         val = val || '';
         path = path || '/';
         $.cookie(key, val, { path: path });
@@ -34,7 +34,7 @@ ARK.cookies = (function(module){
      * @memberOf module:cookies
      */
     module.default = function(key, val, path){
-        if($.cookie( module.name + '.' + key) === void 0){
+        if($.cookie( module.name + key) === void 0){
             module.set(key, val, path);
         }
     };
@@ -47,10 +47,10 @@ ARK.cookies = (function(module){
      * @memberOf module:cookies
      */
     module.get = function(key){
-        key = module.name + '.' + key;
+        key = module.name + key;
         return $.cookie(key);
     };
 
     return module;
 
-}(ARK.cookies || {}));
+}(TEKT.cookies || {}));

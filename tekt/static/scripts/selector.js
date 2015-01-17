@@ -1,5 +1,5 @@
 /**
- * The Selector class provides typeahead ajax support for various selectors in ARK. 
+ * The Selector class provides typeahead ajax support for various selectors in TEKT. 
  * @summary Typeahead / AJAX selector 
  * @param  {object} config           
  * @param  {string} config.el        jquery element of object
@@ -8,7 +8,7 @@
  * @return {object}                  selector function instance
  * @class Selector
  */
-ARK.Selector = function(config){
+TEKT.Selector = function(config){
 
     // default settings
     var that     = this;
@@ -18,9 +18,9 @@ ARK.Selector = function(config){
     this.settings = _.assign(defaults, config);
 
     // required settings
-    if(null === this.el){ throw new ARK.errors.RequirementError('el is required'); }
-    if(null === this.src){ throw new ARK.errors.RequirementError('src is required'); }
-    if(null === this.callback){ throw new ARK.errors.RequirementError('callback is required'); }
+    if(null === this.el){ throw new TEKT.errors.RequirementError('el is required'); }
+    if(null === this.src){ throw new TEKT.errors.RequirementError('src is required'); }
+    if(null === this.callback){ throw new TEKT.errors.RequirementError('callback is required'); }
 
     /**
      * Getter
@@ -54,7 +54,7 @@ ARK.Selector = function(config){
         $('body').css('overflow','auto');
         this.get('el').trigger('focus');
         this.get('el').addClass('animated flash');
-        this.iframe.addClass('animated fadeOutDown');
+        this.iframe.addClass('animated bounceOutRight');
         this.iframe.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
             that.iframe.remove();
             that.get('el').removeClass('animated flash');
@@ -70,8 +70,8 @@ ARK.Selector = function(config){
         e.preventDefault();
         e.stopPropagation();
         var item = $(e.target);
-        var key = item.attr('ark-key');
-        var val = item.attr('ark-val');
+        var key = item.attr('tekt-key');
+        var val = item.attr('tekt-val');
         this.get('callback')({ key:key, val:val });
         this.teardown_iframe(val);
 
@@ -83,12 +83,12 @@ ARK.Selector = function(config){
      * @function Selector.init_iframe
      */
     this.init_iframe = function(e){
-        var close = this.iframe.contents().find('.close_iframe');
+        var close = this.iframe.contents().find('[tekt-id="close_iframe"]');
         close.on('click', this.teardown_iframe.bind(this));
         var item = this.iframe.contents().find('.item');
         item.on('click', this.callback.bind(this));
         this.iframe.show();
-        this.iframe.addClass('animated fadeInUp');
+        this.iframe.addClass('animated bounceInRight');
     };
 
     /**
@@ -100,7 +100,7 @@ ARK.Selector = function(config){
 
         // setup iframe
         var iframe = $('<iframe>');
-        iframe.attr('ark-selector-iframe', 'selector');
+        iframe.attr('tekt-selector-iframe', 'selector');
         iframe.prop('src', this.get('src'));
         iframe.on('load', this.init_iframe.bind(this));
         iframe.hide();

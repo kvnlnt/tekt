@@ -2,10 +2,10 @@
 {% extends 'template.focused.html' %} 
 
 {% block body %}
-<a class="button close_iframe"><i class="fa fa-times"></i></a>
+<a tekt-pattern="button" tekt-id="close_iframe" class="tekt-float-right"><i class="fa fa-times"></i>close</a>
 
-<form method="post" action="{{ url_for('.search_pages') }}" class="card">
-    <div class="header table">
+<form tekt-pattern="form" method="post" action="{{ url_for('.search_pages') }}" tekt-part="card">
+    <div tekt-pattern="table" class="header">
         <div class="tr">
             <h2 class="title td">Search Pages</h2>
             <div class="actions td">
@@ -15,20 +15,20 @@
     </div>
     <div class="body">
         <fieldset>
-            <ul>
+            <ul tekt-pattern="list">
                 {{ render_field(form.term, autofocus='autofocus', placeholder=form.term.description) }}
             </ul>
         </fieldset>
-        <ul>
+        <ul tekt-pattern="list">
             {% for record in pages %}
-            <li><a class="item" ark-key="{{record.id}}" ark-val="{{record.page}}" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a></li>
+            <li><a class="item" tekt-key="{{record.id}}" tekt-val="{{record.page}}" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a></li>
             {% endfor %}
         </ul>
     </div>
-    <div class="footer table">
+    <div tekt-pattern="table" class="footer">
         <div class="tr">
             <div class="actions td">
-                <input class="button" type="submit" value="search">
+                <input tekt-pattern="button" type="submit" value="search">
             </div>
         </div>
     </div>

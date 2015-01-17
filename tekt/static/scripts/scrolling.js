@@ -1,13 +1,14 @@
 /**
-* Manages scrolling functions and tools
+* Scrolling module
+* @summary Manages scrolling functions and tools
 * @module scrolling
 * @version 1.0
 */
-ARK.scrolling = (function(module){
+TEKT.scrolling = (function(module){
 
     /* exports cookies */
 
-    module.el = '#top';
+    module.el = '[tekt-piece="scroll_to_top"]';
     module.delay = 150;
 
     /**
@@ -25,7 +26,7 @@ ARK.scrolling = (function(module){
         }
 
         // publish scrolling event
-        ARK.pubsub.publish('SCROLLING', {top:module.$win.scrollTop()});
+        TEKT.pubsub.publish('SCROLLING', {top:module.$win.scrollTop()});
 
     };
 
@@ -65,4 +66,4 @@ ARK.scrolling = (function(module){
 
     return module;
 
-}(ARK.scrolling || {}));
+}(TEKT.scrolling || {}));

@@ -1,4 +1,4 @@
-table, .table { 
+[tekt-pattern="table"] { 
     display : table;
     width: 100%;
     @include rem(font-size, 1.4);

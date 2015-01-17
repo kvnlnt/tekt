@@ -1,9 +1,9 @@
 /**
-* Auto register selectors
+* Selectors module
 * @module selectors
 * @version 1.0
 */
-ARK.selectors = (function(module) {
+TEKT.selectors = (function(module) {
 
     /* exports selectors */
 
@@ -19,7 +19,7 @@ ARK.selectors = (function(module) {
      * @member directive
      * @memberOf module:directive
      */
-    module.directive = '[ark-selector]';
+    module.directive = '[tekt-selector]';
 
     /**
      * Pages callback
@@ -29,7 +29,7 @@ ARK.selectors = (function(module) {
     module.pages_handler = function(obj){
 
         $('#page_id').val(obj.key);
-        $('[ark-selector="page"]').val(obj.val);
+        $('[tekt-selector="page"]').val(obj.val);
 
     };
 
@@ -55,7 +55,7 @@ ARK.selectors = (function(module) {
     module.register = function(el){
 
         var $el = $(el);
-        var type = module.type[$el.attr('ark-selector')];
+        var type = module.type[$el.attr('tekt-selector')];
 
         // config selector
         var config = {};
@@ -64,7 +64,7 @@ ARK.selectors = (function(module) {
             config.callback = type.callback;
 
         // create selector
-        var selector = new ARK.Selector(config);
+        var selector = new TEKT.Selector(config);
 
         // add to collection
         module.instances.push(selector);
@@ -93,4 +93,4 @@ ARK.selectors = (function(module) {
 
     return module;
 
-}(ARK.selectors || {}));
+}(TEKT.selectors || {}));

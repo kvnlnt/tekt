@@ -1,4 +1,4 @@
-form {
+[tekt-pattern="form"] {
     legend {
         @include rem(margin, 0, 0, 2);
         @extend .font-bold;
@@ -26,15 +26,15 @@ form {
         @include rem(text-indent, 1);
         @include rem(margin, 0, 0, 1);
         @include rem(border-radius, 0.3);
-        border:0px solid darken($white, 10);
-        background-color:#FFFFFF;
+        border:1px solid darken($white, 3);
+        background-color:lighten($white, 100);
         transition: all 0.5s ease;
         -webkit-appearance: none;
         &:focus {
             transition: all 0.5s ease;
             outline: none;
             border-color: $primary;
-            box-shadow: 0 0 10px $primary;
+            box-shadow: 0 0 3px $primary;
         }
     }
     select {
@@ -44,25 +44,28 @@ form {
         input[type="text"],
         select {
             transition: all 0.5s ease;
-            border-bottom:5px solid #FF0000;
+            border:1px solid $alarm;
+            &:focus {
+                box-shadow: 0 0 3px $alarm;
+            }
         }
     }
     ul.errors {
         @include rem(margin-top, 0);
-        color:#FF0000;
+        color:$alarm;
         float:right;
     }
     div.errors {
         @include rem(margin-bottom, 1);
-        color:#FF0000;
+        color:$alarm;
     }
 }
 
-[ark-selector] {
+[tekt-selector] {
     cursor: pointer;
 }
 
-[ark-selector-iframe] {
+[tekt-selector-iframe] {
     width:100%;
     height: 100%;
     background: $white;

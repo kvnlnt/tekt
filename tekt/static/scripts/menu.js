@@ -1,16 +1,15 @@
 /**
-* Menu logic
+* Menu module
 * @module menus
 * @version 1.0
 */
-ARK.menus = (function(module){
+TEKT.menus = (function(module){
 
     /* exports menus */
 
     module.el = {};
-    module.el.menu = '#menu';
-    module.el.toggle = '#menu-toggle';
-    module.collapse_key = 'menu-toggle';
+    module.el.menu = '[tekt-part="menu"]';
+    module.el.toggle = '.toggle';
 
     /**
      * Toggle menu
@@ -19,15 +18,15 @@ ARK.menus = (function(module){
      * @memberOf module:menus
      */
     module.toggle = function(e){
-        module.el.$menu.toggleClass('collapsed');
+        
         var btn = module.el.$toggle.children('.fa');
+        TEKT.pubsub.publish('MENU:TOGGLE', module.el);
         if(btn.hasClass('fa-chevron-left')){
             btn.removeClass('fa-chevron-left').addClass('fa-chevron-right');
         } else {
             btn.removeClass('fa-chevron-right').addClass('fa-chevron-left');
         }
-        var collapsed = ARK.cookies.get(module.collapse_key) === "true" ? "false" : "true";
-        ARK.cookies.set(module.collapse_key, collapsed);
+        return e;
     };
 
     /**
@@ -37,13 +36,12 @@ ARK.menus = (function(module){
      */
     module.init = function(){
         module.el.$menu = $(module.el.menu);
-        module.el.$toggle = $(module.el.toggle);
-        module.el.$toggle.click(module.toggle);
-        ARK.cookies.default(module.collapse_key, "false");
+        module.el.$toggle = module.el.$menu.find(module.el.toggle);
+        module.el.$toggle.on('click', module.toggle);
     };
 
     module.init();
 
     return module;
 
-}(ARK.menus || {}));
+}(TEKT.menus || {}));

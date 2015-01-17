@@ -1,4 +1,4 @@
-.card {
+[tekt-part="card"] {
     @include rem(padding, 0);
     &:hover {
         -webkit-box-shadow: 0px 20px 25px -30px $black;
@@ -44,6 +44,6 @@
     }
 }
 
-.card + .card {
+[tekt-part="card"] + [tekt-part="card"] {
     @include rem(margin, 2, 0);
 }

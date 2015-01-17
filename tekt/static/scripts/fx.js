@@ -4,7 +4,7 @@
 * @version 1.0
 */
 
-ARK.fx = (function(module){
+TEKT.fx = (function(module){
 
     /* exports fx */
 
@@ -26,4 +26,4 @@ ARK.fx = (function(module){
 
     return module;
 
-}(ARK.fx || {}));
+}(TEKT.fx || {}));

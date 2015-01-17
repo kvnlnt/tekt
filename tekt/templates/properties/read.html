@@ -6,17 +6,17 @@
 
 <h1><a href="{{ url_for('.list_properties') }}">Properties</a></h1>
 
-<div class="card">
-<div class="header table">
+<div tekt-part="card">
+<div tekt-pattern="table" class="header">
     <div class="tr">
         <h2 class="title td">{{ property.property }}</h2>
         <div class="actions td">
-            <a class="button" href="{{ url_for('.update_property', id=property.id )}}">settings</a>
+            <a tekt-pattern="button" href="{{ url_for('.update_property', id=property.id )}}">settings</a>
         </div>
     </div>
 </div>
 <div class="body">
-    <table class="data">
+    <table tekt-pattern="table" class="data">
         <tr>
             <th>ID</th>
             <td>{{property.id}}</td>
@@ -38,7 +38,7 @@
 </div>
 
 <div style="margin:50px 0px;">
-<a class="button alarm" href="{{ url_for('.delete_property', id=property.id )}}">delete this property</a>
+<a tekt-pattern="button" class="alarm" href="{{ url_for('.delete_property', id=property.id )}}">delete this property</a>
 </div> 
 
 {% endblock %}
