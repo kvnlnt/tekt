@@ -1,0 +1,17 @@
+//
+// h4
+// 
+// . - normal state
+// 
+// Example:
+// <h4>Header Four</h4>
+//
+// Styleguide 2.09
+// 
+h4, .h4 {
+    @extend .font-regular;
+    @include rem(font-size,2);
+    @include rem(line-height,3);
+    margin:0;
+    padding:0;
+}

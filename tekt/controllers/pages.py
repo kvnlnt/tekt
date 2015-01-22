@@ -39,7 +39,7 @@ def search_pages():
         records = tektonik.list_pages()['result']
 
     if request.method == 'POST':
-        term = {'page':request.form['term']}
+        term = {'page': request.form['term']}
         records = tektonik.search_pages(term)['result']
 
     return render_template("pages/search.html", pages=records, form=form)
@@ -82,6 +82,7 @@ def update_page(id):
 
     record = tektonik.read_page(id)['result']
     form = forms.PageForm(request.form, data=record)
+    delete_form = forms.DeletePageForm()
 
     if request.method == 'POST':
         form = forms.PageForm(request.form)
@@ -98,7 +99,12 @@ def update_page(id):
                 "alarm")
 
     template = "pages/update.html"
-    return render_template(template, form=form, page=record, section='pages')
+    return render_template(
+        template,
+        form=form,
+        delete_form=delete_form,
+        page=record,
+        section='pages')
 
 
 @blueprint.route('/<int:id>/delete')

@@ -1,0 +1,18 @@
+//
+// h1
+// 
+// . - normal state
+// 
+// Example:
+// <h1>Header One</h1>
+//
+// Styleguide 2.06
+// 
+h1, .h1 {
+    @extend .font-bold;
+    @include rem(font-size, 3.5);
+    @include rem(line-height, 3.5);
+    @include rem(margin, 0, 0, 2, 0);
+    padding:0;
+    text-align: left;
+}

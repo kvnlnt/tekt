@@ -1,0 +1,27 @@
+//
+// html
+// 
+// . - normal state
+// 
+// Styleguide 2.10
+// 
+
+* {
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+}
+
+html,
+.html {
+    font-family: sans-serif; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: $white;
+    font-size: 10px;
+    @extend .font-regular;
+    color:$black;
+}

@@ -1,19 +1,23 @@
 {% extends 'template.html' %}
 {% block body %}
 
-<h1><a href="{{ url_for('.list_pages') }}">Pages</a></h1>
+<h1>
+    <a class="tekt-a" href="{{ url_for('.list_pages') }}">Pages</a>
+</h1>
 
-<div tekt-part="card">
-    <div tekt-pattern="table" class="header">
-        <div class="tr">
-            <h2 class="title td">{{pages|length}} of {{metadata.total_records}}</h2>
-            <div class="actions td">
-                <a tekt-pattern="button" href="{{ url_for('.create_page') }}">new</a>
+<div class="card">
+    <div class="header">
+        <div class="table">
+            <div class="tr">
+                <h2 class="title td">{{pages|length}} of {{metadata.total_records}}</h2>
+                <div class="actions td">
+                    <a class="button" href="{{ url_for('.create_page') }}">new</a>
+                </div>
             </div>
         </div>
     </div>
     <div class="body">
-        <table tekt-pattern="table" class="data">
+        <table class="table data">
             <tr>
                 <th>#</th>
                 <th>page</th>
@@ -22,10 +26,10 @@
             </tr>
             {% for record in pages %}
             <tr>
-                <td>{{record.id}}</th>
-                <td><a href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a></td>
+                <td>{{record.id}}</td>
+                <td><a class="tekt-a" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a></td>
                 <td>{{record.paths|length}}</td>
-                <td><a href="{{ url_for('.update_page', id=record.id) }}">settings</a></td>
+                <td><a class="tekt-a" href="{{ url_for('.update_page', id=record.id) }}">settings</a></td>
             </tr>
             {% endfor %}
         </table>

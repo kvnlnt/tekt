@@ -1,0 +1,75 @@
+//
+// forms
+// 
+// .       - normal state
+// .errors - error state
+// 
+// Example:
+// <form class="$modifier_class">
+//     <legend>A Form</legend>
+//     <fieldset>
+//         <div>
+//             <input type="text" class="$modifier_class" value="" placeholder="placeholder" />
+//             <div class="help $modifier_class">help text</div>
+//             <label>Label</label>
+//             <p>optional field description</p>
+//         </div>
+//     </fieldset>
+//     <footer>
+//         <input class="button" type="submit" value="save">
+//     </footer>
+// </form>
+//
+// Styleguide 3.2
+// 
+form,
+.form {
+    legend {
+        @extend .font-bold;
+        @include rem(font-size, 1.8);
+        @include rem(line-height, 5);
+        @include rem(margin, 0);
+        @include rem(text-indent, 1.5);
+        border-radius: 5px 5px 0 0;
+        border:1px solid darken($white, 10);
+        color:lighten($black, 20);
+        background-color: lighten($white, 2);
+        vertical-align: middle;
+        width:100%;
+    }
+    fieldset {
+        border: 0;
+        margin: 0;
+        @include rem(padding, 2);
+        background-color: lighten($white, 3);
+        border-left:1px solid darken($white, 10);
+        border-right:1px solid darken($white, 10);
+        .help {
+            float:right;
+            color:darken($white, 20);
+            @include rem(font-size, 1.2);
+            &.errors {
+                color:$alarm;
+            }
+        }
+    }
+    footer {
+        border: 0;
+        margin: 0;
+        border-radius: 0 0 5px 5px;
+        @include rem(padding, 2);
+        background-color: lighten($white, 3);
+        border-left:1px solid darken($white, 10);
+        border-right:1px solid darken($white, 10);
+        border-bottom:1px solid darken($white, 10);
+    }
+    label {
+        @include rem(font-size, 1.6);
+        color: darken($white, 50);
+    }
+    label + p {
+        @include rem(font-size, 1.4);
+        color: darken($white, 20);
+        margin:0;
+    }
+}

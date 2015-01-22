@@ -20,8 +20,10 @@
     </head>
 
     <body>
-        <a tekt-piece="scroll_to_top">top <i class="fa fa-chevron-up"></i></a>
-        <div tekt-layout="main" tekt-pattern="table">
+        <a class="tekt-a" tekt-piece="scroll_to_top">
+            top <i class="fa fa-chevron-up"></i>
+        </a>
+        <div class="tekt-layout-main table">
             <div class="tr">
                 <div class="td {{ g.template['menu-toggle'] }}">
                     {% include 'menu.html' %}
@@ -29,7 +31,7 @@
                 <div class="td">
                     {% include 'messenger.html' %}
                     {% include 'header.html' %}
-                    <div tekt-pattern="page">{% block body %}{% endblock %}</div>
+                    <div class="page">{% block body %}{% endblock %}</div>
                 </div>
             </div>
         </div>

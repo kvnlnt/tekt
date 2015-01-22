@@ -1,7 +1,7 @@
 {% macro render_menu_link(text='', link='#', icon='', id='', section='', classes='') %}
 {% set url = url_for(link) if link != '#' else link %}
 {% set current = "current" if section else '' %}
-  <a href="{{url}}" id="{{id}}" class="tr item {{current}} {{classes}}">
+  <a href="{{url}}" id="{{id}}" class="tr item {{current}} {{classes}} tekt-a">
       <span class="td">{{text}}</span>
       <span class="td {{icon}}"></span>
   </a>

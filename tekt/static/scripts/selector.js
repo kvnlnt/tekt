@@ -102,6 +102,7 @@ TEKT.Selector = function(config){
         var iframe = $('<iframe>');
         iframe.attr('tekt-selector-iframe', 'selector');
         iframe.prop('src', this.get('src'));
+        iframe.addClass('tekt-iframe');
         iframe.on('load', this.init_iframe.bind(this));
         iframe.hide();
 

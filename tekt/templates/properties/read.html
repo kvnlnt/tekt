@@ -4,19 +4,23 @@
 
 {% block body %}
 
-<h1><a href="{{ url_for('.list_properties') }}">Properties</a></h1>
+<h1>
+    <a class="tekt-a" href="{{ url_for('.list_properties') }}">Properties</a>
+</h1>
 
-<div tekt-part="card">
-<div tekt-pattern="table" class="header">
-    <div class="tr">
-        <h2 class="title td">{{ property.property }}</h2>
-        <div class="actions td">
-            <a tekt-pattern="button" href="{{ url_for('.update_property', id=property.id )}}">settings</a>
+<div class="card">
+<div class="header">
+    <div class="table">
+        <div class="tr">
+            <h2 class="title td">{{ property.property }}</h2>
+            <div class="actions td">
+                <a class="button" href="{{ url_for('.update_property', id=property.id )}}">settings</a>
+            </div>
         </div>
     </div>
 </div>
 <div class="body">
-    <table tekt-pattern="table" class="data">
+    <table class="table data">
         <tr>
             <th>ID</th>
             <td>{{property.id}}</td>
@@ -35,6 +39,4 @@
         </tr>
     </table>
 </div>
-</div>
-
-{% endblock %}
+</div>{% endblock %}

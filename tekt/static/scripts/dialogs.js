@@ -64,7 +64,7 @@ TEKT.dialogs = (function(module){
 
     };
 
-    module.init();
+    $(document).ready(module.init);
 
     return module;
 

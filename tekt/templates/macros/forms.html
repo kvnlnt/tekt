@@ -1,16 +1,18 @@
-{% macro render_field(field, show_description=False) %}
+{% macro render_field(field, show_label=True, show_description=False) %}
   <li {% if field.errors %}class="errors" {% endif %}>
   {{ field(**kwargs)|safe }}
+  {% if show_label %}
   {{ field.label }}
+  {% endif %}
   {% if field.errors %}
-    <ul tekt-pattern="list" class=errors>
+    <ul class="list errors">
     {% for error in field.errors %}
       <li>{{ error }}</li>
     {% endfor %}
     </ul>
   {% endif %}
   {% if show_description %}
-  <p>{{ field.description }}</p>
+  <p class="tekt-p">{{ field.description }}</p>
   {% endif %}
   </li>
 {% endmacro %}

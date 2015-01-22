@@ -23,21 +23,25 @@
 
     <body>
         
-        <div tekt-layout="splash" tekt-pattern="table" tekt-page="home">
+        <div class="tekt-layout-splash">
+            <div class="tekt-page-home">
+            <div class="table">
             <div class="tr">
                 <div class="body td">
-                    <a href="{{ url_for('main.dashboard') }}" tekt-piece="logo" class="fa fa-play large animated fadeIn"></a>
-                    <form tekt-pattern="form" tekt-part="sign_in_form" method="post" action="{{ url_for('main.home') }}">
+                    <a href="{{ url_for('main.dashboard') }}" tekt-piece="logo" class="fa fa-play large animated fadeIn tekt-a"></a>
+                    <form class="form" tekt-part="sign_in_form" method="post" action="{{ url_for('main.home') }}">
                             <fieldset>
                                 <ul>
                                     <li>{{ form.username(placeholder='username') }}</li>
                                     <li>{{ form.password(placeholder='password') }}</li>
-                                    <li><input tekt-pattern="button" type="submit" value="sign in"/></li>
-                                    <li><a>sign up</a></li>
+                                    <li><input class="button" type="submit" value="sign in"/></li>
+                                    <li><a class="tekt-a">sign up</a></li>
                                 </ul>
                             </fieldset>
                     </form>
                 </div>
+            </div>
+            </div>
             </div>
         </div>
 

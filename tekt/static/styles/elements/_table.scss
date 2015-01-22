@@ -1,4 +1,27 @@
-[tekt-pattern="table"] { 
+//
+// table
+// 
+// .      - normal state
+// .data  - data state
+// 
+// Example:
+ // <table class="$modifier_class">
+ //     <tr>
+ //         <th>ID</th>
+ //         <th>First Name</th>
+ //         <th>Last Name</th>
+ //     </tr>
+ //     <tr>
+ //         <td>1</th>
+ //         <td>Ronald</th>
+ //         <td>McDonald</td>
+ //     </tr>
+ // </table>
+//
+// Styleguide 2.19
+//
+table,
+.table { 
     display : table;
     width: 100%;
     @include rem(font-size, 1.4);
@@ -29,6 +52,7 @@
         }
         tr th {
             background-color: darken($white, 2);
+            text-align: left;
         }
         tr:nth-child(even) td{
             background-color: lighten($white,1);

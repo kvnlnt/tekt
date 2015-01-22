@@ -1,0 +1,24 @@
+//
+// ul
+// 
+// .        - normal state
+// .errors  - error state
+// 
+// Example:
+ // <ul class="$modifier_class">
+ //     <li>item 1</li>
+ //     <li>item 2</li>
+ //     <li>item 3</li>
+ // </ul>
+//
+// Styleguide 2.20
+ul, 
+.ul {
+    list-style: none;
+    margin:0;
+    padding:0;
+    border-bottom:0;
+    &.errors {
+        color: $alarm;
+    }
+}

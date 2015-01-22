@@ -49,7 +49,8 @@ TEKT.layouts = (function(module) {
                     selector:'.body'
                 }
             }
-        }
+        },
+        focused:{}
     };
 
     /**
@@ -63,11 +64,12 @@ TEKT.layouts = (function(module) {
 
         var $el = $(el);
         var type = module.type[$el.attr('tekt-layout')];
+        var regions = void 0 === type.regions ? [] : type.regions;
 
         // config layout
         var config = {};
             config.el = $el;
-            config.regions = type.regions;
+            config.regions = regions;
 
         // create layout
         var layout = new TEKT.Layout(config);

@@ -1,19 +1,23 @@
 {% extends 'template.html' %} 
 {% block body %}
 
-<h1><a href="{{ url_for('.list_properties') }}">Properties</a></h1>
+<h1>
+    <a class="tekt-a" href="{{ url_for('.list_properties') }}">Properties</a>
+</h1>
 
-<div tekt-part="card">
-    <div tekt-pattern="table" class="header">
+<div class="card">
+<div class="header">
+    <div class="table">
         <div class="tr">
             <h2 class="title td">{{properties|length}} of {{metadata.total_records}}</h2>
             <div class="actions td">
-                <a tekt-pattern="button" href="{{ url_for('.create_property') }}">new</a>
+                <a class="button" href="{{ url_for('.create_property') }}">new</a>
             </div>
         </div>
     </div>
-    <div class="body">
-    <table tekt-pattern="table" class="data">
+</div>
+<div class="body">
+    <table class="table data">
         <tr>
             <th>#</th>
             <th>property</th>
@@ -24,16 +28,17 @@
         {% for record in properties %}
         <tr>
             <td>{{record.id}}</td>
-            <td><a href="{{ url_for('.read_property', id=record.id) }}">{{record.property}}</a></td>
+            <td><a class="tekt-a" href="{{ url_for('.read_property', id=record.id) }}">{{record.property}}</a>
+            </td>
             <td>{{record.stats.total_paths}}</td>
             <td>{{record.stats.total_pages}}</td>
             <td>
-                <a href="{{ url_for('.update_property', id=record.id) }}">settings</a>
+                <a class="tekt-a" href="{{ url_for('.update_property', id=record.id) }}">settings</a>
             </td>
         </tr>
         {% endfor %}
     </table>
-    </div>
+</div>
 </div>
 
 {% endblock %}

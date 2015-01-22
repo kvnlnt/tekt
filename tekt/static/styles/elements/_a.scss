@@ -1,0 +1,30 @@
+//
+// a
+// 
+// .      - normal state
+// .hover - hover state
+// .alarm - alarm state
+// 
+// Example:
+//  <a href="#" class="$modifier_class">link</a> 
+//
+// Styleguide 2.01
+// 
+a, 
+.a {
+    @extend .font-regular;
+    background: transparent;
+    cursor: pointer;
+    color:$primary;
+    text-decoration: none;
+    outline: 0;
+    &:hover, 
+    .hover {
+        transition: all 0.5s ease;
+        color:$black;
+        text-decoration: underline;
+    }
+    .alarm {
+        color:$alarm;
+    }
+}

@@ -1,0 +1,19 @@
+//
+// label
+// 
+// . - normal state
+// 
+// Example:
+// <label>Label</label>
+//
+// Styleguide 2.14
+// 
+label {
+    @include rem(font-size, 1.6);
+    color: darken($white, 50);
+}
+label + p {
+    @include rem(font-size, 1.4);
+    color: darken($white, 20);
+    margin:0;
+}

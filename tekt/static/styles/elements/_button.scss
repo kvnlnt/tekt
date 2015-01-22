@@ -1,7 +1,22 @@
-[tekt-pattern="button"] {
+//
+// button
+// 
+// .       - normal state
+// .hover  - hover state
+// .link   - link state
+// .alarm  - alarm state
+// 
+// Example:
+//  <button class="$modifier_class">button</button> 
+//
+// Styleguide 2.03
+// 
+button,
+.button {
     @include rem(font-size, 1.6);
     @include rem(line-height, 3);
     @include rem(padding, 0, 1.25);  
+    cursor: pointer;
     border:2px solid $primary;
     letter-spacing: 1px;  
     color:$primary;
@@ -10,7 +25,8 @@
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    &:hover {
+    &:hover,
+    .hover {
         transition: all 0.5s ease;
         text-decoration: none;
         background-color: transparent;
@@ -23,5 +39,8 @@
     &.alarm {
         border:1px solid $alarm;
         color:$alarm;
+    }
+    &.link {
+        border:0;
     }
 }

@@ -16,23 +16,20 @@
             <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/vendor.min.css') }}" />
             <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/styles.min.css') }}" />
         {% endblock %}
+        {% block page_styles %}{% endblock %}
 
     </head>
 
     <body>
         
-        <div tekt-layout="focused" tekt-pattern="table">
-            
+        <div class="table">
             <div class="tr">
-
-                <div tekt-pattern="page" class="td">
+                <div class="page td">
                     {% block body %}
                     {% endblock %}
                     </div>
                 </div>
-
             </div>
-
         </div>
 
         {% block scripts %}

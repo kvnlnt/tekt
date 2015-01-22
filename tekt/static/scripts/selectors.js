@@ -19,7 +19,7 @@ TEKT.selectors = (function(module) {
      * @member directive
      * @memberOf module:directive
      */
-    module.directive = '[tekt-selector]';
+    module.directive = '.tekt-selector';
 
     /**
      * Pages callback
@@ -55,7 +55,7 @@ TEKT.selectors = (function(module) {
     module.register = function(el){
 
         var $el = $(el);
-        var type = module.type[$el.attr('tekt-selector')];
+        var type = module.type[$el.attr('tekt-type')];
 
         // config selector
         var config = {};

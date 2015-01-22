@@ -12,7 +12,7 @@ TEKT.cards = (function(module){
      * @member el
      * @memberOf module:cards
      */
-    module.el = '.card';
+    module.el = '[tekt-pattern="card"]';
 
     /**
      * Collection of instantiated cards
@@ -62,7 +62,7 @@ TEKT.cards = (function(module){
 
     };
 
-    module.init();
+    $(document).ready(module.init);
 
     return module;
 

@@ -2,31 +2,39 @@
 {% extends 'template.html' %} 
 
 {% block body %}
-<h1><a href="{{ url_for('.list_paths') }}">Paths</a></h1>
+<h1>
+    <a class="tekt-a" href="{{ url_for('.list_paths') }}">Paths</a>
+</h1>
 
-<form tekt-pattern="form" method="post" action="{{ url_for('.create_path') }}" tekt-part="card">
-    <div tekt-pattern="table" class="header">
-        <div class="tr">
-            <legend class="title td">New</legend>
+<form method="post" action="{{ url_for('.create_path') }}" class="form">
+    <div class="card">
+        <div class="header">
+            <div class="table">
+                <div class="tr">
+                    <legend class="title td">New</legend>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="body">
-    <fieldset>
-        <ul tekt-pattern="list">
-            {{ render_field(form.path, autofocus='autofocus', placeholder=form.path.description) }}
-        </ul>
-    </fieldset>
-    <fieldset>
-        <ul tekt-pattern="list">
-            {{ render_field(form.property_id) }}
-        </ul>
-    </fieldset>
-    </div>
-    <div tekt-pattern="table" class="footer">
-        <div class="tr">
-            <div class="actions td">
-                <input tekt-pattern="button" type="submit" value="save">
-                <a tekt-pattern="button" href="{{ url_for('.list_paths') }}">cancel</a>
+        <div class="body">
+            <fieldset>
+                <ul class="list">
+                    {{ render_field(form.path, autofocus='autofocus', placeholder=form.path.description) }}
+                </ul>
+            </fieldset>
+            <fieldset>
+                <ul class="list">
+                    {{ render_field(form.property_id) }}
+                </ul>
+            </fieldset>
+        </div>
+        <div class="footer">
+            <div class="table">
+                <div class="tr">
+                    <div class="actions td">
+                        <input class="button" type="submit" value="save">
+                        <a class="button" href="{{ url_for('.list_paths') }}">cancel</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

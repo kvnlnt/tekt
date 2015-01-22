@@ -1,0 +1,22 @@
+//
+// input (text)
+// 
+// .        - normal state
+// .errors  - error state
+// 
+// Example:
+//      <input class="$modifier_class" type="text" value="" placeholder="placeholder" />
+//
+// Styleguide 2.13
+
+.input-type-text,
+input[type="text"] {
+    @include input;
+    @include rem(padding, 0, 1);
+    &.errors {
+        border:1px solid $alarm;
+        &:focus {
+            box-shadow: 0 0 3px $alarm;
+        }
+    }
+}

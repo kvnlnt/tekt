@@ -1,37 +1,49 @@
-// lib patterns
-@import "patterns/normalize";
-@import "patterns/animate";
-@import "patterns/mq";
-@import "patterns/colors";
-@import "patterns/dimensions";
-@import "patterns/utilities";
-@import "patterns/fx";
+// libraries
+@import "libs/colors";
+@import "libs/dimensions";
+@import "libs/positions";
+@import "libs/fx";
+@import "libs/mq";
+@import "libs/typography";
+@import "libs/utilities";
 
-// element patterns
-@import "patterns/buttons";
-@import "patterns/display";
-@import "patterns/forms";
-@import "patterns/iframes";
-@import "patterns/images";
-@import "patterns/lists";
-@import "patterns/tables";
-@import "patterns/typography";
+// html elements
+@import "elements/a";
+@import "elements/body";
+@import "elements/button";
+@import "elements/form";
+@import "elements/h1";
+@import "elements/h2";
+@import "elements/h3";
+@import "elements/h4";
+@import "elements/html";
+@import "elements/iframe";
+@import "elements/img";
+@import "elements/input";
+@import "elements/input-text";
+@import "elements/label";
+@import "elements/legend";
+@import "elements/p";
+@import "elements/select";
+@import "elements/strong";
+@import "elements/table";
+@import "elements/ul";
+@import "elements/ul";
 
-// compontent patterns
-@import "patterns/cards";
-@import "patterns/layout";
-@import "patterns/pages";
-@import "patterns/selectors";
+// reusable components
+@import "components/cards";
+@import "components/layout-main";
+@import "components/layout-splash";
+@import "components/lists";
+@import "components/pages";
+@import "components/selectors";
+@import "components/form";
 
-// pages
-@import "pages/home";
+// unique compostions
+@import "compositions/header";
+@import "compositions/logo";
+@import "compositions/menu";
+@import "compositions/messenger";
+@import "compositions/scroll_to_top";
+@import "compositions/sign_in_form";
 
-// parts
-@import "parts/header";
-@import "parts/menu";
-@import "parts/messenger";
-@import "parts/sign_in_form";
-
-// pieces
-@import "pieces/logo";
-@import "pieces/scroll_to_top";

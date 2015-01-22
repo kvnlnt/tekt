@@ -1,0 +1,20 @@
+//
+// footer
+// 
+// . - normal state
+// 
+// Example:
+//  <footer>I'm a footer</footer> 
+//
+// Styleguide 2.04
+// 
+footer {
+    border: 0;
+    margin: 0;
+    border-radius: 0 0 5px 5px;
+    @include rem(padding, 2);
+    background-color: lighten($white, 3);
+    border-left:1px solid darken($white, 10);
+    border-right:1px solid darken($white, 10);
+    border-bottom:1px solid darken($white, 10);
+}

@@ -3,32 +3,62 @@
 {% extends 'template.html' %} 
 
 {% block body %}
-<h1><a href="{{ url_for('.list_pages') }}">Pages</a></h1>
-<form tekt-pattern="form" method="post" action="{{ url_for('.update_page', id=page.id) }}" tekt-part="card">
-    {{ form.id }}
-<div tekt-pattern="table" class="header">
-    <div class="tr">
-        <legend class="title td">Settings</legend>
+<h1>
+    <a class="tekt-a" href="{{ url_for('.list_pages') }}">Pages</a>
+</h1>
+
+<form method="post" action="{{ url_for('.update_page', id=page.id) }}" class="form card"> {{ form.id }}
+<div class="header">
+    <div class="table">
+        <div class="tr">
+            <legend class="title td">Settings</legend>
+        </div>
     </div>
 </div>
 <div class="body">
     <fieldset>
-        <ul tekt-pattern="list">
+        <ul class="list">
             {{ render_field(form.page, autofocus="autofocus") }}
         </ul>
     </fieldset>
 </div>
-<div tekt-pattern="table" class="footer">
-    <div class="tr">
-        <div class="actions td">
-            <input tekt-pattern="button" type="submit" value="save">
-            <a tekt-pattern="button" href="{{ url_for('.list_pages') }}">cancel</a>
+<div class="footer">
+    <div class="table">
+        <div class="tr">
+            <div class="actions td">
+                <input class="button" type="submit" value="save">
+                <a class="button" href="{{ url_for('.list_pages') }}">cancel</a>
+            </div>
         </div>
     </div>
 </div>
 </form>
 
-<div style="margin:50px 0px;">
-     <a tekt-pattern="button" tekt-dialog='delete-prompt|{"message":"Are you sure you want to permanently delete this page?"}' class="alarm" href="{{ url_for('.delete_page', id=page.id )}}">delete this page</a>
-</div>
+
+<form class="form" method="post" action="{{ url_for('.delete_page', id=page.id) }}">
+    <div class="card">
+        <div class="header borderless">
+            <div class="table">
+                <div class="tr">
+                    <div class="td actions">
+                        <a class="tekt-ux-showhide button borderless alarm" tekt-target="delete_form">delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body" tekt-id="delete_form">
+            <div class="table">
+                <div class="tr">
+                    <div class="td">
+                        {{ delete_form.confirm(placeholder=delete_form.confirm.description)|safe }}
+                    </div>
+                    <div class="td">
+                        <input class="button alarm" type="submit" value="confirm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 {% endblock %}

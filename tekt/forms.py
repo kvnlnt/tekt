@@ -90,5 +90,10 @@ class PageForm(Form):
     page = TextField(u'Page', description=descriptions['page'])
 
 
+class DeletePageForm(Form):
+
+    confirm = TextField(u'confirm', description='Enter page name to delete')
+
+
 class PageSearchForm(Form):
     term = TextField(u'Page', description=descriptions['page_search'])

@@ -9,6 +9,14 @@ TEKT.errors = (function(module){
     /* exports errors */
 
     /**
+     * Enable autoscrolling to offscreen errors
+     * @type {Boolean}
+     * @member enabled
+     * @memberOf module:errors
+     */
+    module.autoscroll_enabled = true;
+
+    /**
      * Requirement error
      * @param {string} message error message
      * @class RequirementError
@@ -59,8 +67,9 @@ TEKT.errors = (function(module){
 
             var first_error = module.instances[0];
             var top = first_error.position().top;
-            TEKT.scrolling.scrollTo(top, 1000, 'swing');
-
+            if(module.enabled){
+                TEKT.scrolling.scrollTo(top, 1000, 'swing');  
+            }
         }
 
     };
