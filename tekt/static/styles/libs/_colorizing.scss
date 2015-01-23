@@ -1,0 +1,55 @@
+//
+// Colors
+// 
+// .      - normative state
+// 
+// Example:
+//  <div class="color-white-bg" style="display:inline-block; width:50px; height:50px; border:1px solid #222222"></div>
+//  <div class="color-black-bg" style="display:inline-block; width:50px; height:50px; border:1px solid #222222"></div>
+//  <div class="color-blue-bg" style="display:inline-block; width:50px; height:50px; border:1px solid #222222"></div>
+//  <div class="color-purple-bg" style="display:inline-block; width:50px; height:50px; border:1px solid #222222"></div>
+//  <div class="color-primary-bg" style="display:inline-block; width:50px; height:50px; border:1px solid #222222"></div>
+//  <div class="color-secondary-bg" style="display:inline-block; width:50px; height:50px; border:1px solid #222222"></div>
+//  <div class="color-inform-bg" style="display:inline-block; width:50px; height:50px; border:1px solid #222222"></div>
+//  <div class="color-praise-bg" style="display:inline-block; width:50px; height:50px; border:1px solid #222222"></div>
+//  <div class="color-alarm-bg" style="display:inline-block; width:50px; height:50px; border:1px solid #222222"></div>
+//  <div class="color-warn-bg" style="display:inline-block; width:50px; height:50px; border:1px solid #222222"></div>
+//
+// Styleguide 1.01
+//
+
+// palette
+$white:#F4F4F4;
+.color-white { color:$white; }
+.color-white-bg { background-color:$white; }
+$black:#222222;
+.color-black { color: $black }
+.color-black-bg { background-color: $black; }
+$blue:#0b8793;
+.color-blue { color: $blue }
+.color-blue-bg { background-color: $blue; }
+$purple:#360033;
+.color-purple { color: $purple }
+.color-purple-bg { background-color: $purple; }
+
+// taxonomy
+$primary:#33AA88;
+.color-primary { color: $primary }
+.color-primary-bg { background-color: $primary; }
+$secondary:#555555;
+.color-secondary { color: $secondary }
+.color-secondary-bg { background-color: $secondary; }
+
+// widgets
+$inform:lighten($primary, 10);
+.color-inform { color: $inform }
+.color-inform-bg { background-color: $inform; }
+$praise:#33AA33;
+.color-praise { color: $praise }
+.color-praise-bg { background-color: $praise; }
+$alarm:#DD5555;
+.color-alarm { color: $alarm }
+.color-alarm-bg { background-color: $alarm; }
+$warn:#BBBB22;
+.color-warn { color: $warn }
+.color-warn-bg { background-color: $warn; }

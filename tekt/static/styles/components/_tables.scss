@@ -1,11 +1,10 @@
 //
-// table
+// Tables
 // 
-// .      - normal state
-// .data  - data state
+// .      - normative state
 // 
 // Example:
- // <table class="$modifier_class">
+ // <table>
  //     <tr>
  //         <th>ID</th>
  //         <th>First Name</th>
@@ -19,45 +18,40 @@
  // </table>
 //
 // Styleguide 2.19
-//
+
 table,
 .table { 
     display : table;
     width: 100%;
     @include rem(font-size, 1.4);
-    tr, .tr             { display : table-row; }
     thead, .thead       { display : table-header-group; }
     tbody, .tbody       { display : table-row-group; }
     tfoot, .tfoot       { display : table-footer-group; }
     col, .col           { display : table-column; }
     colgroup, .colgroup { display : table-column-group; }
-    td, .td, th, .th    { display : table-cell; vertical-align:top; }
     caption, .caption   { display : table-caption; }
 
-    &.data {
-        tr td,
-        tr th {
-            border-bottom:1px solid darken($white, 5);
-            @include rem(padding, 0, 2);
+    tr, .tr { 
+        display : table-row;
+        td, th {
             @include rem(line-height, 4);
-            text-align: left;
-            white-space: nowrap;
+            @include rem(padding, 0, 2);
+            border-bottom:1px solid darken($white, 5);
+            display : table-cell; 
             overflow: hidden;  
+            text-align: left;
             text-overflow: ellipsis;
-            .button {
-                @include rem(line-height, 2);
-                @include rem(padding, 0.5, 2);
-                @include rem(margin, 0.5, 0);
-            }
+            vertical-align:top; 
+            white-space: nowrap;
         }
-        tr th {
+        th {
             background-color: darken($white, 2);
             text-align: left;
         }
-        tr:nth-child(even) td{
+        &:nth-child(even) td{
             background-color: lighten($white,1);
         }
-        tr:nth-child(even) th{
+        &:nth-child(even) th{
             background-color: $white;
         }
     }

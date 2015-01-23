@@ -1,0 +1,129 @@
+//
+// Forms
+// 
+// .       - normative state
+// .errors - error state
+// 
+// Example:
+// <form class="$modifier_class">
+//    <legend>A Form</legend>
+//     <fieldset>
+//         <div>
+//             <input type="text" class="$modifier_class" value="" placeholder="placeholder" />
+//             <div class="help $modifier_class">help text</div>
+//             <label>Label</label>
+//             <p>optional field description</p>
+//         </div>
+//     </fieldset>
+//     <footer>
+//         <div class="actions">
+//              <input class="button" type="submit" value="save">
+//         </div>
+//     </footer>
+// </form>
+//
+// Styleguide 2.05
+//  
+
+@mixin input() {
+    width:100%;
+    @include rem(font-size, 1.4);
+    @include rem(line-height, 3);
+    @include rem(margin, 0, 0, 1);
+    @include rem(border-radius, 0.3);
+    border:1px solid darken($white, 3);
+    background-color:lighten($white, 100);
+    transition: all 0.5s ease;
+    &:focus {
+        transition: all 0.5s ease;
+        outline: none;
+        border-color: $primary;
+        box-shadow: 0 0 3px $primary;
+    }
+}
+
+
+form,
+.form {
+    > legend {
+        @extend .font-bold;
+        @include rem(font-size, 1.8);
+        @include rem(line-height, 5);
+        @include rem(margin, 0);
+        @include rem(text-indent, 1.5);
+        background-color: lighten($white, 2);
+        border-radius: 5px 5px 0 0;
+        border:1px solid darken($white, 10);
+        color:lighten($black, 20);
+        display:block;
+        vertical-align: middle;
+        width:100%;
+    }
+    > fieldset {
+        @include rem(padding, 2);
+        background-color: lighten($white, 3);
+        border-left:1px solid darken($white, 10);
+        border-right:1px solid darken($white, 10);
+        border-top:0;
+        border-bottom:0;
+        display:block;
+        margin: 0;
+
+        label {
+            @include rem(font-size, 1.6);
+            color: darken($white, 50);
+        }
+
+        label + p {
+            @include rem(font-size, 1.4);
+            color: darken($white, 20);
+            margin:0;
+        }
+
+        .help {
+            float:right;
+            color:darken($white, 20);
+            @include rem(font-size, 1.2);
+            &.errors {
+                color:$alarm;
+            }
+        }
+
+        .input-type-text,
+        input[type="text"] {
+            @include input;
+            @include rem(padding, 0, 1);
+            &.errors {
+                border:1px solid $alarm;
+                &:focus {
+                    box-shadow: 0 0 3px $alarm;
+                }
+            }
+        }
+
+        .select,
+        select {
+            @include input;
+            @include rem(padding, 0, 1);
+            @include rem(height, 4);
+            &.errors {
+                border:1px solid $alarm;
+                &:focus {
+                    box-shadow: 0 0 3px $alarm;
+                }
+            }
+        }
+
+    }
+    
+    > footer {
+        @include rem(padding, 2);
+        background-color: lighten($white, 3);
+        border-bottom:1px solid darken($white, 10);
+        border-left:1px solid darken($white, 10);
+        border-radius: 0 0 5px 5px;
+        border-right:1px solid darken($white, 10);
+        margin: 0;
+        display:block;
+    }
+}

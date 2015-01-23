@@ -4,6 +4,30 @@ $mobile-landscape-width : 700px;
 $tablet-width           : 1024px;
 $desktop-width          : 1200px;
 
+@mixin mq($point) {
+  
+  $mobile           : "(min-width : 0)";
+  $mobile-landscape : "(min-width : #{$mobile-landscape-width})";
+  $tablet           : "(min-width : #{$tablet-width})";
+  $desktop          : "(min-width : #{$desktop-width})";
+
+  @if $point == mobile {
+    @media #{$mobile} { @content; }
+  }
+  @else if $point == mobile-landscape {
+    @media #{$mobile-landscape} { @content; }
+  }
+  @else if $point == tablet {
+    @media #{$tablet}  { @content; }
+  }
+  @else if $point == desktop {
+    @media #{$desktop}  { @content; }
+  }
+  @else if $point == widescreen {
+    @media #{$widescreen}  { @content; }
+  }
+
+}
 
 // EXAMPLE USAGE:
 // @include rem(margin, 10, 20, 30, 40);

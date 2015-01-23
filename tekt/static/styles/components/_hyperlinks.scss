@@ -1,7 +1,7 @@
 //
-// a
+// Hyperlinks
 // 
-// .      - normal state
+// .      - normative state
 // .hover - hover state
 // .alarm - alarm state
 // 
@@ -24,7 +24,7 @@ a,
         color:$black;
         text-decoration: underline;
     }
-    .alarm {
+    &.alarm {
         color:$alarm;
     }
 }

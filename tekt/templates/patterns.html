@@ -1,80 +1,22 @@
 {% extends 'template.focused.html' %}
 {% block page_scripts %}
 <script src="/static/vendor/scripts/kss.js"></script>
+<script src="/static/vendor/scripts/highlight.pack.js"></script>
 <script>
     var patterns = function(){
         TEKT.errors.autoscroll_enabled = false;
     };
     $(document).ready(patterns);
 </script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
 {% endblock %}
 {% block page_styles %}
+    <link rel="stylesheet" href="/static/vendor/styles/monokai.css">
     <style>
-        h1 {
-            margin-top:20px;
-        }
-        #libraries,
-        #components,
-        #compositions,
-        #elements {
-            color:black;
-        }
-        .toc {
-            margin-bottom:30px;
-        }
-        pattern {
-            display:block;
-            padding:20px 20px 30px;
-            margin-top:0;
-        }
-        pattern state {
-            padding:0;
-            display:block;
-            margin-top:20px;
-        }
-        pattern state + pattern state {
-            border-top:1px solid #e2e2e2;
-        }
-        pattern state code {
-            background: #333333;
-            padding:5px;
-            display:block;
-            margin:10px 0 0;
-            color:#AAAAAA;
-            white-space: pre-wrap;       /* CSS 3 */
-            white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-            white-space: -pre-wrap;      /* Opera 4-6 */
-            white-space: -o-pre-wrap;    /* Opera 7 */
-            word-wrap: break-word;       /* Internet Explorer 5.5+ */
-        }
-        pattern state example {
-            padding:15px;
-            display: block;
-            border:1px solid #333333;
-            margin:0 0 20px;
-        }
-        hr {
-            margin:30px 0 0;
-            border:0;
-        }
-        pattern reference {
-            background-color: #FFFFFF;
-            color:#AAAAAA;
-            padding:10px;
-            margin-right:5px;
-            border-radius: 20px;
-            border:1px solid #AAAAAA;
-        }
-        pattern filename {
-            color:#AAAAAA;
-        }
-        pattern description {
-            font-size:18px;
-        }
-        pattern state description {
-            font-size:12px;
-            display:block;
-            color:#AAAAAA;
+        .example {
+            margin:40px;
         }
     </style>
 {% endblock %}
@@ -84,106 +26,126 @@
 
 <ul class="toc">
     <li><a href="#libraries">Libraries</a></li>
-    <li><a href="#elements">Elements</a></li>
     <li><a href="#components">Components</a></li>
-    <li><a href="#compositions">Compositions</a></li>
 </ul>
 
-<h2 id="libraries">Libraries</h2>
-<ul class="toc">
-{% for section in libs.sections|sort %}
-    <li>
-        <a href="#{{ libs.section(section)._reference }}">
-            {{ libs.section(section)._reference }} - {{ libs.section(section)._description }}
-        </a>
-    </li>
-{% endfor %}
-</ul>
-
-<h2 id="elements">Elements</h2>
-<ul class="toc">
-{% for section in elements.sections|sort %}
-    <li>
-        <a href="#{{ elements.section(section)._reference }}">
-            {{ elements.section(section)._reference }} - {{ elements.section(section)._description }}
-        </a>
-    </li>
-{% endfor %}
-</ul>
-
-<h2 id="components">Components</h2>
-<ul class="toc">
-{% for section in components.sections|sort %}
-    <li>
-        <a href="#{{ components.section(section)._reference }}">
-            {{ components.section(section)._reference }} - {{ components.section(section)._description }}
-        </a>
-    </li>
-{% endfor %}
-</ul>
-
-<h2 id="compositions">Compositions</h2>
-<ul class="toc">
-{% for section in compositions.sections|sort %}
-    <li>
-        <a href="#{{ compositions.section(section)._reference }}">
-            {{ compositions.section(section)._reference }} - {{ compositions.section(section)._description }}
-        </a>
-    </li>
-{% endfor %}
-</ul>
-
-{% for section in elements.sections|sort %}
-
-    <pattern id="{{ elements.section(section)._reference }}">
-
-            <reference>{{ elements.section(section)._reference }}</reference>
-            <description>{{ elements.section(section)._description }}</description> &#8594;
-            <filename>{{ elements.section(section).filename }}</filename>
-
-        {% for modifier in elements.section(section).modifiers %}
-        <state>
-            <name>{{ modifier.name }}</name>
-            <description>{{ modifier.description }}</description>
-            {% if modifier.example %}
-            <code>{{ modifier.example }}</code>
-            <example>{{ modifier.example|safe }}</example>
-            {% else %}
-            no example
-            {% endif %}
-        </state>
+<div class="card">
+    <header>
+        <div class="title">
+            Libraries
+        </div>
+    </header>
+    <div class="content">
+        <ul class="pick">
+        {% for section in libs.sections|sort %}
+            <li>
+                <a href="#{{ libs.section(section)._reference }}">
+                    {{ libs.section(section)._reference }} - {{ libs.section(section)._description }}
+                </a>
+            </li>
         {% endfor %}
+        </ul>
+    </div>
+</div>
 
-        <a href="#toc" class="position-right">top</a>
-    </pattern>
+<div class="card">
+    <header>
+        <div class="title">
+            Components
+        </div>
+    </header>
+    <div class="content">
+        <ul class="pick">
+        {% for section in components.sections|sort %}
+            <li>
+                <a href="#{{ components.section(section)._reference }}">
+                    {{ components.section(section)._reference }} - {{ components.section(section)._description }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
 
-{% endfor %}
 
 {% for section in components.sections|sort %}
 
-    <pattern id="{{ components.section(section)._reference }}">
+    <div class="card" id="{{ components.section(section)._reference }}">
 
-            <reference>{{ components.section(section)._reference }}</reference>
-            <description>{{ components.section(section)._description }}</description> &#8594;
-            <filename>{{ components.section(section).filename }}</filename>
-
+        <header>
+            <div class="title">
+                {{ components.section(section)._reference }}
+                {{ components.section(section)._description }}
+            </div>
+        </header>
+        <div class="content">
+        <div>
         {% for modifier in components.section(section).modifiers %}
-        <state>
-            <name>{{ modifier.name }}</name>
-            <description>{{ modifier.description }}</description>
-            {% if modifier.example %}
-            <code>{{ modifier.example }}</code>
-            <example>{{ modifier.example|safe }}</example>
-            {% else %}
-            no example
-            {% endif %}
-        </state>
+            <div class="example">
+                {% if modifier.name != '.' %}
+                <div>{{ modifier.name }}</div>
+                {% endif %}
+                <div class="subdue">{{ modifier.description }}</div>
+                {% if modifier.example %}
+                <pre><code class="html">{{ modifier.example }}</code></pre>
+                <div>{{ modifier.example|safe }}</div>
+                {% else %}
+                <pre><code class="html"><div>no example</div></code></pre>
+                {% endif %}
+            </div>
         {% endfor %}
-
-        <a href="#toc" class="position-right">top</a>
-    </pattern>
+        {% if not components.section(section).modifiers %}
+        <div class="example">
+            no example
+        </div>
+        {% endif %}
+        </div>
+        </div>
+        <footer>
+            <div><a href="#toc" class="position-right button link">top</a></div>
+        </footer>
+    </div>
 
 {% endfor %}
 
+{% for section in libs.sections|sort %}
+
+    <div class="card" id="{{ libs.section(section)._reference }}">
+
+        <header>
+            <div class="title">
+                {{ libs.section(section)._reference }}
+                {{ libs.section(section)._description }}
+            </div>
+        </header>
+        <div class="content">
+        <div>
+        {% for modifier in libs.section(section).modifiers %}
+            <div class="example">
+                {% if modifier.name != '.' %}
+                <div>{{ modifier.name }}</div>
+                {% endif %}
+                <div class="subdue">{{ modifier.description }}</div>
+                {% if modifier.example %}
+                <pre><code class="html">{{ modifier.example }}</code></pre>
+                <div>{{ modifier.example|safe }}</div>
+                {% else %}
+                <pre><code class="html"><div>no example</div></code></pre>
+                {% endif %}
+            </div>
+        {% endfor %}
+        {% if not libs.section(section).modifiers %}
+        <div class="example">
+            no example
+        </div>
+        {% endif %}
+        </div>
+        </div>
+        <footer>
+            <div><a href="#toc" class="position-right button link">top</a></div>
+        </footer>
+    </div>
+
+{% endfor %}
 
 {% endblock %}

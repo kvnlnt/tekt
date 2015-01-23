@@ -64,16 +64,10 @@ def patterns():
     import pykss
     libs = pykss.Parser(
         current_app.root_path + '/static/styles/libs', '.scss')
-    elements = pykss.Parser(
-        current_app.root_path + '/static/styles/elements', '.scss')
     components = pykss.Parser(
         current_app.root_path + '/static/styles/components', '.scss')
-    compositions = pykss.Parser(
-        current_app.root_path + '/static/styles/compositions', '.scss')
 
     return render_template(
         "patterns.html",
-        elements=elements,
         libs=libs,
-        components=components,
-        compositions=compositions)
+        components=components)

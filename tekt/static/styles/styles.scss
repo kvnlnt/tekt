@@ -1,43 +1,23 @@
 // libraries
-@import "libs/colors";
-@import "libs/dimensions";
-@import "libs/positions";
-@import "libs/fx";
-@import "libs/mq";
-@import "libs/typography";
-@import "libs/utilities";
+@import "libs/colorizing";
+@import "libs/dimensioning";
+@import "libs/positioning";
+@import "libs/treatments";
+@import "libs/viewing";
 
-// html elements
-@import "elements/a";
-@import "elements/body";
-@import "elements/button";
-@import "elements/form";
-@import "elements/h1";
-@import "elements/h2";
-@import "elements/h3";
-@import "elements/h4";
-@import "elements/html";
-@import "elements/iframe";
-@import "elements/img";
-@import "elements/input";
-@import "elements/input-text";
-@import "elements/label";
-@import "elements/legend";
-@import "elements/p";
-@import "elements/select";
-@import "elements/strong";
-@import "elements/table";
-@import "elements/ul";
-@import "elements/ul";
-
-// reusable components
+// html components
+@import "components/buttons";
 @import "components/cards";
-@import "components/layout-main";
-@import "components/layout-splash";
+@import "components/cards";
+@import "components/forms";
+@import "components/headings";
+@import "components/hyperlinks";
+@import "components/images";
 @import "components/lists";
+@import "components/normalize";
 @import "components/pages";
-@import "components/selectors";
-@import "components/form";
+@import "components/tables";
+@import "components/text";
 
 // unique compostions
 @import "compositions/header";
@@ -46,4 +26,4 @@
 @import "compositions/messenger";
 @import "compositions/scroll_to_top";
 @import "compositions/sign_in_form";
-
+@import "compositions/template";
