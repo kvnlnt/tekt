@@ -11,7 +11,7 @@
 //     <li>item 3</li>
 // </ul>
 //
-// Styleguide 2.20
+// Styleguide 1.07
 // 
 ul, 
 .ul {
@@ -19,6 +19,9 @@ ul,
     margin:0;
     padding:0;
     border-bottom:0;
+    li {
+        @include rem(line-height, 2.5);
+    }
     &.errors {
         color: $alarm;
     }

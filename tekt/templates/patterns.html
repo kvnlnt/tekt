@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/static/vendor/styles/monokai.css">
     <style>
         .example {
-            margin:40px;
+            padding:20px 40px;
         }
     </style>
 {% endblock %}
@@ -29,26 +29,47 @@
     <li><a href="#components">Components</a></li>
 </ul>
 
-<div class="card">
+<div id="libraries" class="card">
     <header>
         <div class="title">
             Libraries
         </div>
     </header>
     <div class="content">
-        <ul class="pick">
-        {% for section in libs.sections|sort %}
-            <li>
-                <a href="#{{ libs.section(section)._reference }}">
-                    {{ libs.section(section)._reference }} - {{ libs.section(section)._description }}
-                </a>
-            </li>
-        {% endfor %}
-        </ul>
+        <table class="data">
+            <tr>
+                <th>File</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>_colorizing.scss</td>
+                <td>Control colors</td>
+            </tr>
+            <tr>
+                <td>_dimensioning.scss</td>
+                <td>Control dimensions</td>
+            </tr>
+            <tr>
+                <td>_normalizing.scss</td>
+                <td>Control normalization</td>
+            </tr>
+            <tr>
+                <td>_positioning.scss</td>
+                <td>Control positioning</td>
+            </tr>
+            <tr>
+                <td>_treatements.scss</td>
+                <td>Control visual treatments</td>
+            </tr>
+            <tr>
+                <td>_viewing.scss</td>
+                <td>Control viewability</td>
+            </tr>
+        </table>
     </div>
 </div>
 
-<div class="card">
+<div id="components" class="card">
     <header>
         <div class="title">
             Components
@@ -67,47 +88,6 @@
     </div>
 </div>
 
-
-{% for section in components.sections|sort %}
-
-    <div class="card" id="{{ components.section(section)._reference }}">
-
-        <header>
-            <div class="title">
-                {{ components.section(section)._reference }}
-                {{ components.section(section)._description }}
-            </div>
-        </header>
-        <div class="content">
-        <div>
-        {% for modifier in components.section(section).modifiers %}
-            <div class="example">
-                {% if modifier.name != '.' %}
-                <div>{{ modifier.name }}</div>
-                {% endif %}
-                <div class="subdue">{{ modifier.description }}</div>
-                {% if modifier.example %}
-                <pre><code class="html">{{ modifier.example }}</code></pre>
-                <div>{{ modifier.example|safe }}</div>
-                {% else %}
-                <pre><code class="html"><div>no example</div></code></pre>
-                {% endif %}
-            </div>
-        {% endfor %}
-        {% if not components.section(section).modifiers %}
-        <div class="example">
-            no example
-        </div>
-        {% endif %}
-        </div>
-        </div>
-        <footer>
-            <div><a href="#toc" class="position-right button link">top</a></div>
-        </footer>
-    </div>
-
-{% endfor %}
-
 {% for section in libs.sections|sort %}
 
     <div class="card" id="{{ libs.section(section)._reference }}">
@@ -117,9 +97,11 @@
                 {{ libs.section(section)._reference }}
                 {{ libs.section(section)._description }}
             </div>
+            <div class="actions">
+                {{ libs.section(section).filename }}
+            </div>
         </header>
         <div class="content">
-        <div>
         {% for modifier in libs.section(section).modifiers %}
             <div class="example">
                 {% if modifier.name != '.' %}
@@ -140,9 +122,50 @@
         </div>
         {% endif %}
         </div>
+        <footer>
+            <div class="actions"><a href="#toc" class="position-right button link">top</a></div>
+        </footer>
+    </div>
+
+{% endfor %}
+
+
+{% for section in components.sections|sort %}
+
+    <div class="card" id="{{ components.section(section)._reference }}">
+
+        <header>
+            <div class="title">
+                {{ components.section(section)._reference }}
+                {{ components.section(section)._description }}
+            </div>
+            <div class="actions">
+                {{ components.section(section).filename }}
+            </div>
+        </header>
+        <div class="content">
+        {% for modifier in components.section(section).modifiers %}
+            <div class="example">
+                {% if modifier.name != '.' %}
+                <div>{{ modifier.name }}</div>
+                {% endif %}
+                <div class="subdue">{{ modifier.description }}</div>
+                {% if modifier.example %}
+                <pre><code class="html">{{ modifier.example }}</code></pre>
+                <div>{{ modifier.example|safe }}</div>
+                {% else %}
+                <pre><code class="html"><div>no example</div></code></pre>
+                {% endif %}
+            </div>
+        {% endfor %}
+        {% if not components.section(section).modifiers %}
+        <div class="example">
+            no example
+        </div>
+        {% endif %}
         </div>
         <footer>
-            <div><a href="#toc" class="position-right button link">top</a></div>
+            <div class="actions"><a href="#toc" class="position-right button link">top</a></div>
         </footer>
     </div>
 
