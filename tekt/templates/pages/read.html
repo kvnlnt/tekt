@@ -4,20 +4,16 @@
 
 {% block body %}
 <h1>
-    <a class="tekt-a" href="{{ url_for('.list_pages') }}">Pages</a>
+    <a black href="{{ url_for('.list_pages') }}">Pages</a>
 </h1>
 <div class="card">
-    <div class="header">
-        <div class="table">
-        <div class="tr">
-            <h2 class="title td">Details</h2>
-            <div class="actions td">
-                <a class="button" href="{{ url_for('.update_page', id=page.id )}}">settings</a>
-            </div>
+    <header>
+        <h2 class="title">{{ page.page }}</h2>
+        <div class="actions td">
+            <a class="button" href="{{ url_for('.update_page', id=page.id )}}">settings</a>
         </div>
-        </div>
-    </div>
-    <div class="body">
+    </header>
+    <div class="content">
         <table class="table data">
             <tr>
                 <th>#</th>

@@ -25,7 +25,7 @@
     </fieldset>
     <ul class="list">
         {% for record in pages %}
-        <li><a class="tekt-a item" tekt-key="{{record.id}}" tekt-val="{{record.page}}" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a>
+        <li><a class=" item" tekt-key="{{record.id}}" tekt-val="{{record.page}}" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a>
         </li>
         {% endfor %}
     </ul>

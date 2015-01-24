@@ -3,7 +3,7 @@
 
 
 <h1>
-    <a class="tekt-a" href="{{ url_for('.list_paths') }}">Paths</a>
+    <a black href="{{ url_for('.list_paths') }}">Paths</a>
 </h1>
 
 <div class="card">
@@ -27,11 +27,11 @@
         </tr>
         {% for record in paths %}
         <tr>
-            <td><a class="tekt-a" href="{{ url_for('.read_path', id=record.id) }}">{{record.path}}</a>
+            <td><a black href="{{ url_for('.read_path', id=record.id) }}">{{record.path}}</a>
             </td>
             <td>{{record.property.property}}</td>
             <td>{% if record.pages|length > 0 %}{{record.pages[0].page}}{% endif %}</td>
-            <td><a class="tekt-a" href="{{ url_for('.update_path', id=record.id) }}">settings</a>
+            <td><a black href="{{ url_for('.update_path', id=record.id) }}">settings</a>
             </td>
         </tr>
         {% endfor %}

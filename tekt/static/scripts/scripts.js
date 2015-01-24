@@ -4,6 +4,13 @@
  */
 var TEKT = {};
 
+TEKT.DIRECTIVE          = {};
+TEKT.DIRECTIVE.ID       = 'tekt-id';
+TEKT.DIRECTIVE.KEY      = 'tekt-key';
+TEKT.DIRECTIVE.SHOWHIDE = 'tekt-showhide';
+TEKT.DIRECTIVE.TYPE     = 'tekt-type';
+TEKT.DIRECTIVE.VAL      = 'tekt-val';
+
 // GLOBAL JSDOCS MTEKTUP
 /**
  * @name 1. External Docs

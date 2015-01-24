@@ -1,30 +1,3 @@
-//
-// Forms
-// 
-// .       - normative state
-// .errors - error state
-// 
-// Example:
-// <form class="$modifier_class">
-//    <legend>A Form</legend>
-//     <fieldset>
-//         <div>
-//             <input type="text" class="$modifier_class" value="" placeholder="placeholder" />
-//             <div class="help $modifier_class">help text</div>
-//             <label>Label</label>
-//             <p>optional field description</p>
-//         </div>
-//     </fieldset>
-//     <footer>
-//         <div class="actions">
-//              <input class="button" type="submit" value="save">
-//         </div>
-//     </footer>
-// </form>
-//
-// Styleguide 1.03
-//  
-
 @mixin input() {
     width:100%;
     @include rem(font-size, 1.4);
@@ -42,9 +15,8 @@
     }
 }
 
-
 form,
-.form {
+.#{form} {
     > legend {
         @extend .font-bold;
         @include rem(font-size, 1.8);
@@ -89,16 +61,22 @@ form,
             }
         }
 
+        .field {
+            &.errors {
+                > input, select {
+                    border:1px solid $alarm;
+                    &:focus {
+                        border:1px solid $alarm;
+                        box-shadow: 0 0 3px $alarm;
+                    }
+                }
+            }
+        }
+
         .input-type-text,
         input[type="text"] {
             @include input;
             @include rem(padding, 0, 1);
-            &.errors {
-                border:1px solid $alarm;
-                &:focus {
-                    box-shadow: 0 0 3px $alarm;
-                }
-            }
         }
 
         .select,
@@ -106,12 +84,6 @@ form,
             @include input;
             @include rem(padding, 0, 1);
             @include rem(height, 4);
-            &.errors {
-                border:1px solid $alarm;
-                &:focus {
-                    box-shadow: 0 0 3px $alarm;
-                }
-            }
         }
 
     }

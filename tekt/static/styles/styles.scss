@@ -1,11 +1,17 @@
-// libraries
+// LIBRARIES
+// Mixins, helpers, etc
 @import "libs/colorizing";
 @import "libs/dimensioning";
 @import "libs/positioning";
+@import "libs/selectors";
 @import "libs/treatments";
 @import "libs/viewing";
 
-// html components
+// COMPONENTS:
+// Resusable elements/components
+// - be plurarly named but classed singularly like .card
+// - class name should be direct expression
+// - represent a class of element or component, not a specific instance
 @import "components/buttons";
 @import "components/cards";
 @import "components/cards";
@@ -18,13 +24,14 @@
 @import "components/normalize";
 @import "components/pages";
 @import "components/tables";
-@import "components/text";
+@import "components/typography";
 
-// unique compostions
-@import "compositions/header";
+// COMPOSITIONS
+// unique elements or components
+@import "compositions/home";
 @import "compositions/logo";
 @import "compositions/menu";
 @import "compositions/messenger";
-@import "compositions/scroll_to_top";
-@import "compositions/sign_in_form";
+@import "compositions/scroll-to-top";
+@import "compositions/sign-in-form";
 @import "compositions/template";

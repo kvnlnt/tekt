@@ -1,23 +1,11 @@
-//
-// Hyperlinks
-// 
-// .      - normative state
-// .hover - hover state
-// .alarm - alarm state
-// 
-// Example:
-//  <a href="#" class="$modifier_class">link</a> 
-//
-// Styleguide 1.05
-// 
 a, 
 .a {
-    @extend .font-regular;
+    @include rem(font-size, 1.4);
     background: transparent;
-    cursor: pointer;
     color:$primary;
-    text-decoration: none;
+    cursor: pointer;
     outline: 0;
+    text-decoration: none;
     &:hover, 
     .hover {
         transition: all 0.5s ease;

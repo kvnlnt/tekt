@@ -19,7 +19,7 @@ TEKT.layouts = (function(module) {
      * @member directive
      * @memberOf module:directive
      */
-    module.directive = '[tekt-layout]';
+    module.directive = '.template';
 
     /**
      * Layout type configs
@@ -31,14 +31,14 @@ TEKT.layouts = (function(module) {
             regions:{
                 left_column:{
                     name:'left_column',
-                    selector:'.tr > .td:eq(0)',
+                    selector:'.cols > .col:eq(0)',
                     collapsible:true,
                     collapse_on:'MENU:TOGGLE',
                     collapse_key:'menu-toggle'
                 },
                 right_column:{
                     name:'right_column',
-                    selector:'.tr > .td:eq(1)'
+                    selector:'.cols > .col:eq(1)'
                 }
             },
         },
@@ -63,7 +63,7 @@ TEKT.layouts = (function(module) {
     module.register = function(el){
 
         var $el = $(el);
-        var type = module.type[$el.attr('tekt-layout')];
+        var type = module.type[$el.attr(TEKT.DIRECTIVE.TYPE)];
         var regions = void 0 === type.regions ? [] : type.regions;
 
         // config layout

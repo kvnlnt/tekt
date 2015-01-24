@@ -1,17 +1,3 @@
-//
-// Messages
-// 
-// . - normative state
-// .inform - inform state
-// .praise - praise state
-// .alarm - alarm state
-// .warn - warn state
-// 
-// Example:
-// <div class="message $modifier_class">Message</div>
-//
-// Styleguide 1.08
-
 .message {
     z-index: 99;
     background-color: $inform;

@@ -4,35 +4,19 @@
 
 {% block body %}
 <h1>
-    <a class="tekt-a" href="{{ url_for('.list_properties') }}">Properties</a>
+    <a black href="{{ url_for('.list_properties') }}">Properties</a>
 </h1>
 
-<div class="card">
-<div class="header">
-    <div class="table">
-        <div class="tr">
-            <h2 class="title td">New</h2>
-        </div>
-    </div>
-</div>
+
 <form class="form" method="post" action="{{ url_for('.create_property') }}">
-    <div class="body">
+    <legend>New</legend>
         <fieldset>
-            <ul class="list">
-                {{ render_field(form.property, autofocus='autofocus', placeholder=form.property.description) }}
-            </ul>
+            {{ render_field(form.property, autofocus='autofocus', placeholder="Example: my.website.com") }}
         </fieldset>
-    </div>
-    <div class="footer">
-        <div class="table">
-            <div class="tr">
-                <div class="actions td">
-                    <input class="button" type="submit" value="save">
-                    <a class="button" href="{{ url_for('.list_properties') }}">cancel</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <footer>
+        <input class="button" type="submit" value="save">
+        <a class="button" href="{{ url_for('.list_properties') }}">cancel</a>
+    </footer>
 </form>
 </div>
 

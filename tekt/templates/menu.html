@@ -1,5 +1,5 @@
 {% from "macros/menus.html" import render_menu_link %} 
-<div tekt-part="menu">
+<div class="menu">
 <div class="table main">
   {{ render_menu_link(icon='fa ' + g.template['menu-toggle-button'], classes='toggle') }}
   {{ render_menu_link(text='Dashboard', link='main.dashboard', icon='fa fa-dashboard', section=(section == 'dashboard')) }}

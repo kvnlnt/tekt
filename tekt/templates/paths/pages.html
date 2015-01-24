@@ -4,10 +4,10 @@
 
 
 <h1>
-    <a class="tekt-a" href="{{ url_for('.list_paths') }}">Paths</a>
+    <a black href="{{ url_for('.list_paths') }}">Paths</a>
 </h1>
-<h2 class="tekt-h2">
-    <a class="tekt-a" href="{{ url_for('paths.read_path', id=path.id) }}">{{path.property.property}}{{path.path}}</a>
+<h2>
+    <a black href="{{ url_for('paths.read_path', id=path.id) }}">{{path.property.property}}{{path.path}}</a>
 </h2>
 
 <div class="card">
@@ -27,9 +27,9 @@
     {% for page in path.pages %}
     <tr>
         <td>{{ page.id }}</td>
-        <td><a class="tekt-a" href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a>
+        <td><a black href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a>
         </td>
-        <td><a class="tekt-a" href="{{ url_for('.remove_page_from_path', id=path.id, path_page_id=page.path_page_id )}}">remove</a>
+        <td><a black href="{{ url_for('.remove_page_from_path', id=path.id, path_page_id=page.path_page_id )}}">remove</a>
         </td>
 
     </tr>

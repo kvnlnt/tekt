@@ -5,21 +5,17 @@
 {% block body %}
 
 <h1>
-    <a class="tekt-a" href="{{ url_for('.list_properties') }}">Properties</a>
+    <a black href="{{ url_for('.list_properties') }}">Properties</a>
 </h1>
 
 <div class="card">
-<div class="header">
-    <div class="table">
-        <div class="tr">
-            <h2 class="title td">{{ property.property }}</h2>
-            <div class="actions td">
-                <a class="button" href="{{ url_for('.update_property', id=property.id )}}">settings</a>
-            </div>
-        </div>
+<header>
+    <h2 class="title">{{ property.property }}</h2>
+    <div class="actions">
+        <a class="button" href="{{ url_for('.update_property', id=property.id )}}">settings</a>
     </div>
-</div>
-<div class="body">
+</header>
+<div class="content">
     <table class="table data">
         <tr>
             <th>ID</th>

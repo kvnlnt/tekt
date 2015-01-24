@@ -8,7 +8,7 @@ TEKT.menus = (function(module){
     /* exports menus */
 
     module.el = {};
-    module.el.menu = '[tekt-part="menu"]';
+    module.el.menu = '.menu';
     module.el.toggle = '.toggle';
 
     /**

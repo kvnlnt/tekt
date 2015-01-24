@@ -23,26 +23,26 @@
 
     <body>
         
-        <div class="tekt-layout-splash">
-            <div class="tekt-page-home">
-            <div class="table">
+        <div id="splash" class="table" tekt-type="splash">
             <div class="tr">
                 <div class="body td">
-                    <a href="{{ url_for('main.dashboard') }}" tekt-piece="logo" class="fa fa-play large animated fadeIn tekt-a"></a>
-                    <form class="form" tekt-part="sign_in_form" method="post" action="{{ url_for('main.home') }}">
-                            <fieldset>
-                                <ul>
-                                    <li>{{ form.username(placeholder='username') }}</li>
-                                    <li>{{ form.password(placeholder='password') }}</li>
-                                    <li><input class="button" type="submit" value="sign in"/></li>
-                                    <li><a class="tekt-a">sign up</a></li>
-                                </ul>
-                            </fieldset>
+                    <a href="{{ url_for('main.dashboard') }}" id="logo" class="fa fa-play large animated fadeIn "></a>
+                    <form id="sign-in-form" method="post" action="{{ url_for('main.home') }}">
+                        <fieldset>
+                            <ul>
+                                <li>{{ form.username(placeholder='username') }}</li>
+                                <li>{{ form.password(placeholder='password') }}</li>
+                                <li>
+                                    <input class="button" type="submit" value="sign in" />
+                                </li>
+                                <li><a>sign up</a>
+                                </li>
+                            </ul>
+                        </fieldset>
                     </form>
                 </div>
             </div>
-            </div>
-            </div>
+        </div>
         </div>
 
         {% block scripts %}

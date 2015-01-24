@@ -1,18 +1,5 @@
-//
-// Buttons
-// 
-// .       - normative state
-// .hover  - hover state
-// .link   - link state
-// .alarm  - alarm state
-// 
-// Example:
-//  <button class="$modifier_class">button</button> 
-//
-// Styleguide 1.01
-// 
 button,
-.button {
+.#{$button}  {
     @include rem(font-size, 1.6);
     @include rem(line-height, 3);
     @include rem(padding, 0, 1.25);  

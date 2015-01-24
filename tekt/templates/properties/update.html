@@ -4,34 +4,18 @@
 
 {% block body %}
 <h1>
-    <a class="tekt-a" href="{{ url_for('.list_properties') }}">Properties</a>
+    <a black href="{{ url_for('.list_properties') }}">Properties</a>
 </h1>
-<form method="post" action="{{ url_for('.update_property', id=property.id) }}" class="form card">
+<form method="post" action="{{ url_for('.update_property', id=property.id) }}">
 {{ form.id }}
-<div class="header">
-    <div class="table">
-        <div class="tr">
-            <legend class="title td">Settings</legend>
-        </div>
-    </div>
-</div>
-<div class="body">
-    <fieldset>
-        <ul class="list">
-            {{ render_field(form.property, autofocus="autofocus", placeholder=form.property.description) }}
-        </ul>
-    </fieldset>
-</div>
-<div class="footer">
-    <div class="table">
-        <div class="tr">
-            <div class="actions td">
-                <input class="button" type="submit" value="save">
-                <a class="button" href="{{ url_for('.read_property', id=property.id) }}">cancel</a>
-            </div>
-        </div>
-    </div>
-</div>
+<legend>Settings</legend>
+<fieldset>
+    {{ render_field(form.property, autofocus='autofocus', placeholder="Example: my.website.com") }}
+</fieldset>
+<footer>
+    <input class="button" type="submit" value="save">
+    <a class="button" href="{{ url_for('.read_property', id=property.id) }}">cancel</a>
+</footer>
 
 </form>
 <div style="margin:50px 0px;">

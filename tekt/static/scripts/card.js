@@ -22,7 +22,7 @@ TEKT.Card = function(config){
     this.dom = {
         header   : '.header',
         showhide : '.showhide',
-        body     : '.body',
+        content  : '.content',
         footer   : '.footer'
     };
 
@@ -59,8 +59,8 @@ TEKT.Card = function(config){
      */
     this.toggle = function(e){
 
-        this.get('body').toggleClass('tekt-display-hidden');
-        this.get('footer').toggleClass('tekt-display-hidden');
+        this.get('content').toggleClass('view-hidden');
+        this.get('footer').toggleClass('view-hidden');
         this.get('showhide').toggleClass('fa-minus');
         this.get('showhide').toggleClass('fa-plus');
 
@@ -78,7 +78,7 @@ TEKT.Card = function(config){
         // init it's children
         this.set('header'         , el.find(this.dom.header));
         this.set('showhide'       , el.find(this.dom.showhide));
-        this.set('body'           , el.find(this.dom.body));
+        this.set('content'           , el.find(this.dom.content));
         this.set('footer'         , el.find(this.dom.footer));
 
         // reg events

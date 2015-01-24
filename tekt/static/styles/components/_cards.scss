@@ -1,31 +1,4 @@
-//
-// cards
-// 
-// .card - normative state
-// 
-// Example:
-// <div class="$modifier_class">
-//     <header>
-//          <div class="title">A Card</div>
-//          <div class="actions">
-//              <button>button</button>
-//          </div>
-//     </header>
-//     <div class="content">
-//         <div>
-//          content
-//         </div>
-//     </div>
-//     <footer>
-//         <div class="actions">
-//              <button>button</button>
-//         </div>
-//     </footer>
-// </div>
-//
-// Styleguide 1.02
-// 
-.card {
+.#{$card} {
     width:100%;
     @include rem(padding, 0);
     &:hover {
@@ -57,6 +30,9 @@
         }
         &.borderless {
             border:0px;
+            > * {
+                border:0px;
+            }
         }
     }
     > .content {

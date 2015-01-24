@@ -1,20 +1,20 @@
-{% macro render_field(field, show_label=True, show_description=False) %}
-  <li {% if field.errors %}class="errors" {% endif %}>
-  {{ field(**kwargs)|safe }}
-  {% if show_label %}
-  {{ field.label }}
-  {% endif %}
-  {% if field.errors %}
-    <ul class="list errors">
-    {% for error in field.errors %}
-      <li>{{ error }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-  {% if show_description %}
-  <p class="tekt-p">{{ field.description }}</p>
-  {% endif %}
-  </li>
+{% macro render_field(field, show_label=True, show_description=False) %}  
+  
+  <div class="field {% if field.errors %}errors{% endif %}">
+      {{ field(**kwargs)|safe }}
+      <div class="help">
+          {% if field.errors %}
+            <ul class="errors">
+            {% for error in field.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+      </div>
+      {% if show_label %}<label>{{ field.label }}</label>{% endif %}
+       {% if show_description %}<p>{{ form.property.description }}</p>{% endif %}
+  </div>
+
 {% endmacro %}
 
 {% macro render_hidden_field(field) %}

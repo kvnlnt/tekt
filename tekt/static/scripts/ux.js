@@ -8,12 +8,20 @@ TEKT.ux = (function(module){
     /* exports ux */
 
     /**
+     * Collection of instantiated ux elements
+     * @member instances
+     * @memberOf module:cards
+     */
+    module.instances = [];
+
+    /**
      * Dom elements
      * @member el
      * @memberOf module:ux
      */
     module.el = {};
-    module.el.showhide = '.tekt-ux-showhide';
+    module.el.showhide_attr = TEKT.DIRECTIVE.SHOWHIDE;
+    module.el.showhide = '['+module.el.showhide_attr+']';
 
     /**
      * Show hide target
@@ -22,9 +30,9 @@ TEKT.ux = (function(module){
      */
     module.showhide = function(e){
 
-        var target = $(this).attr('tekt-target');
+        var target = $(e.target).attr(module.el.showhide_attr);
         var $target = $('[tekt-id='+target+']');
-        $target.toggleClass('display-hidden');
+        $target.toggleClass('view-hidden');
         return this;
 
     };
@@ -37,7 +45,8 @@ TEKT.ux = (function(module){
     module.init = function() {
 
         module.el.$showhide = $(module.el.showhide);
-        module.el.$showhide.on('click', module.showhide);
+        module.el.$showhide.on('click', module.showhide.bind(this));
+        module.instances.push(module.el.$showhide);
 
     };
 
