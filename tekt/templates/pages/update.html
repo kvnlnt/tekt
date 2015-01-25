@@ -29,18 +29,17 @@
 </div>
 
 <form method="post" tekt-id="delete_form" class="view-hidden" action="{{ url_for('.delete_page', id=page.id) }}">
-    <legend>Delete</legend>
+    <legend>Delete Page</legend>
     <fieldset>
         {{ delete_form.phrase }}
         <div class="field">
             {{ delete_form.confirm(placeholder=form.page.data)|safe }}
-            <label>{{ delete_form.confirm.label }}</label>
-            <p>{{ delete_form.confirm.description }}</p>
+            <label>{{ delete_form.confirm.description }}</label>
         </div>
     </fieldset>
     <footer>
     <div class="actions">
-        <input class="button alarm" type="submit" value="delete">
+        <input class="button alarm" type="submit" value="confirm">
     </footer>
 </form>
 

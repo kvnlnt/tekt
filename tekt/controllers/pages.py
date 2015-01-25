@@ -115,9 +115,11 @@ def delete_page(id):
     confirmed = request.form['phrase'] == request.form['confirm']
 
     if confirmed:
-        flash("Page deleted", "inform")
+        message = "The page <strong>" + \
+            request.form['phrase'] + "</strong> was deleted"
+        flash(message, "inform")
         tektonik.delete_page(id)
+        return redirect(url_for('.list_pages'))
     else:
-        flash("Page deletion failed. Confirmation failed.", "alarm")
-
-    return redirect(url_for('.list_pages'))
+        flash("Confirmation failed. Page was not deleted", "alarm")
+        return redirect(url_for('.read_page', id=id))

@@ -7,18 +7,14 @@
 </h1>
 
 <div class="card">
-<div class="header">
-    <div class="table">
-        <div class="tr">
-            <h2 class="title td">{{ path.path }}</h2>
-            <div class="actions td">
-                <a class="button" href="{{ url_for('.update_path', id=path.id )}}">settings</a>
-            </div>
-        </div>
+<header>
+    <h2 class="title">{{ path.path }}</h2>
+    <div class="actions">
+        <a class="button" href="{{ url_for('.update_path', id=path.id )}}">settings</a>
     </div>
-</div>
-<div class="body">
-    <table class="table data">
+</header>
+<div class="content">
+    <table class="data">
         <tr>
             <th>ID</th>
             <td>{{path.id}}</td>

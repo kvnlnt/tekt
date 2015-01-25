@@ -48,8 +48,9 @@ form,
 
         label + p {
             @include rem(font-size, 1.4);
+            @include rem(margin, 1, 0);
+            @include rem(line-height, 2);
             color: darken($white, 20);
-            margin:0;
         }
 
         .help {
@@ -86,6 +87,10 @@ form,
             @include rem(height, 4);
         }
 
+    }
+
+    > fieldset + fieldset {
+        padding-top:0;
     }
     
     > footer {

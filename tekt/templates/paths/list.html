@@ -7,30 +7,25 @@
 </h1>
 
 <div class="card">
-<div class="header">
-    <div class="table">
-        <div class="tr">
-            <h2 class="title td">{{paths|length}} of {{metadata.total_records}}</h2>
-            <div class="actions td">
+<header>
+            <h2 class="title">{{paths|length}} of {{metadata.total_records}}</h2>
+            <div class="actions">
                 <a class="button" href="{{ url_for('.create_path') }}">new</a>
             </div>
-        </div>
-    </div>
-</div>
-<div class="body">
-    <table class="table data">
+</header>
+<div class="content">
+    <table class="data">
         <tr>
             <th>Path</th>
             <th>Property</th>
-            <th>Page</th>
+            <th>Pages</th>
             <th></th>
         </tr>
         {% for record in paths %}
         <tr>
-            <td><a black href="{{ url_for('.read_path', id=record.id) }}">{{record.path}}</a>
-            </td>
+            <td><a black href="{{ url_for('.read_path', id=record.id) }}">{{record.path}}</a></td>
             <td>{{record.property.property}}</td>
-            <td>{% if record.pages|length > 0 %}{{record.pages[0].page}}{% endif %}</td>
+            <td>{{record.pages|length}}</td>
             <td><a black href="{{ url_for('.update_path', id=record.id) }}">settings</a>
             </td>
         </tr>

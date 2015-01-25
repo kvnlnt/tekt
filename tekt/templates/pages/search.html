@@ -10,8 +10,8 @@
 <div class="header">
     <div class="table">
         <div class="tr">
-            <h2 class="title td">Search Pages</h2>
-            <div class="actions td">
+            <h2 class="title">Search Pages</h2>
+            <div class="actions">
                 {% if form.term.data != None %}{{ pages | length }} results for "{{form.term.data}}"{% endif %}
             </div>
         </div>
@@ -33,7 +33,7 @@
 <div class="footer">
     <div class="table">
         <div class="tr">
-            <div class="actions td">
+            <div class="actions">
                 <input class="button" type="submit" value="search">
             </div>
         </div>

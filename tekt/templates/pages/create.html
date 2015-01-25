@@ -7,15 +7,15 @@
 </h1>
 
 <form method="post" action="{{ url_for('.create_page') }}">
-    <legend class="title td">New</legend>
+    <legend class="title">New</legend>
     <fieldset>
         <div class="field">
-            {{ render_field(form.page, autofocus='autofocus') }}
+            {{ render_field(form.page, autofocus='autofocus', placeholder="Example: news") }}
         </div>
     </fieldset>
     <footer>
 
-        <div class="actions td">
+        <div class="actions">
             <input class="button" type="submit" value="save">
             <a class="button" href="{{ url_for('.list_pages') }}">cancel</a>
         </div>

@@ -70,6 +70,7 @@ def update_property(id):
 
     record = tektonik.read_property(id)['result']
     form = forms.PropertyForm(request.form, data=record)
+    delete_form = forms.DeletePropertyForm(phrase=record['property'])
 
     if request.method == 'POST':
         form = forms.PropertyForm(request.form)
@@ -87,17 +88,24 @@ def update_property(id):
     return render_template(
         template,
         form=form,
+        delete_form=delete_form,
         property=record,
         section='properties')
 
 
-@blueprint.route('/<int:id>/delete')
+@blueprint.route('/<int:id>/delete', methods=['POST'])
 def delete_property(id):
 
     """ delete a property """
 
-    tektonik.delete_property(id)
-    flash(
-        "Bye, bye property",
-        "warn")
-    return redirect(url_for('.list_properties'))
+    confirmed = request.form['phrase'] == request.form['confirm']
+
+    if confirmed:
+        message = "The property <strong>" + \
+            request.form['phrase'] + "</strong> was deleted"
+        flash(message, "inform")
+        tektonik.delete_property(id)
+        return redirect(url_for('.list_properties'))
+    else:
+        flash("Confirmation failed. Property was not deleted", "alarm")
+        return redirect(url_for('.read_property', id=id))

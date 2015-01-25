@@ -1,4 +1,4 @@
-{% macro render_field(field, show_label=True, show_description=False) %}  
+{% macro render_field(field, show_label=True, show_description=True) %}  
   
   <div class="field {% if field.errors %}errors{% endif %}">
       {{ field(**kwargs)|safe }}
@@ -12,7 +12,7 @@
           {% endif %}
       </div>
       {% if show_label %}<label>{{ field.label }}</label>{% endif %}
-       {% if show_description %}<p>{{ form.property.description }}</p>{% endif %}
+       {% if show_description and field.description %}<p>{{ field.description }}</p>{% endif %}
   </div>
 
 {% endmacro %}

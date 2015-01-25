@@ -3,22 +3,40 @@
 {% extends 'template.html' %} 
 
 {% block body %}
+
 <h1>
     <a black href="{{ url_for('.list_properties') }}">Properties</a>
 </h1>
-<form method="post" action="{{ url_for('.update_property', id=property.id) }}">
-{{ form.id }}
-<legend>Settings</legend>
-<fieldset>
-    {{ render_field(form.property, autofocus='autofocus', placeholder="Example: my.website.com") }}
-</fieldset>
-<footer>
-    <input class="button" type="submit" value="save">
-    <a class="button" href="{{ url_for('.read_property', id=property.id) }}">cancel</a>
-</footer>
 
+<form method="post" action="{{ url_for('.update_property', id=property.id) }}">
+    {{ form.id }}
+    <legend>Settings</legend>
+    <fieldset>
+        {{ render_field(form.property, autofocus='autofocus', placeholder="Example: my.website.com") }}
+    </fieldset>
+    <footer>
+        <input class="button" type="submit" value="save">
+        <a class="button" href="{{ url_for('.read_property', id=property.id) }}">cancel</a>
+    </footer>
 </form>
-<div style="margin:50px 0px;">
-<a class="button alarm" href="{{ url_for('.delete_property', id=property.id )}}">delete this property</a>
-</div> 
+
+<div class="panel text-right">
+    <a class="alarm button link" tekt-showhide="delete_form">delete</a>
+</div>
+
+<form method="post" tekt-id="delete_form" class="view-hidden" action="{{ url_for('.delete_property', id=property.id) }}">
+    <legend>Delete Property</legend>
+    <fieldset>
+        {{ delete_form.phrase }}
+        <div class="field">
+            {{ delete_form.confirm(placeholder=form.property.data)|safe }}
+            <label>{{ delete_form.confirm.description }}</label>
+        </div>
+    </fieldset>
+    <footer>
+    <div class="actions">
+        <input class="button alarm" type="submit" value="confirm">
+    </footer>
+</form>
+
 {% endblock %}

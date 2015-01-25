@@ -5,81 +5,59 @@
 <h1>
     <a black href="{{ url_for('.list_paths') }}">Paths</a>
 </h1>
-<form method="post" action="{{ url_for('paths.update_path', id=path.id) }}" class="form card">
+<form method="post" action="{{ url_for('paths.update_path', id=path.id) }}">
     {{ path_form.id }}
-    <div class="header">
-        <div class="table">
-            <div class="tr">
-                <legend class="title td">Settings</legend>
-            </div>
-        </div>
-    </div>
-    <div class="body">
-        <fieldset>
-            <ul class="list">
-                {{ render_field(path_form.path, autofocus="autofocus", placeholder=path_form.path.description) }}
-            </ul>
-        </fieldset>
-        <fieldset>
-            <ul class="list">
-                {{ render_field(path_form.property_id) }}
-            </ul>
-        </fieldset>
-    </div>
-    <div class="footer">
-        <div class="table">
-            <div class="tr">
-                <div class="actions td">
-                    <input class="button" type="submit" value="save">
-                    <a class="button" href="{{ url_for('paths.read_path', id=path.id) }}">cancel</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <legend>Settings</legend>
+    <fieldset>
+        <ul class="list">
+            {{ render_field(path_form.path, autofocus="autofocus", placeholder=path_form.path.description) }}
+        </ul>
+    </fieldset>
+    <fieldset>
+        <ul class="list">
+            {{ render_field(path_form.property_id) }}
+        </ul>
+    </fieldset>
+    <footer>
+        <input class="button" type="submit" value="save">
+        <a class="button" href="{{ url_for('paths.read_path', id=path.id) }}">cancel</a>
+    </footer>
 </form>
 
 <div class="card">
-    <div class="header">
-        <div class="table">
-            <div class="tr">
-                <h2 class="title td">Pages</h2>
-            </div>
-        </div>
+    <header>
+        <h2 class="title">Pages</h2>
+    </header>
+    <div class="content">
+        <table class="data">
+            <tr>
+                <th>#</th>
+                <th>page</th>
+                <th>actions</th>
+            </tr>
+            {% for page in path.pages %}
+            <tr>
+                <td>{{ page.id }}</td>
+                <td><a black href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a>
+                </td>
+                <td><a black href="{{ url_for('paths.remove_page_from_path', id=path.id, path_page_id=page.path_page_id)}}">remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <form id="add_page" method="post" action="{{ url_for('paths.update_path', id=path.id) }}" style="margin:10px 10px 0 10px;">
+            <legend>Add Page</legend>
+                <fieldset>
+                    <ul class="list">
+                        {{ render_hidden_field(page_form.path_id) }} {{ render_hidden_field(page_form.page_id) }} {{ render_field(page_form.page_selector, placeholder=page_form.page_selector.description, readonly="readonly", **{'class':'tekt-selector', 'tekt-type':'page', 'tekt-target':'page_id'}) }}
+                    </ul>
+                </fieldset>
+            <footer>
+                <input class="button" type="submit" value="Add Page">
+            </footer>
+        </form>
     </div>
-    <form class="form" id="add_page" method="post" action="{{ url_for('paths.update_path', id=path.id) }}">
-        <div class="body">
-            <table class="table data">
-                <tr>
-                    <th>#</th>
-                    <th>page</th>
-                    <th>actions</th>
-                </tr>
-                {% for page in path.pages %}
-                <tr>
-                    <td>{{ page.id }}</td>
-                    <td><a black href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a>
-                    </td>
-                    <td><a black href="{{ url_for('paths.remove_page_from_path', id=path.id, path_page_id=page.path_page_id)}}">remove</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
-            <fieldset>
-                <ul class="list">
-                    {{ render_hidden_field(page_form.path_id) }} {{ render_hidden_field(page_form.page_id) }} {{ render_field(page_form.page_selector, placeholder=page_form.page_selector.description, readonly="readonly", **{'class':'tekt-selector', 'tekt-type':'page', 'tekt-target':'page_id'}) }}
-                </ul>
-            </fieldset>
-        </div>
-        <div class="footer">
-            <div class="table">
-                <div class="tr">
-                    <div class="actions td">
-                        <input class="button" type="submit" value="Add Page">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+    <footer></footer>
 </div>
 
 <div style="margin:50px 0px;">

@@ -6,37 +6,21 @@
     <a black href="{{ url_for('.list_paths') }}">Paths</a>
 </h1>
 
-<form method="post" action="{{ url_for('.create_path') }}" class="form">
-    <div class="card">
-        <div class="header">
-            <div class="table">
-                <div class="tr">
-                    <legend class="title td">New</legend>
-                </div>
-            </div>
+<form method="post" action="{{ url_for('.create_path') }}">
+    <legend>New</legend>
+    <fieldset>
+        <div class="field">
+            {{ render_field(form.path, autofocus='autofocus', placeholder=form.path.description) }}
         </div>
-        <div class="body">
-            <fieldset>
-                <ul class="list">
-                    {{ render_field(form.path, autofocus='autofocus', placeholder=form.path.description) }}
-                </ul>
-            </fieldset>
-            <fieldset>
-                <ul class="list">
-                    {{ render_field(form.property_id) }}
-                </ul>
-            </fieldset>
+    </fieldset>
+    <fieldset>
+        <div class="field">
+            {{ render_field(form.property_id) }}
         </div>
-        <div class="footer">
-            <div class="table">
-                <div class="tr">
-                    <div class="actions td">
-                        <input class="button" type="submit" value="save">
-                        <a class="button" href="{{ url_for('.list_paths') }}">cancel</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </fieldset>
+    <footer>
+        <input class="button" type="submit" value="save">
+        <a class="button" href="{{ url_for('.list_paths') }}">cancel</a>
+    </footer>
 </form>
 {% endblock %}

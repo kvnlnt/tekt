@@ -31,9 +31,9 @@ def is_valid(form, record, reassign={}):
 
 
 descriptions = {
-    'property': 'yourwebsite.com',
-    'path': '/path/to/your/page',
-    'page': 'page name',
+    'property': 'this is the web address of your website',
+    'path': 'this is a path on your website',
+    'page': 'this is title of your page',
     'page_selector': 'Click to search',
     'page_search': 'Enter page name'
 }
@@ -48,6 +48,14 @@ class PropertyForm(Form):
 
     id = HiddenField('id')
     property = TextField('Property', description=descriptions['property'])
+
+
+class DeletePropertyForm(Form):
+
+    phrase = HiddenField(u'phrase')
+    confirm = TextField(
+        u'confirm',
+        description='Enter property name and press confirm to delete')
 
 
 class PathForm(Form):
@@ -93,7 +101,9 @@ class PageForm(Form):
 class DeletePageForm(Form):
 
     phrase = HiddenField(u'phrase')
-    confirm = TextField(u'confirm', description='Enter page name to delete')
+    confirm = TextField(
+        u'confirm',
+        description='Enter page name to and press confirm to delete')
 
 
 class PageSearchForm(Form):
