@@ -64,7 +64,7 @@ class PathForm(Form):
         default=(0))
 
 
-def PathFormFactory(request, data=None):
+def path_form_factory(request, data=None):
 
     form = PathForm(request.form, data=data)
     properties = tektonik.list_properties()['result']
@@ -92,6 +92,7 @@ class PageForm(Form):
 
 class DeletePageForm(Form):
 
+    phrase = HiddenField(u'phrase')
     confirm = TextField(u'confirm', description='Enter page name to delete')
 
 

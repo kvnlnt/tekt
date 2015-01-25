@@ -82,7 +82,7 @@ def update_page(id):
 
     record = tektonik.read_page(id)['result']
     form = forms.PageForm(request.form, data=record)
-    delete_form = forms.DeletePageForm()
+    delete_form = forms.DeletePageForm(phrase=record['page'])
 
     if request.method == 'POST':
         form = forms.PageForm(request.form)
@@ -107,13 +107,17 @@ def update_page(id):
         section='pages')
 
 
-@blueprint.route('/<int:id>/delete')
+@blueprint.route('/<int:id>/delete', methods=['POST'])
 def delete_page(id):
 
     """ delete a page """
 
-    flash(
-        "page deleted",
-        "inform")
-    tektonik.delete_page(id)
+    confirmed = request.form['phrase'] == request.form['confirm']
+
+    if confirmed:
+        flash("Page deleted", "inform")
+        tektonik.delete_page(id)
+    else:
+        flash("Page deletion failed. Confirmation failed.", "alarm")
+
     return redirect(url_for('.list_pages'))

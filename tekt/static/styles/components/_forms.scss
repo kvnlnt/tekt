@@ -18,7 +18,7 @@
 form,
 .#{form} {
     > legend {
-        @extend .font-bold;
+        @extend .text-bold;
         @include rem(font-size, 1.8);
         @include rem(line-height, 5);
         @include rem(margin, 0);

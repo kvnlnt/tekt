@@ -1,3 +1,4 @@
 .page {
     @include rem(padding, 4);
+    @include rem(font-size, 1.4);
 }

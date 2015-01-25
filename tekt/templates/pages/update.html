@@ -24,25 +24,24 @@
 </form>
 
 
-<a class="alarm position-right" tekt-showhide="delete_form">delete</a>
+<div class="panel text-right">
+    <a class="alarm button link" tekt-showhide="delete_form">delete</a>
+</div>
 
 <form method="post" tekt-id="delete_form" class="view-hidden" action="{{ url_for('.delete_page', id=page.id) }}">
-        <legend>
-            Delete property form
-        </legend>
-        <div class="body" tekt-id="delete_form">
-            <div class="table">
-                <div class="tr">
-                    <div class="td">
-                        {{ delete_form.confirm(placeholder=delete_form.confirm.description)|safe }}
-                    </div>
-                    <div class="td">
-                        <input class="button alarm" type="submit" value="confirm">
-                    </div>
-                </div>
-            </div>
+    <legend>Delete</legend>
+    <fieldset>
+        {{ delete_form.phrase }}
+        <div class="field">
+            {{ delete_form.confirm(placeholder=form.page.data)|safe }}
+            <label>{{ delete_form.confirm.label }}</label>
+            <p>{{ delete_form.confirm.description }}</p>
         </div>
-    </div>
+    </fieldset>
+    <footer>
+    <div class="actions">
+        <input class="button alarm" type="submit" value="delete">
+    </footer>
 </form>
 
 {% endblock %}

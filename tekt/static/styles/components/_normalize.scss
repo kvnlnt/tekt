@@ -13,7 +13,7 @@ html {
     padding: 0;
     background-color: $white;
     font-size: 10px;
-    @extend .font-regular;
+    @extend .text-normal;
     color:$black;
 }
 
@@ -23,7 +23,7 @@ body {
     padding: 0;
     background-color: $white;
     font-size: 10px;
-    @extend .font-regular;
+    @extend .text-normal;
     color:$black;
 }
 
