@@ -10,6 +10,13 @@ ul,
     &.errors {
         color: $alarm;
     }
+    &.data {
+        li {
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-top-color: lighten($black, 80);
+        }
+    }
     &.pick {
         @extend .ul;
         li:nth-child(even){

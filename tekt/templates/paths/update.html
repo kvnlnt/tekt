@@ -10,7 +10,7 @@
     <legend>Settings</legend>
     <fieldset>
         <ul class="list">
-            {{ render_field(path_form.path, autofocus="autofocus", placeholder=path_form.path.description) }}
+            {{ render_field(path_form.path, autofocus="autofocus", placeholder="Example: /my/path") }}
         </ul>
     </fieldset>
     <fieldset>
@@ -27,7 +27,21 @@
 <div class="card">
     <header>
         <h2 class="title">Pages</h2>
+        <div class="actions"><a class="button" tekt-showhide="add_form_wrapper">Add</a></div>
     </header>
+    <div class="drawer view-hidden" tekt-id="add_form_wrapper">
+        <form id="add_page" method="post" action="{{ url_for('paths.update_path', id=path.id) }}" style="margin:10px 10px 0 10px;">
+            <legend>Add Page</legend>
+                <fieldset>
+                    <ul class="list">
+                        {{ render_hidden_field(page_form.path_id) }} {{ render_hidden_field(page_form.page_id) }} {{ render_field(page_form.page_selector, placeholder=page_form.page_selector.description, readonly="readonly", **{'class':'tekt-selector', 'tekt-type':'page', 'tekt-target':'page_id'}) }}
+                    </ul>
+                </fieldset>
+            <footer>
+                <input class="button" type="submit" value="Add Page">
+            </footer>
+        </form>
+    </div>
     <div class="content">
         <table class="data">
             <tr>
@@ -45,22 +59,25 @@
             </tr>
             {% endfor %}
         </table>
-        <form id="add_page" method="post" action="{{ url_for('paths.update_path', id=path.id) }}" style="margin:10px 10px 0 10px;">
-            <legend>Add Page</legend>
-                <fieldset>
-                    <ul class="list">
-                        {{ render_hidden_field(page_form.path_id) }} {{ render_hidden_field(page_form.page_id) }} {{ render_field(page_form.page_selector, placeholder=page_form.page_selector.description, readonly="readonly", **{'class':'tekt-selector', 'tekt-type':'page', 'tekt-target':'page_id'}) }}
-                    </ul>
-                </fieldset>
-            <footer>
-                <input class="button" type="submit" value="Add Page">
-            </footer>
-        </form>
     </div>
-    <footer></footer>
 </div>
 
-<div style="margin:50px 0px;">
-    <a class="button alarm" href="{{ url_for('.delete_path', id=path.id )}}">delete this path</a>
+<div class="panel text-right">
+    <a class="alarm button link" tekt-showhide="delete_form">delete</a>
 </div>
+
+<form method="post" tekt-id="delete_form" class="view-hidden" action="{{ url_for('.delete_path', id=path.id) }}">
+    <legend>Delete Path</legend>
+    <fieldset>
+        {{ delete_form.phrase }}
+        <div class="field">
+            {{ delete_form.confirm(placeholder=path_form.path.data)|safe }}
+            <label>{{ delete_form.confirm.description }}</label>
+        </div>
+    </fieldset>
+    <footer>
+    <div class="actions">
+        <input class="button alarm" type="submit" value="confirm">
+    </footer>
+</form>
 {% endblock %}

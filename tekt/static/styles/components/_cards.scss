@@ -41,6 +41,12 @@
         background-color:lighten($white, 1);
         width:100%;
     }
+    > .drawer {
+        @include rem(padding, 1);
+        border-left:1px solid darken($white, 10);
+        border-right:1px solid darken($white, 10);
+        background-color:lighten($white, 1);
+    }
     > footer {
         @include rem(font-size, 1.8);
         @include rem(line-height, 5);
@@ -63,6 +69,8 @@
     }
 }
 
-.card + .card {
+.#{$card} + .#{$card},
+.#{$card} + form,
+.#{$card} + .form {
     @include rem(margin, 2, 0);
 }

@@ -18,6 +18,10 @@ $font_main: 'Helvetica Neue', 'Franklin Gothic Medium', 'Franklin Gothic', 'ITC 
     text-align: right;
 }
 
+.text-middle {
+    text-align: middle;
+}
+
 p, 
 .p {
     @include rem(font-size, 1.5);

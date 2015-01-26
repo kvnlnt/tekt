@@ -104,3 +104,9 @@ form,
         display:block;
     }
 }
+
+form + form,
+form + .#{$card},
+.form + .#{$card} {
+    @include rem(margin, 2, 0);
+}

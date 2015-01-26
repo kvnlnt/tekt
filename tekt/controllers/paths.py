@@ -80,6 +80,7 @@ def update_path(id):
 
     record = tektonik.read_path(id)['result']
     path_form = forms.path_form_factory(request, data=record)
+    delete_form = forms.DeletePageForm(phrase=record['path'])
 
     if request.method == 'POST':
         form = forms.path_form_factory(request)
@@ -120,14 +121,23 @@ def update_path(id):
         path_form=path_form,
         page_form=page_form,
         path=record,
+        delete_form=delete_form,
         section='paths')
 
 
-@blueprint.route('/<int:id>/delete')
+@blueprint.route('/<int:id>/delete', methods=['POST'])
 def delete_path(id):
 
     """ delete a path """
 
-    tektonik.delete_path(id)
-    flash("Path deleted", "inform")
-    return redirect(url_for('.list_paths'))
+    confirmed = request.form['phrase'] == request.form['confirm']
+
+    if confirmed:
+        message = "The path <strong>" + \
+            request.form['phrase'] + "</strong> was deleted"
+        flash(message, "inform")
+        tektonik.delete_path(id)
+        return redirect(url_for('.list_paths'))
+    else:
+        flash("Confirmation failed. Path was not deleted", "alarm")
+        return redirect(url_for('.read_path', id=id))

@@ -31,4 +31,26 @@
 </div>
 </div>
 
+<div class="card">
+    <header>
+        <h2 class="title">Page Schedule</h2>
+    </header>
+    <div class="content">
+        <table class="data">
+                <tr>
+                    <th>Page</th>
+                    <th>Effective</th>
+                    <th>Expires</th>
+                </tr>
+                {% for page in path.pages %}
+                <tr>
+                    <td>{{page.page}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+</div>
+
 {% endblock %}
