@@ -68,7 +68,7 @@ TEKT.errors = (function(module){
             var first_error = module.instances[0];
             var top = first_error.position().top;
             if(module.enabled){
-                TEKT.scrolling.scrollTo(top, 1000, 'swing');  
+                TEKT.window.scroll_to(top, 1000, 'swing');  
             }
         }
 

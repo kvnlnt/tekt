@@ -16,7 +16,8 @@ TEKT.Layout = function(config){
     this.settings = _.assign(defaults, config);
 
     // required settings
-    if(null === this.el){ throw new TEKT.errors.RequirementError('el is required'); }
+    if(null === this.settings.el){ throw new TEKT.errors.RequirementError('el is required'); }
+    if(null === this.settings.regions){ throw new TEKT.errors.RequirementError('el is required'); }
 
     /**
      * Getter

@@ -34,8 +34,8 @@ descriptions = {
     'property': 'this is the web address of your website',
     'property_delete': 'Enter property name and press confirm to delete',
     'path': 'this is a path on your website',
-    'path_delete': 'Enter page name and press confirm to delete',
-    'page': 'this is title of your page',
+    'path_delete': 'Enter path name and press confirm to delete',
+    'page': 'this is an internal reference name of your page',
     'page_delete': 'Enter page name and press confirm to delete',
     'page_selector': 'Click to search',
     'page_search': 'Enter page name'

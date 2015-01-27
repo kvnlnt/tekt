@@ -51,7 +51,7 @@ TEKT.messenger = (function(module){
     module.init = function() {
 
         module.$el = $(module.el);
-        TEKT.pubsub.subscribe('SCROLLING', function(e, top){
+        TEKT.pubsub.subscribe(TEKT.EVENT.WIN_SCROLL, function(e, top){
             module.fixate(top.top);
         });
 

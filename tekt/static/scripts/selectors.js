@@ -19,7 +19,8 @@ TEKT.selectors = (function(module) {
      * @member directive
      * @memberOf module:directive
      */
-    module.directive = '.tekt-selector';
+    module.directive_attr = TEKT.DIRECTIVE.SELECTOR;
+    module.directive = '['+module.directive_attr+']';
 
     /**
      * Pages callback
@@ -55,13 +56,14 @@ TEKT.selectors = (function(module) {
     module.register = function(el){
 
         var $el = $(el);
-        var type = module.type[$el.attr('tekt-type')];
+        var type = module.type[$el.attr(module.directive_attr)];
 
         // config selector
         var config = {};
             config.el = $el;
             config.src = type.src;
             config.callback = type.callback;
+            config.target = $el;
 
         // create selector
         var selector = new TEKT.Selector(config);

@@ -7,9 +7,14 @@ var TEKT = {};
 TEKT.DIRECTIVE          = {};
 TEKT.DIRECTIVE.ID       = 'tekt-id';
 TEKT.DIRECTIVE.KEY      = 'tekt-key';
+TEKT.DIRECTIVE.SELECTOR = 'tekt-selector';
 TEKT.DIRECTIVE.SHOWHIDE = 'tekt-showhide';
 TEKT.DIRECTIVE.TYPE     = 'tekt-type';
+TEKT.DIRECTIVE.TARGET   = 'tekt-target';
 TEKT.DIRECTIVE.VAL      = 'tekt-val';
+TEKT.EVENT              = {};
+TEKT.EVENT.WIN_SCROLL   = 'WIN:SCROLL';
+TEKT.EVENT.WIN_RESIZE   = 'WIN:RESIZE';
 
 // GLOBAL JSDOCS MTEKTUP
 /**

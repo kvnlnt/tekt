@@ -5,6 +5,7 @@
  * @param  {string} config.el        jquery element of object
  * @param  {string} config.src       iframe src
  * @param  {object} config.callback  callback function upon selection
+ * @param  {string} config.target    jquery element of target object (usually itself)
  * @return {object}                  selector function instance
  * @class Selector
  */
@@ -18,9 +19,10 @@ TEKT.Selector = function(config){
     this.settings = _.assign(defaults, config);
 
     // required settings
-    if(null === this.el){ throw new TEKT.errors.RequirementError('el is required'); }
-    if(null === this.src){ throw new TEKT.errors.RequirementError('src is required'); }
-    if(null === this.callback){ throw new TEKT.errors.RequirementError('callback is required'); }
+    if(null === this.settings.el){ throw new TEKT.errors.RequirementError('el is required'); }
+    if(null === this.settings.src){ throw new TEKT.errors.RequirementError('src is required'); }
+    if(null === this.settings.callback){ throw new TEKT.errors.RequirementError('callback is required'); }
+    if(null === this.settings.target){ throw new TEKT.errors.RequirementError('target is required'); }
 
     /**
      * Getter
@@ -99,18 +101,18 @@ TEKT.Selector = function(config){
     this.launch = function(){
 
         // setup iframe
-        var iframe = $('<iframe>');
-        iframe.attr('tekt-selector-iframe', 'selector');
-        iframe.prop('src', this.get('src'));
-        iframe.addClass('tekt-iframe');
-        iframe.on('load', this.init_iframe.bind(this));
-        iframe.hide();
+        // var iframe = $('<iframe>');
+        // iframe.attr('tekt-selector-iframe', 'selector');
+        // iframe.prop('src', this.get('src'));
+        // iframe.addClass('tekt-iframe');
+        // iframe.on('load', this.init_iframe.bind(this));
+        // iframe.hide();
 
-        // let's keep a copy to ref
-        this.iframe = iframe;
+        // // let's keep a copy to ref
+        // this.iframe = iframe;
 
-        // attach to body
-        $('body').prepend(iframe).css('overflow','hidden');
+        // // attach to body
+        // $('body').prepend(iframe).css('overflow','hidden');
 
     };
 

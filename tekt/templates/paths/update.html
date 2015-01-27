@@ -26,7 +26,7 @@
 
 <div class="card">
     <header>
-        <h2 class="title">Pages</h2>
+        <h2 class="title">Page Schedule</h2>
         <div class="actions"><a class="button" tekt-showhide="add_form_wrapper">Add</a></div>
     </header>
     <div class="drawer view-hidden" tekt-id="add_form_wrapper">
@@ -34,7 +34,14 @@
             <legend>Add Page</legend>
                 <fieldset>
                     <ul class="list">
-                        {{ render_hidden_field(page_form.path_id) }} {{ render_hidden_field(page_form.page_id) }} {{ render_field(page_form.page_selector, placeholder=page_form.page_selector.description, readonly="readonly", **{'class':'tekt-selector', 'tekt-type':'page', 'tekt-target':'page_id'}) }}
+                        {{ render_hidden_field(page_form.path_id) }}
+                        {{ render_hidden_field(page_form.page_id) }} 
+                        {{ 
+                            render_field(page_form.page_selector, 
+                            placeholder=page_form.page_selector.description, 
+                            readonly="readonly", 
+                            **{'tekt-selector':'page', 'tekt-id':'page_selector'}) 
+                        }}
                     </ul>
                 </fieldset>
             <footer>
