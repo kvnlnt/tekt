@@ -1,14 +1,15 @@
 .#{scroll-to-top} {
-    position:fixed;
+    @include rem(border-radius, 1, 0, 0, 0);
+    @include rem(bottom, 0);
+    @include rem(font-size, 1.2);
+    @include rem(padding, 0.8, 1.4);
+    @include rem(right, 0);
     background-color: $white;
     border:1px solid darken($white, 10);
-    @include rem(border-radius, 1, 0, 0, 0);
     display: none;
     opacity:.6;
-    @include rem(padding, 0.8, 1.4);
-    @include rem(font-size, 1.2);
-    @include rem(right, 0);
-    @include rem(bottom, 0);
+    position:fixed;
+    z-index: 100;
     &:hover {
         opacity: 1;
     }

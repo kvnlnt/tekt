@@ -17,6 +17,7 @@ TEKT.Selector = function(config){
 
     // settings
     this.settings = _.assign(defaults, config);
+    this.modal = null;
 
     // required settings
     if(null === this.settings.el){ throw new TEKT.errors.RequirementError('el is required'); }
@@ -48,22 +49,6 @@ TEKT.Selector = function(config){
 
 
     /**
-     * Close iframe
-     * @function Selector.teardown_iframe
-     */
-    this.teardown_iframe = function(val){
-        var that = this;
-        $('body').css('overflow','auto');
-        this.get('el').trigger('focus');
-        this.get('el').addClass('animated flash');
-        this.iframe.addClass('animated bounceOutRight');
-        this.iframe.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-            that.iframe.remove();
-            that.get('el').removeClass('animated flash');
-        });
-    };
-
-    /**
      * Run callback
      * @function Selector.callback
      */
@@ -85,34 +70,26 @@ TEKT.Selector = function(config){
      * @function Selector.init_iframe
      */
     this.init_iframe = function(e){
+        var that = this;
         var close = this.iframe.contents().find('[tekt-id="close_iframe"]');
-        close.on('click', this.teardown_iframe.bind(this));
-        var item = this.iframe.contents().find('.item');
-        item.on('click', this.callback.bind(this));
-        this.iframe.show();
-        this.iframe.addClass('animated bounceInRight');
+        close.on('click', function(){ that.modal.hide(); });
+        // var item = this.iframe.contents().find('.item');
+        // item.on('click', this.callback.bind(this));
+        // this.iframe.show();
+        // this.iframe.addClass('animated bounceInRight');
     };
 
     /**
-     * Render suggestions
-     * @function Selector.render
-     * @param {array} suggestions list of key:value objects for suggestion list
+     * Show selector page in iframe in a modal
+     * @function Selector.show
      */
-    this.launch = function(){
+    this.show = function(){
 
-        // setup iframe
-        // var iframe = $('<iframe>');
-        // iframe.attr('tekt-selector-iframe', 'selector');
-        // iframe.prop('src', this.get('src'));
-        // iframe.addClass('tekt-iframe');
-        // iframe.on('load', this.init_iframe.bind(this));
-        // iframe.hide();
-
-        // // let's keep a copy to ref
-        // this.iframe = iframe;
-
-        // // attach to body
-        // $('body').prepend(iframe).css('overflow','hidden');
+        this.iframe = $('<iframe>');
+        this.iframe.prop('src', this.get('src'));
+        this.iframe.on('load', this.init_iframe.bind(this));
+        this.modal = new TEKT.Modal({content:this.iframe});
+        this.modal.show();
 
     };
 
@@ -123,7 +100,7 @@ TEKT.Selector = function(config){
     
     this.init = function(){
 
-        this.get('el').on('click', this.launch.bind(this));
+        this.get('el').on('click', this.show.bind(this));
 
     };
 

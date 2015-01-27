@@ -26,9 +26,9 @@ ul,
             display: block;
             text-decoration: none;
             @include rem(line-height, 4);
-            border-top-style: solid;
-            border-top-width: 1px;
-            border-top-color: lighten($black, 80);
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-bottom-color: lighten($black, 80);
             @include rem(text-indent, 2);
             cursor: pointer;
         }

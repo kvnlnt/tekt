@@ -38,8 +38,9 @@
                         {{ render_hidden_field(page_form.page_id) }} 
                         {{ 
                             render_field(page_form.page_selector, 
-                            placeholder=page_form.page_selector.description, 
+                            placeholder="Click to Search", 
                             readonly="readonly", 
+                            show_description=False,
                             **{'tekt-selector':'page', 'tekt-id':'page_selector'}) 
                         }}
                     </ul>

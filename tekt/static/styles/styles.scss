@@ -3,7 +3,7 @@
 @import "libs/colorizing";
 @import "libs/dimensioning";
 @import "libs/positioning";
-@import "libs/selectors";
+@import "libs/namespacing";
 @import "libs/treatments";
 @import "libs/viewing";
 
@@ -24,6 +24,7 @@
 @import "components/normalize";
 @import "components/pages";
 @import "components/panels";
+@import "components/selectors";
 @import "components/tables";
 @import "components/typography";
 

@@ -2,44 +2,40 @@
 {% extends 'template.focused.html' %} 
 
 {% block body %}
-<a tekt-id="close_iframe" class="position-right button">
+<a tekt-id="close_iframe" class="position-right button" style="margin-bottom:10px;">
     <i class="fa fa-times"></i>close
 </a>
 
-<form method="post" action="{{ url_for('.search_pages') }}" class="form card">
-<div class="header">
-    <div class="table">
-        <div class="tr">
-            <h2 class="title">Search Pages</h2>
-            <div class="actions">
-                {% if form.term.data != None %}{{ pages | length }} results for "{{form.term.data}}"{% endif %}
-            </div>
-        </div>
-    </div>
-</div>
-<div class="body">
+<form method="post" action="{{ url_for('.search_pages') }}">
+    <legend>
+        Search Pages
+    </legend>
     <fieldset>
-        <ul class="list">
-            {{ render_field(form.term, autofocus='autofocus', placeholder=form.term.description) }}
-        </ul>
+        <div class="field">
+            {{ render_field(form.term, autofocus='autofocus', placeholder=form.term.description, show_label=False, show_description=False) }}
+        </div>
     </fieldset>
-    <ul class="list">
-        {% for record in pages %}
-        <li><a class=" item" tekt-key="{{record.id}}" tekt-val="{{record.page}}" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
-<div class="footer">
-    <div class="table">
-        <div class="tr">
-            <div class="actions">
-                <input class="button" type="submit" value="search">
-            </div>
+    <footer>
+        <input class="button" type="submit" value="search">
+    </footer>
+</form>
+
+<div class="card">
+    <header>
+        <div class="title">
+            {% if form.term.data != None %}{{ pages | length }} results for "{{form.term.data}}"{% endif %}
+        </div>
+    </header>
+    <div class="content">
+        <ul class="pick">
+                {% for record in pages %}
+                <li><a class=" item" tekt-key="{{record.id}}" tekt-val="{{record.page}}" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </div>
-</form>
 
 
 {% endblock %}
