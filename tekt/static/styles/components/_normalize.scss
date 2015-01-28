@@ -27,6 +27,12 @@ body {
     color:$black;
 }
 
+// All pages are wrapped in this class to allow normalization of font size against the 10px base
+.body {
+    @include rem(font-size, 1.4);
+    height:100%;
+}
+
 iframe, .iframe {
     border:0;
     width:100%;

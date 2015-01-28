@@ -20,7 +20,7 @@ button,
         box-shadow: 0px 1px 2px lighten($black, 70);
         color:$black;
     }
-    i {
+    i + * {
         @include rem(margin-right, 0.5);
     }
     &.alarm {

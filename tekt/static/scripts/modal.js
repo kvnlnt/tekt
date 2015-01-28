@@ -15,12 +15,29 @@ TEKT.Modal = function(config){
 
     // settings
     this.bg = $('<div class="modal-bg"></div>');
-    this.template = '<div class="modal">';
-    this.template += '</div>';
+
+    // modal template
+    this.template = '<div class="modal grid">
+                        <header class="grid-row">
+                            <div class="grid-col">
+                                <div class="title grid-col fluid-width"></div>
+                                <div class="actions grid-col">
+                                    <a class="close button link"><i class="fa fa-times"></i></a></div>
+                                </div>
+                        </header>
+                        <div class="grid-row">
+                            <div class="content grid-col fluid-height"></div>
+                        </div>
+                    </div>';
+
     this.modal = $(this.template);
+    this.modal_content = this.modal.find('.content');
+    this.modal_title = this.modal.find('.title');
+    this.modal_close = this.modal.find('header .close');
     this.settings = _.assign(defaults, config);
 
     // required settings
+    if(null === this.settings.title){ throw new TEKT.errors.RequirementError('Title is required'); }
     if(null === this.settings.content){ throw new TEKT.errors.RequirementError('Content is required'); }
 
     /**
@@ -46,15 +63,30 @@ TEKT.Modal = function(config){
     };
 
     /**
-     * Fill with content
+     * Set content
+     * @param {string} content modal content
+     * @function Modal.set_content
+     * @return {object} modal instance
+     */
+    this.set_content = function(content){
+
+        this.set('content', content);
+        this.modal_content.html(content);
+
+        return this;
+
+    };
+
+    /**
+     * Set title
      * @param {string} title modal title
      * @function Modal.set_title
      * @return {object} modal instance
      */
-    this.fill = function(content){
+    this.set_title = function(title){
 
-        this.set('content', content);
-        this.modal.html(content);
+        this.set('title', title);
+        this.modal_title.html(title);
 
         return this;
 
@@ -118,9 +150,12 @@ TEKT.Modal = function(config){
     this.init = function(){
 
         // setup content
-        this.fill(this.get('content')).align();
+        this.set_title(this.get('title'))
+        .set_content(this.get('content'))
+        .align();
 
         var that = this;
+        this.modal_close.on('click', this.hide.bind(this));
         this.bg.on('click', this.hide.bind(this));
         TEKT.pubsub.subscribe(TEKT.EVENT.WIN_RESIZE, function(){ that.align(); });
 

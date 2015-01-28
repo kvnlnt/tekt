@@ -88,7 +88,7 @@ TEKT.Selector = function(config){
         this.iframe = $('<iframe>');
         this.iframe.prop('src', this.get('src'));
         this.iframe.on('load', this.init_iframe.bind(this));
-        this.modal = new TEKT.Modal({content:this.iframe});
+        this.modal = new TEKT.Modal({title:'Search', content:this.iframe});
         this.modal.show();
 
     };

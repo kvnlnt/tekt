@@ -1,32 +1,23 @@
 {% from "macros/forms.html" import render_field %} 
-{% extends 'template.focused.html' %} 
+{% extends 'template.naked.html' %} 
 
 {% block body %}
-<a tekt-id="close_iframe" class="position-right button" style="margin-bottom:10px;">
-    <i class="fa fa-times"></i>close
-</a>
 
-<form method="post" action="{{ url_for('.search_pages') }}">
-    <legend>
-        Search Pages
-    </legend>
-    <fieldset>
-        <div class="field">
-            {{ render_field(form.term, autofocus='autofocus', placeholder=form.term.description, show_label=False, show_description=False) }}
-        </div>
-    </fieldset>
-    <footer>
-        <input class="button" type="submit" value="search">
-    </footer>
-</form>
-
-<div class="card">
-    <header>
-        <div class="title">
-            {% if form.term.data != None %}{{ pages | length }} results for "{{form.term.data}}"{% endif %}
-        </div>
-    </header>
-    <div class="content">
+<div>
+    <form class="mini" method="post" action="{{ url_for('.search_pages') }}">
+        <legend>
+            {% if form.term.data != "" and form.term.data != None %}{{ pages | length }} results for "{{form.term.data}}"{% endif %}
+        </legend>
+        <fieldset>
+            <div class="field" style="width:100%">
+                {{form.term(placeholder="Enter search term", autofocus="autofocus")}}
+            </div>
+            <div class="field">
+                <input class="button" type="submit" value="search">
+            </div>
+        </fieldset>
+    </form>
+    <div>
         <ul class="pick">
                 {% for record in pages %}
                 <li><a class=" item" tekt-key="{{record.id}}" tekt-val="{{record.page}}" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a>

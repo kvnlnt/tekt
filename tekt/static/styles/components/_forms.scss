@@ -103,6 +103,23 @@ form,
         margin: 0;
         display:block;
     }
+
+    &.mini {
+        display:table;
+        width:100%;
+        fieldset {
+            display:table-row;
+            margin:0;
+            padding:0;
+            background-color:transparent;
+        }
+        .field {
+            @include rem(margin-right, 1);
+            @include rem(padding, 1.5);
+            display:table-cell;
+        }
+    }
+
 }
 
 form + form,
