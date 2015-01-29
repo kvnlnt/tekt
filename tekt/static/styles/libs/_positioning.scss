@@ -2,6 +2,11 @@
     float: right;
 }
 
+.position-fixed {
+    position:fixed;
+    z-index: 100;
+}
+
 .grid {
     display: table;
     .grid-row {

@@ -6,6 +6,7 @@ var TEKT = {};
 
 TEKT.DIRECTIVE          = {};
 TEKT.DIRECTIVE.ID       = 'tekt-id';
+TEKT.DIRECTIVE.FIXATE   = 'tekt-fixate';
 TEKT.DIRECTIVE.KEY      = 'tekt-key';
 TEKT.DIRECTIVE.SELECTOR = 'tekt-selector';
 TEKT.DIRECTIVE.SHOWHIDE = 'tekt-showhide';

@@ -60,7 +60,7 @@ TEKT.Selector = function(config){
         var key = item.attr('tekt-key');
         var val = item.attr('tekt-val');
         this.get('callback')({ key:key, val:val });
-        this.teardown_iframe(val);
+        this.modal.hide();
 
     };
 
@@ -73,10 +73,8 @@ TEKT.Selector = function(config){
         var that = this;
         var close = this.iframe.contents().find('[tekt-id="close_iframe"]');
         close.on('click', function(){ that.modal.hide(); });
-        // var item = this.iframe.contents().find('.item');
-        // item.on('click', this.callback.bind(this));
-        // this.iframe.show();
-        // this.iframe.addClass('animated bounceInRight');
+        var item = this.iframe.contents().find('.item');
+        item.on('click', this.callback.bind(this));
     };
 
     /**

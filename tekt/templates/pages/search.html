@@ -4,7 +4,7 @@
 {% block body %}
 
 <div>
-    <form class="mini" method="post" action="{{ url_for('.search_pages') }}">
+    <form class="mini" tekt-fixate="type=up" method="post" action="{{ url_for('.search_pages') }}">
         <legend>
             {% if form.term.data != "" and form.term.data != None %}{{ pages | length }} results for "{{form.term.data}}"{% endif %}
         </legend>
@@ -20,7 +20,7 @@
     <div>
         <ul class="pick">
                 {% for record in pages %}
-                <li><a class=" item" tekt-key="{{record.id}}" tekt-val="{{record.page}}" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a>
+                <li><a class="item" tekt-key="{{record.id}}" tekt-val="{{record.page}}" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a>
                 </li>
                 {% endfor %}
             </ul>
