@@ -19,14 +19,12 @@
             <th>Path</th>
             <th>Property</th>
             <th>Pages</th>
-            <th></th>
         </tr>
         {% for record in paths %}
         <tr>
             <td><a black href="{{ url_for('.read_path', id=record.id) }}">{{record.path}}</a></td>
             <td>{{record.property.property}}</td>
             <td>{{record.pages|length}}</td>
-            <td><a black href="{{ url_for('.update_path', id=record.id) }}">settings</a>
             </td>
         </tr>
         {% endfor %}

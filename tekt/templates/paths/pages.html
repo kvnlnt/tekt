@@ -11,50 +11,50 @@
 </h2>
 
 <div class="card">
-<div class="header">
-    <div class="table">
-        <div class="tr">
-            <h2 class="title">Pages</h2>
+    <header>
+        <h2 class="title">Page Schedule</h2>
+        <div class="actions">
+            <a href="#add_page" class="button">Add</a>
         </div>
+    </header>
+    <div class="content">
+        <table class="data">
+            <tr>
+                <th>#</th>
+                <th>page</th>
+                <th>actions</th>
+            </tr>
+            {% for page in path.pages %}
+            <tr>
+                <td>{{ page.id }}</td>
+                <td><a black href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a>
+                </td>
+                <td><a black href="{{ url_for('paths.remove_page', id=path.id, path_page_id=page.path_page_id)}}">remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 </div>
-<table class="data">
-    <tr>
-        <th>#</th>
-        <th>page</th>
-        <th>actions</th>
-    </tr>
-    {% for page in path.pages %}
-    <tr>
-        <td>{{ page.id }}</td>
-        <td><a black href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a>
-        </td>
-        <td><a black href="{{ url_for('.remove_page_from_path', id=path.id, path_page_id=page.path_page_id )}}">remove</a>
-        </td>
 
-    </tr>
-    {% endfor %}
-</table>
-</div>
-
-<form method="post" action="{{ url_for('.manage_pages', id=path.id) }}" class="form card">
-    <div class="header">
-        <div class="table">
-            <div class="tr">
-                <h2 class="title">Add Page</h2>
-            </div>
-        </div>
-    </div>
-    <div class="body">
+<form id="add_page" method="post" action="{{ url_for('paths.pages', id=path.id) }}">
+    <legend>Add Page</legend>
         <fieldset>
             <ul class="list">
-                {{ render_hidden_field(form.path_id) }} {{ render_hidden_field(form.page_id) }} {{ render_field(form.page_selector, placeholder=form.page_selector.description, class="tekt-selector page", readonly="readonly", **{'tekt-target':'page_id'}) }}
+                {{ render_hidden_field(form.path_id) }}
+                {{ render_hidden_field(form.page_id) }} 
+                {{ 
+                    render_field(form.page_selector, 
+                    placeholder="Click to Search", 
+                    readonly="readonly", 
+                    show_description=False,
+                    **{'tekt-selector':'page'}) 
+                }}
             </ul>
         </fieldset>
-    </div>
-    <div class="footer">
-        <input class="button" type="submit" value="Add">
-    </div>
+    <footer>
+        <input class="button" type="submit" value="Add Page">
+    </footer>
 </form>
 
 

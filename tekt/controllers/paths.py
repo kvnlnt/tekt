@@ -63,14 +63,47 @@ def read_path(id):
         section='paths')
 
 
+@blueprint.route('/<int:id>/pages', methods=['GET', 'POST'])
+def pages(id):
+
+    """ view and add pages """
+
+    record = tektonik.read_path(id)['result']
+    data = {'path_id': id, 'page_id': 0}
+    form = forms.PathPageForm(request.form, data=data)
+
+    if request.method == 'POST':
+        new_record = tektonik.create_path_page(request.form)
+        is_valid = forms.is_valid(
+            form,
+            new_record,
+            {'page_id': 'page_selector'}
+        )
+        if is_valid:
+            flash(
+                "Good job. You just added a page to this path.",
+                "praise")
+            return redirect(url_for('.pages', id=id))
+        else:
+            flash(
+                'Looks like there was an error trying to add your page',
+                'alarm')
+
+    return render_template(
+        'paths/pages.html',
+        path=record,
+        form=form
+    )
+
+
 @blueprint.route('/<int:id>/remove/<int:path_page_id>', methods=['GET'])
-def remove_page_from_path(id, path_page_id):
+def remove_page(id, path_page_id):
 
     """ remove a page from a path """
 
     tektonik.delete_path_page(path_page_id)
     flash("Page removed from path", "warn")
-    return redirect(url_for('.read_path', id=id))
+    return redirect(url_for('.pages', id=id))
 
 
 @blueprint.route('/<int:id>/update', methods=['GET', 'POST'])
@@ -96,30 +129,10 @@ def update_path(id):
                 "Uh oh, looks like something needs to be fixed...",
                 "alarm")
 
-    data = {'path_id': id, 'page_id': 0}
-    page_form = forms.PathPageForm(request.form, data=data)
-
-    if request.method == 'POST':
-        new_record = tektonik.create_path_page(request.form)
-        is_valid = forms.is_valid(
-            form, new_record,
-            {'page_id': 'page_selector'}
-        )
-        if is_valid:
-            flash(
-                "Good job. You just added a page to this path.",
-                "praise")
-            return redirect(url_for('.read_path', id=id))
-        else:
-            flash(
-                'Looks like there was an error trying to add your page',
-                'alarm')
-
     template = "paths/update.html"
     return render_template(
         template,
         path_form=path_form,
-        page_form=page_form,
         path=record,
         delete_form=delete_form,
         section='paths')

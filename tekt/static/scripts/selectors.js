@@ -30,7 +30,7 @@ TEKT.selectors = (function(module) {
     module.pages_handler = function(obj){
 
         $('#page_id').val(obj.key);
-        $('[tekt-selector="page"]').val(obj.val);
+        $('['+TEKT.DIRECTIVE.SELECTOR+'="page"]').val(obj.val);
 
     };
 

@@ -5,3 +5,4 @@
 - all "publishing" is done by invalidating cache
 - proper deletion of orphans
 - I10N
+- fixate fadeout doesn't work right, also, error auto scroll not working
