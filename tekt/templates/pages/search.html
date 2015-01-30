@@ -17,7 +17,7 @@
             </div>
         </fieldset>
     </form>
-    <div>
+    <div style="margin-bottom:30px">
         <ul class="pick">
                 {% for record in pages %}
                 <li><a class="item" tekt-key="{{record.id}}" tekt-val="{{record.page}}" href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a>

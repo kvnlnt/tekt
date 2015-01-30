@@ -17,6 +17,7 @@
 
 form,
 .#{form} {
+    opacity:0;
     > legend {
         @extend .text-bold;
         @include rem(font-size, 1.8);
