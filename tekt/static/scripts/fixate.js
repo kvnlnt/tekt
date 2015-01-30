@@ -10,16 +10,10 @@
 TEKT.Fixate = function(config){
 
     // default settings
-    var defaults = { el:null, threshold:null, fadeout:false };
+    var defaults = { el:null, threshold:null, expire:false, fixate_class:'fixate' };
 
     // settings
     this.settings = _.assign(defaults, config);
-    this.original_state =  {
-        position:this.settings.el.css('position'),
-        width:this.settings.el.css('width'),
-        z_index:this.settings.el.css('z-index'),
-        classes:this.settings.el.attr('class')
-    };
 
     // required settings
     if(null === this.settings.el){ throw new TEKT.errors.RequirementError('el is required'); }
@@ -52,24 +46,19 @@ TEKT.Fixate = function(config){
     };
 
     /**
-     * Reset to original state
-     * @return {object} return self
+     * Reset by removing fixate class
+     * @function Fixate.reset
+     * @return {object} return instance
      */
     this.reset = function(){
-        this.get('el')
-        .removeClass('animated fadeInDown fadeOutUp')
-        .addClass(this.original_state.classes)
-        .css({
-            position:this.original_state.position,
-            width:this.original_state.width,
-            'z-index':this.original_state.z_index,
-        });
+        this.get('el').removeClass(this.get('fixate_class'));
         return this;
     };
 
     /**
      * Fix to top of screen then fade out
      * @function Fixate.fixate
+     * @return {object} return instance
      */
     this.fixate = function(top){
 
@@ -80,23 +69,12 @@ TEKT.Fixate = function(config){
 
         } else {
 
-            // fade in
-            this
-            .get('el')
-            .css({ position:'fixed', width:'100%', 'z-index':100 })
-            .addClass('animated fadeInDown');
+            // add fixate class
+            this.get('el').addClass(this.get('fixate_class'));
 
-            // if fadeout it set, run it
-            if(false !== this.get('fadeout')){
-                this
-                .get('el')
-                .delay(this.get('fadeout'))
-                .queue(function(){
-                    that.get('el').addClass('animated fadeOutUp').dequeue();
-                    setTimeout(1000, function(){
-                        that.reset();
-                    });
-                });
+            // if expires, reset after expired time
+            if(this.get('expire')){
+                this.get('el').delay(this.get('expire')).queue(this.reset.bind(this));
             }
 
         }

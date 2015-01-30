@@ -9,7 +9,12 @@ TEKT.fx = (function(module){
     /* exports fx */
 
     /**
-     * Draw attention to an element
+     * Sequence the application of a class to a list of elements
+     * @param {object} els list of objects
+     * @param {string} classes space delimited string of classes to be applied
+     * @param {number} delay number of milliseconds to sequence application
+     * @function sequence
+     * @memberOf module:fx 
      */
     module.sequence = function(els, classes, delay){
 
@@ -23,6 +28,35 @@ TEKT.fx = (function(module){
         return els;
 
     };
+
+    /**
+     * Run a bunch of fx automatically
+     * @return {object} jquery collection of elements
+     */
+    module.auto_fx = function(){
+
+        // collect elements
+        var collection = [];
+            collection.push('.card');
+            collection.push('form');
+
+        // create seleector
+        var els = $(collection.join(', '));
+
+        // run animation sequence
+        TEKT.fx.sequence(els, 'animated fadeIn', 200);
+
+        return els;
+
+    };
+
+    module.init = function(){
+
+        module.auto_fx();
+
+    };
+
+    $(document).ready(module.init);
 
     return module;
 

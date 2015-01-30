@@ -1,23 +1,23 @@
 /**
 * Cards module
-* @module fixated
+* @module fixator
 * @version 1.0
 */
-TEKT.fixated = (function(module){
+TEKT.fixator = (function(module){
 
-    /* exports fixated */
+    /* exports fixator */
 
     /**
      * Dom elements
      * @member el
-     * @memberOf module:fixated
+     * @memberOf module:fixator
      */
     module.directive = TEKT.DIRECTIVE.FIXATE;
 
     /**
-     * Collection of instantiated fixated
+     * Collection of instantiated fixator
      * @member instances
-     * @memberOf module:fixated
+     * @memberOf module:fixator
      */
     module.instances = [];
 
@@ -25,7 +25,7 @@ TEKT.fixated = (function(module){
      * Register a dialog
      * @param  {object} el dom element
      * @function register
-     * @memberOf module:fixated
+     * @memberOf module:fixator
      * @return {object}    selector instance
      */
     module.register = function(el){
@@ -45,17 +45,17 @@ TEKT.fixated = (function(module){
     };
 
     /**
-     * Initialize fixated
+     * Initialize fixator
      * @function init
-     * @memberOf module:fixated
+     * @memberOf module:fixator
      * @return {array} array dialog els to be registered
      */
     module.init = function() {
 
-        var fixated = $('['+module.directive+']');
-        _.each(fixated, module.register);
+        var fixator = $('['+module.directive+']');
+        _.each(fixator, module.register);
 
-        return fixated;
+        return fixator;
 
     };
 
@@ -63,4 +63,4 @@ TEKT.fixated = (function(module){
 
     return module;
 
-}(TEKT.fixated || {}));
+}(TEKT.fixator || {}));

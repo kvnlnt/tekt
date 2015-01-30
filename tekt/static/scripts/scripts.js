@@ -10,6 +10,7 @@ TEKT.DIRECTIVE.FIXATE   = 'tekt-fixate';
 TEKT.DIRECTIVE.KEY      = 'tekt-key';
 TEKT.DIRECTIVE.SELECTOR = 'tekt-selector';
 TEKT.DIRECTIVE.SHOWHIDE = 'tekt-showhide';
+TEKT.DIRECTIVE.SCROLLER = 'tekt-scroller';
 TEKT.DIRECTIVE.TYPE     = 'tekt-type';
 TEKT.DIRECTIVE.TARGET   = 'tekt-target';
 TEKT.DIRECTIVE.VAL      = 'tekt-val';

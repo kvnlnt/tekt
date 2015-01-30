@@ -13,16 +13,18 @@ TEKT.util = (function(module){
      * @memberOf module:deparam
      */
     module.deparam = function(string){
-
-        var key_values = string.split(',');
+        
         var params = {}
 
-        _.each(key_values, function(v, k){
-            var item    = v.split('=');
-            var key     = item[0].trim();
-            var val     = item[1].trim();
-            params[key] = val;
-        });
+        if(string.length){
+            var key_values = string.split(',');
+            _.each(key_values, function(v, k){
+                var item    = v.split('=');
+                var key     = item[0].trim();
+                var val     = item[1].trim();
+                params[key] = val;
+            });
+        }
         
         return params;
     };

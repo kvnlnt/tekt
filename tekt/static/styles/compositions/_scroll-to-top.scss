@@ -1,16 +1,25 @@
 .#{scroll-to-top} {
-    @include rem(border-radius, 1, 0, 0, 0);
-    @include rem(bottom, 0);
+    transition: all 0.25s ease;
+    @include rem(bottom, -3);
     @include rem(font-size, 1.2);
-    @include rem(padding, 0.8, 1.4);
+    @include rem(padding, 0, 1.4);
+    @include rem(line-height, 3);
     @include rem(right, 0);
+    text-align: right;
+    width:100%;
+    visibility: hidden;
     background-color: $white;
     border:1px solid darken($white, 10);
-    display: none;
     opacity:.6;
     position:fixed;
     z-index: 100;
     &:hover {
         opacity: 1;
+    }
+    &.fixate {
+        transition: all 0.25s ease;
+        display:inline-block;
+        @include rem(bottom, 0);
+        visibility: visible;
     }
 }
