@@ -18,14 +18,12 @@
                 <th>#</th>
                 <th>page</th>
                 <th>paths</th>
-                <th></th>
             </tr>
             {% for record in pages %}
             <tr>
                 <td>{{record.id}}</td>
                 <td><a black href="{{ url_for('.read_page', id=record.id) }}">{{record.page}}</a></td>
                 <td>{{record.paths|length}}</td>
-                <td><a black href="{{ url_for('.update_page', id=record.id) }}">settings</a></td>
             </tr>
             {% endfor %}
         </table>

@@ -19,7 +19,6 @@
                 <th>property</th>
                 <th>paths</th>
                 <th>pages</th>
-                <th></th>
             </tr>
             {% for record in properties %}
             <tr>
@@ -28,9 +27,6 @@
                 </td>
                 <td>{{record.stats.total_paths}}</td>
                 <td>{{record.stats.total_pages}}</td>
-                <td>
-                    <a black href="{{ url_for('.update_property', id=record.id) }}">settings</a>
-                </td>
             </tr>
             {% endfor %}
         </table>

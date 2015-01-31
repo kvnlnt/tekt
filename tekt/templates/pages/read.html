@@ -17,11 +17,19 @@
         <table class="data">
             <tr>
                 <th>#</th>
-                <th>page</th>
+                <td>{{ page.id }}</td>
             </tr>
             <tr>
-                <td>{{ page.id }}</td>
+                <th>page</th>
                 <td>{{ page.page }}</td>
+            </tr>
+            <tr>
+                <th>paths</th>
+                <td>
+                    {% for path in page.paths %}
+                    <a href="{{ url_for('paths.page_schedule', id=path.id) }}">{{ path.path }}</a>
+                    {% endfor %}
+                </td>
             </tr>
         </table>
     </div>
