@@ -3,12 +3,12 @@
 """
 
 from flask import Blueprint
-from flask import flash
 from flask import redirect
 from flask import render_template
 from flask import request
 from flask import url_for
 from tekt import forms
+from tekt.messaging import paths as messaging
 from tekt.tektonik import tektonik
 
 blueprint = Blueprint('paths', __name__, template_folder='templates')
@@ -39,14 +39,10 @@ def create_path():
         new_record = tektonik.create_path(request.form)
         is_valid = forms.is_valid(form, new_record)
         if is_valid:
-            flash(
-                "Awesome! You just created a new path",
-                "praise")
+            messaging.flash(messaging.create_path_success)
             return redirect(url_for('.list_paths'))
         else:
-            flash(
-                "Whoops, something went wrong...try again",
-                "alarm")
+            messaging.flash(messaging.create_path_error)
     return render_template("paths/create.html", form=form, section='paths')
 
 
@@ -64,7 +60,7 @@ def read_path(id):
 
 
 @blueprint.route('/<int:id>/pages', methods=['GET', 'POST'])
-def pages(id):
+def page_schedule(id):
 
     """ view and add pages """
 
@@ -80,19 +76,16 @@ def pages(id):
             {'page_id': 'page_selector'}
         )
         if is_valid:
-            flash(
-                "Good job. You just added a page to this path.",
-                "praise")
-            return redirect(url_for('.pages', id=id))
+            messaging.flash(messaging.page_schedule_success)
+            return redirect(url_for('.page_schedule', id=id))
         else:
-            flash(
-                'Looks like there was an error trying to add your page',
-                'alarm')
+            messaging.flash(messaging.page_schedule_error)
 
     return render_template(
-        'paths/pages.html',
+        'paths/page_schedule.html',
         path=record,
-        form=form
+        form=form,
+        section='paths'
     )
 
 
@@ -102,8 +95,8 @@ def remove_page(id, path_page_id):
     """ remove a page from a path """
 
     tektonik.delete_path_page(path_page_id)
-    flash("Page removed from path", "warn")
-    return redirect(url_for('.pages', id=id))
+    messaging.flash(messaging.remove_page_success)
+    return redirect(url_for('.page_schedule', id=id))
 
 
 @blueprint.route('/<int:id>/update', methods=['GET', 'POST'])
@@ -120,14 +113,10 @@ def update_path(id):
         update_record = tektonik.update_path(request.form, id)
         is_valid = forms.is_valid(form, update_record)
         if is_valid:
-            flash(
-                "You just updated the settings for this path",
-                "inform")
+            messaging.flash(messaging.update_path_success)
             return redirect(url_for('.read_path', id=id))
         else:
-            flash(
-                "Uh oh, looks like something needs to be fixed...",
-                "alarm")
+            messaging.flash(messaging.update_path_error)
 
     template = "paths/update.html"
     return render_template(
@@ -146,11 +135,11 @@ def delete_path(id):
     confirmed = request.form['phrase'] == request.form['confirm']
 
     if confirmed:
-        message = "The path <strong>" + \
-            request.form['phrase'] + "</strong> was deleted"
-        flash(message, "inform")
+        messaging.flash(
+            messaging.delete_path_success,
+            phrase=request.form['phrase'])
         tektonik.delete_path(id)
         return redirect(url_for('.list_paths'))
     else:
-        flash("Confirmation failed. Path was not deleted", "alarm")
+        messaging.flash(messaging.delete_path_error)
         return redirect(url_for('.read_path', id=id))

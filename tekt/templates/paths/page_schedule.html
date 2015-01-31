@@ -14,7 +14,7 @@
     <header>
         <h2 class="title">Page Schedule</h2>
         <div class="actions">
-            <a href="#add_page" class="button">Add</a>
+            <a tekt-scroller="target=add_page" class="button">Add</a>
         </div>
     </header>
     <div class="content">
@@ -37,7 +37,7 @@
     </div>
 </div>
 
-<form id="add_page" method="post" action="{{ url_for('paths.pages', id=path.id) }}">
+<form id="add_page" tekt-id="add_page" method="post" action="{{ url_for('paths.page_schedule', id=path.id) }}">
     <legend>Add Page</legend>
         <fieldset>
             <ul class="list">

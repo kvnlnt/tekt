@@ -3,7 +3,7 @@
 """
 
 from flask import Blueprint
-from flask import flash
+from tekt.messaging import pages as messaging
 from flask import redirect
 from flask import render_template
 from flask import request
@@ -55,14 +55,10 @@ def create_page():
         new_record = tektonik.create_page(request.form)
         is_valid = forms.is_valid(form, new_record)
         if is_valid:
-            flash(
-                "Success! You just created a new page",
-                "praise")
+            messaging.flash(messaging.create_page_success)
             return redirect(url_for('.list_pages'))
         else:
-            flash(
-                "Oops! You might of missed something...",
-                "alarm")
+            messaging.flash(messaging.create_page_error)
     return render_template("pages/create.html", form=form, section='pages')
 
 
@@ -89,14 +85,10 @@ def update_page(id):
         update_record = tektonik.update_page(request.form, id)
         is_valid = forms.is_valid(form, update_record)
         if is_valid:
-            flash(
-                "Page settings were updated.",
-                "inform")
+            messaging.flash(messaging.update_page_success)
             return redirect(url_for('.read_page', id=id))
         else:
-            flash(
-                "Uh oh...looks like there were some errors",
-                "alarm")
+            messaging.flash(messaging.update_page_error)
 
     template = "pages/update.html"
     return render_template(
@@ -115,11 +107,11 @@ def delete_page(id):
     confirmed = request.form['phrase'] == request.form['confirm']
 
     if confirmed:
-        message = "The page <strong>" + \
-            request.form['phrase'] + "</strong> was deleted"
-        flash(message, "inform")
+        messaging.flash(
+            messaging.delete_page_success,
+            phrase=request.form['phrase'])
         tektonik.delete_page(id)
         return redirect(url_for('.list_pages'))
     else:
-        flash("Confirmation failed. Page was not deleted", "alarm")
+        messaging.flash(messaging.delete_page_error)
         return redirect(url_for('.read_page', id=id))

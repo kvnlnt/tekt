@@ -17,7 +17,6 @@ button,
         transition: all 0.5s ease;
         text-decoration: none;
         background-color: transparent;
-        box-shadow: 0px 1px 2px lighten($black, 70);
         color:$black;
     }
     i + * {
@@ -26,8 +25,18 @@ button,
     &.alarm {
         border:1px solid $alarm;
         color:$alarm;
+        &.inverse{
+            color:$white;
+            background-color:$alarm;
+            border-bottom-color:$white;
+        }
     }
     &.link {
-        border:0;
+        border-top:0;
+        border-left:0;
+        border-right:0;
+        padding:0;
+        border-bottom-width:2px;
+        @include rem(margin, 0, 1.25); 
     }
 }

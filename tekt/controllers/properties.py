@@ -3,7 +3,7 @@
 """
 
 from flask import Blueprint
-from flask import flash
+from tekt.messaging import properties as messaging
 from flask import redirect
 from flask import render_template
 from flask import request
@@ -39,12 +39,10 @@ def create_property():
         new_record = tektonik.create_property(request.form)
         is_valid = forms.is_valid(form, new_record)
         if is_valid:
-            flash(
-                "Awesome! You've just created a new website property",
-                "praise")
+            messaging.flash(messaging.create_property_success)
             return redirect(url_for('.list_properties'))
         else:
-            flash("Whoops. Looks like there was an error", "alarm")
+            messaging.flash(messaging.create_property_error)
     return render_template(
         "properties/create.html",
         form=form,
@@ -77,12 +75,10 @@ def update_property(id):
         update_record = tektonik.update_property(request.form, id)
         is_valid = forms.is_valid(form, update_record)
         if is_valid:
-            flash(
-                "You just updated settings for this property",
-                "inform")
+            messaging.flash(messaging.update_property_success)
             return redirect(url_for('.read_property', id=id))
         else:
-            flash("Whoops. Looks like there was an error", "alarm")
+            messaging.flash(messaging.update_property_error)
 
     template = "properties/update.html"
     return render_template(
@@ -101,11 +97,11 @@ def delete_property(id):
     confirmed = request.form['phrase'] == request.form['confirm']
 
     if confirmed:
-        message = "The property <strong>" + \
-            request.form['phrase'] + "</strong> was deleted"
-        flash(message, "inform")
+        messaging.flash(
+            messaging.delete_property_success,
+            phrase=request.form['phrase'])
         tektonik.delete_property(id)
         return redirect(url_for('.list_properties'))
     else:
-        flash("Confirmation failed. Property was not deleted", "alarm")
+        messaging.flash(messaging.delete_property_error)
         return redirect(url_for('.read_property', id=id))

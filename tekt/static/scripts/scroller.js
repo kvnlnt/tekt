@@ -9,18 +9,18 @@
  */
 TEKT.Scroller = function(config){
 
-    var MODES = { TOP:'top', EL:'el' };
+    var MODES = { TOP:'top', TARGET:'target' };
 
     // default settings
-    var defaults = { top:null, tekt_id:null };
+    var defaults = { top:null, target:null };
 
     // settings
     this.settings = _.assign(defaults, config);
-    this.mode = null === this.settings.tekt_id ? MODES.TOP : MODES.EL;
+    this.mode = null === this.settings.target ? MODES.TOP : MODES.TARGET;
 
     // required settings
     if(null === this.settings.el){ throw new TEKT.errors.RequirementError('el is required'); }
-    if(null === this.settings.top && null === this.settings.tekt_id){ throw new TEKT.errors.RequirementError('either top or a tekt_id is required'); }
+    if(null === this.settings.top && null === this.settings.target){ throw new TEKT.errors.RequirementError('either top or a target is required'); }
 
     /**
      * Getter
@@ -82,8 +82,8 @@ TEKT.Scroller = function(config){
 
         var that = this; 
         this.get('el').on('click', function(){
-            if(that.mode === MODES.EL){
-                var el = $('['+that.get('tekt_id')+']');
+            if(that.mode === MODES.TARGET){
+                var el = $('[tekt-id="'+that.get('target')+'"]');
                 that.scroll_to_element(el);
             } else {
                 var top = that.get('top');
