@@ -1,15 +1,19 @@
-// palette
+// base
+$black:#46484D;
 $white:#F4F4F4;
-$black:#222222;
-$blue:#0B8793;
-$purple:#360033;
 
-// taxonomy
-$primary:#33AA88;
-$secondary:#555555;
+// scheme
+// $primary:#4fc4f6;
+$primary: saturate(adjust-hue(lighten($black, 30), 320deg), 20);
+$secondary: lighten(saturate(complement($primary), 10), 5);
+$tertiery: lighten(adjust-hue($secondary, 90deg), 20);
 
-// widgets
-$inform:#0B8793;
+// emotions
+$inform:#11a8ab;
 $praise:#33AA33;
-$alarm:#DD5555;
+$alarm:#e64c65;
 $warn:#BBBB22;
+
+// others
+$blue:#4fc4f6;
+$purple:#360033;

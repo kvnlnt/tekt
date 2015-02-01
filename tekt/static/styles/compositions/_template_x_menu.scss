@@ -1,0 +1,20 @@
+.#{template} .regions .left {
+    &.collapsed {
+        .#{menu} {
+            transition: all 0.25s ease;
+            @include mq(mobile) {
+                .item:not(:first-child) {
+                    visibility: hidden;
+                    height:0;
+                }
+            }
+            @include mq(mobile-landscape) {
+                margin-left:-150px;
+                .item:not(:first-child) {
+                    visibility: visible;
+                    height:auto;
+                }
+            }
+        }
+    }
+}

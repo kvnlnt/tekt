@@ -6,7 +6,7 @@ button,
     cursor: pointer;
     border:2px solid $primary;
     letter-spacing: 1px;  
-    color:$primary;
+    color:$tertiery;
     background-color:transparent;
     display: inline-block;
     text-align: center;
@@ -32,11 +32,9 @@ button,
         }
     }
     &.link {
-        border-top:0;
-        border-left:0;
-        border-right:0;
         padding:0;
-        border-bottom-width:2px;
-        @include rem(margin, 0, 1.25); 
+        border:0;
+        @include rem(margin, 0, 1.25);
+        text-decoration: none;
     }
 }

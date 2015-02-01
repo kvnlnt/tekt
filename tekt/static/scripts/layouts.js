@@ -31,14 +31,14 @@ TEKT.layouts = (function(module) {
             regions:{
                 left_column:{
                     name:'left_column',
-                    selector:'.cols > .col:eq(0)',
+                    selector:'.regions > .left',
                     collapsible:true,
                     collapse_on:'MENU:TOGGLE',
                     collapse_key:'menu-toggle'
                 },
                 right_column:{
                     name:'right_column',
-                    selector:'.cols > .col:eq(1)'
+                    selector:'.regions > .right'
                 }
             },
         },

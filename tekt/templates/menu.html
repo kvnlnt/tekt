@@ -1,14 +1,8 @@
 {% from "macros/menus.html" import render_menu_link %} 
 <div class="menu">
-<div class="table main">
   {{ render_menu_link(icon='fa ' + g.template['menu-toggle-button'], classes='toggle') }}
   {{ render_menu_link(text='Dashboard', link='main.dashboard', icon='fa fa-dashboard', section=(section == 'dashboard')) }}
   {{ render_menu_link(text='Properties', link='properties.list_properties', icon='fa fa-tree', section=(section == 'properties')) }}
   {{ render_menu_link(text='Paths', link='paths.list_paths', icon='fa fa-code-fork', section=(section == 'paths')) }}
   {{ render_menu_link(text='Pages', link='pages.list_pages', icon='fa fa-file-o', section=(section == 'pages')) }}
-</div>
-
-<div class="table sub">
-    {{ render_menu_link(text='Primers', link='main.primers', icon='fa fa-question', section=(section == 'primers')) }}
-</div>
 </div>
