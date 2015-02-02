@@ -1,0 +1,17 @@
+.#{template} .regions .left {
+    &.collapsed {
+        .#{logo} {
+            .logo-font {
+                display: none;
+            }
+        }
+        .#{menu} {
+            transition: all 0.25s ease;
+            margin-left:-150px;
+            .item:not(:first-child) {
+                visibility: visible;
+                height:auto;
+            }
+        }
+    }
+}

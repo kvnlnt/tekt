@@ -25,14 +25,6 @@
                 top <i class="fa fa-chevron-up"></i>
             </a>
             <div class="template" tekt-type="main">
-                <div class="regions header">
-                    <div class="region logo">
-                        <a href="{{ url_for('main.dashboard') }}" id="logo" class="fa fa-play animated fadeIn "></a>
-                    </div>
-                    <div class="region quick_menu">
-                        <a href="{{ url_for('main.primers') }}" class="button link"><span class="fa fa-question"></span></a>
-                    </div>
-                </div>
                 <div class="regions">
                     <div class="region left {{ g.template['menu-toggle'] }}">
                         {% include 'menu.html' %}

@@ -1,20 +1,30 @@
-##{logo} {
-    @include rem(font-size, 3);
-    -ms-transform: rotate(-90deg); /* IE 9 */
-    -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
-    transform: rotate(-90deg);
-    text-shadow:0 0 2px $black;
-    color:$secondary;
-    @include blur(0px);
-    &.large{
-        @include rem(font-size, 10);
-        text-shadow:0 0 4px $black;
-        @include blur(5px);
+.#{logo} {
+    // @include rem(font-size, 3);
+    .logo-graphic {
+        -ms-transform: rotate(-90deg); /* IE 9 */
+        -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+        transform: rotate(-90deg);
+        color:$secondary;
+        @include rem(font-size, 2.5);
+        @include rem(padding, 0.65);
     }
-    &:hover {
-        border:0;
-        text-decoration: none;
-        @include blur(0);
-        color:$primary;
+    .logo-font {
+        font-family: Futura;
+        @include rem(font-size, 2);
+        color:$white;
     }
+    // text-shadow:0 0 2px $black;
+    // color:$secondary;
+    // @include blur(0px);
+    // &.large{
+    //     @include rem(font-size, 10);
+    //     text-shadow:0 0 4px $black;
+    //     @include blur(5px);
+    // }
+    // &:hover {
+    //     border:0;
+    //     text-decoration: none;
+    //     @include blur(0);
+    //     color:$primary;
+    // }
 }

@@ -2,20 +2,11 @@
     @include rem(border-radius, 0.3);
     padding:0;
     text-align: right;
-
-    @include mq(mobile){
-        display:block;
-        width:100%;
-    }
-
-    @include mq(mobile-landscape){
-        display:table;
-        width:200px;
-    }
+    display:table;
+    width:200px;
     
     .item {
-        @include mq(mobile){ display:block; }
-        @include mq(mobile-landscape){ display:table-row; }
+        display:table-row; 
         @include rem(font-size, 1.2);
         color:desaturate(lighten($black, 40), 10);
         letter-spacing: 1px;
@@ -23,9 +14,8 @@
         text-transform: uppercase;
         visibility: visible;
         height: auto;
-        span {
-            @include mq(mobile-landscape){ display:table-cell; }
-            @include mq(mobile){ display:inline-block; }
+        > span {
+            display:table-cell; 
             vertical-align: middle;
             background:transparent;
             line-height: 40px;

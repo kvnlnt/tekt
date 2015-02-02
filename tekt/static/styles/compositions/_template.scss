@@ -3,11 +3,9 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    @include mq(mobile) { display: block; }
-    @include mq(mobile-landscape) { display: table; }
+    display: table;
     .regions {
-        @include mq(mobile) { display: block; }
-        @include mq(mobile-landscape) { display: table-row; }
+        display: table-row;
         &.header {
             @include rem(height, 5);
             background-color:desaturate(lighten($black, 5), 5);
@@ -23,23 +21,17 @@
             }
         }
         .region {
-            @include mq(mobile) { display: block; }
-            @include mq(mobile-landscape) { display: table-cell; }
+            display: table-cell;
             vertical-align: top;
         }
         .left {
             background-color:desaturate(lighten($black, 5), 5);
-            @include mq(mobile){ width:100%; }
-            @include mq(mobile-landscape){ 
-                transition: all 0.25s ease;
-                width:200px; min-width: 200px; 
-            }
+            transition: all 0.25s ease;
+            width:200px; min-width: 200px; 
             &.collapsed {
                 transition: all 0.25s ease;
-                @include mq(mobile-landscape){
-                    min-width: 50px;
-                    width:50px;
-                }
+                min-width: 50px;
+                width:50px;
             }
         }
     }
