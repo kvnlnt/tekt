@@ -1,0 +1,35 @@
+{% from "macros/forms.html" import render_field, render_hidden_field %} 
+{% extends 'template.html' %}
+{% block body %}
+
+
+<h1>
+    <a black href="{{ url_for('.list_pages') }}">Pages</a>
+</h1>
+<h2>
+    <a black href="{{ url_for('.read_page', id=page.id) }}">{{page.page}}</a>
+</h2>
+
+<div class="card">
+    <header>
+        <h2 class="title">Path Schedule</h2>
+    </header>
+    <div class="content">
+        <table class="data">
+            <tr>
+                <th>#</th>
+                <th>page</th>
+                <th>actions</th>
+            </tr>
+            {% for path in page.paths %}
+            <tr>
+                <td>{{ path.id }}</td>
+                <td><a href="{{ url_for('paths.read_path', id=path.id) }}">{{ path.path }}</a></td>
+                <td><a href="{{ url_for('pages.remove_path', id=page.id, path_page_id=path.path_page_id)}}"> remove</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

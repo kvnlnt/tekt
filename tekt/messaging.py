@@ -107,6 +107,10 @@ class Pages(Messaging):
             _type='alarm',
             message="Error. Page not created.")
 
+        self.remove_path_success = self.new(
+            _type='praise',
+            message='Success. Path was removed.')
+
         self.update_page_success = self.new(
             _type='praise',
             message="Success. Page was updated.")

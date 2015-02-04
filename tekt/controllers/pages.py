@@ -76,29 +76,39 @@ def path_schedule(id):
 
     """ view and add pages """
 
-    # record = tektonik.read_path(id)['result']
-    # data = {'path_id': id, 'page_id': 0}
-    # form = forms.PathPageForm(request.form, data=data)
+    record = tektonik.read_page(id)['result']
+    data = {'path_id': id, 'page_id': 0}
+    form = forms.PathPageForm(request.form, data=data)
 
-    # if request.method == 'POST':
-    #     new_record = tektonik.create_path_page(request.form)
-    #     is_valid = forms.is_valid(
-    #         form,
-    #         new_record,
-    #         {'page_id': 'page_selector'}
-    #     )
-    #     if is_valid:
-    #         messaging.flash(messaging.page_schedule_success)
-    #         return redirect(url_for('.page_schedule', id=id))
-    #     else:
-    #         messaging.flash(messaging.page_schedule_error)
+    if request.method == 'POST':
+        new_record = tektonik.create_path_page(request.form)
+        is_valid = forms.is_valid(
+            form,
+            new_record,
+            {'page_id': 'page_selector'}
+        )
+        if is_valid:
+            messaging.flash(messaging.page_schedule_success)
+            return redirect(url_for('.page_schedule', id=id))
+        else:
+            messaging.flash(messaging.page_schedule_error)
 
-    # return render_template(
-    #     'paths/page_schedule.html',
-    #     path=record,
-    #     form=form,
-    #     section='paths'
-    # )
+    return render_template(
+        'pages/path_schedule.html',
+        page=record,
+        form=form,
+        section='pages'
+    )
+
+
+@blueprint.route('/<int:id>/remove/<int:path_page_id>', methods=['GET'])
+def remove_path(id, path_page_id):
+
+    """ remove a page from a path """
+
+    tektonik.delete_path_page(path_page_id)
+    messaging.flash(messaging.remove_path_success)
+    return redirect(url_for('.path_schedule', id=id))
 
 
 @blueprint.route('/<int:id>/update', methods=['GET', 'POST'])
