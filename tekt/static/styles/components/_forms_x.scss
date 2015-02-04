@@ -1,0 +1,16 @@
+form,
+.#{form} {
+    > footer {
+        button,
+        .#{$button} {
+            @include rem(line-height, 3);
+            @include rem(margin, 1, 0, 1, 1);
+        } 
+        button + button,
+        button + .button,
+        .button + button,
+        .button + .button {
+            @include rem(margin-left, 0);
+        }
+    }
+}

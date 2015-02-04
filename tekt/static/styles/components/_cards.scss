@@ -9,14 +9,14 @@
         transition: all 1s ease;
     }
     > header {
-        display: table;
-        width:100%;
-        @include rem(line-height, 5);
-        @include rem(font-size, 1.8);
         @include rem(border-radius, .3, .3, 0, 0);
-        color:$white;
+        @include rem(font-size, 1.8);
+        @include rem(line-height, 5);
         background-color: $primary;
+        color:$white;
+        display: table;
         vertical-align: middle;
+        width:100%;
         > * {
             display:table-cell;
         }

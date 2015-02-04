@@ -44,3 +44,22 @@ pre {
     white-space: pre-wrap;
 }
 
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    @include rem(width, 1);
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: $black;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: lighten($black, 6); 
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+    background: $black; 
+}

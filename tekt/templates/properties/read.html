@@ -7,12 +7,14 @@
 <h1>
     <a black href="{{ url_for('.list_properties') }}">Properties</a>
 </h1>
-
+<h2>
+    <a black href="{{ url_for('.read_property', id=property.id) }}">{{property.property}}</a>
+</h2>
 <div class="card">
 <header>
-    <h2 class="title">{{ property.property }}</h2>
+    <div class="title">Details</div>
     <div class="actions">
-        <a class="button" href="{{ url_for('.update_property', id=property.id )}}">settings</a>
+        <a class="button" href="{{ url_for('.update_property', id=property.id )}}"><i class="fa fa-gear"></i> Settings</a>
     </div>
 </header>
 <div class="content">

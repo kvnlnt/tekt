@@ -5,12 +5,15 @@
 <h1>
     <a black href="{{ url_for('.list_paths') }}">Paths</a>
 </h1>
+<h2>
+    <a black href="{{ url_for('.read_path', id=path.id) }}">{{path.path}}</a>
+</h2>
 
 <div class="card">
 <header>
-    <h2 class="title">{{ path.path }}</h2>
+    <h2 class="title">Details</h2>
     <div class="actions">
-        <a class="button" href="{{ url_for('.update_path', id=path.id )}}">settings</a>
+        <a class="button" href="{{ url_for('.update_path', id=path.id )}}"><i class="fa fa-gear"></i> Settings</a>
     </div>
 </header>
 <div class="content">
@@ -35,7 +38,7 @@
     <header>
         <h2 class="title">Page Schedule</h2>
         <div class="actions">
-            <a class="button" href="{{ url_for('.page_schedule', id=path.id )}}">settings</a>
+            <a class="button" href="{{ url_for('.page_schedule', id=path.id )}}"><i class="fa fa-gear"></i> Settings</a>
         </div>
     </header>
     <div class="content">
@@ -47,7 +50,7 @@
                 </tr>
                 {% for page in path.pages %}
                 <tr>
-                    <td>{{page.page}}</td>
+                    <td><a href="{{ url_for('pages.read_page', id=page.id )}}">{{page.page}}</a></td>
                     <td></td>
                     <td></td>
                 </tr>

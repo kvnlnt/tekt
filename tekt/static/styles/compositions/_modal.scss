@@ -6,18 +6,18 @@
     top:0;
     left:0;
     header {
+        background-color: $primary;
         @include rem(line-height, 5);
         @include rem(font-size, 2);
         .title {
             @include rem(text-indent, 2);
             margin:0;
             padding:0;
-            border-bottom:5px solid $secondary;
+            color:$white;
         }
         .actions {
             text-align: right;
             @include rem(padding-right, 0.5);
-            border-bottom:5px solid $secondary;
         }
     }
     .content {
@@ -30,6 +30,7 @@
     @include mq(tablet){
         width: 500px;
         height:500px;
+        border:10px solid $white;
     }
     background-color:$white;
 

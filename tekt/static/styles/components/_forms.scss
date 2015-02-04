@@ -4,8 +4,9 @@
     @include rem(line-height, 3);
     @include rem(margin, 0, 0, 1);
     @include rem(border-radius, 0.3);
-    border:1px solid darken($white, 3);
-    background-color:lighten($white, 100);
+    color:$white;
+    background-color: desaturate(lighten($black, 3), 5);;
+    border:1px solid desaturate(lighten($black, 10), 5);
     transition: all 0.5s ease;
     &:focus {
         transition: all 0.5s ease;
@@ -13,45 +14,65 @@
         border-color: $primary;
         box-shadow: 0 0 3px $primary;
     }
+    &::-webkit-input-placeholder {
+       color: lighten($black, 20);
+       @include rem(font-size, 1.2);
+    }
+
+    &:-moz-placeholder { /* Firefox 18- */
+       color: lighten($black, 20);
+       @include rem(font-size, 1.2);
+    }
+
+    &::-moz-placeholder {  /* Firefox 19+ */
+       color: lighten($black, 20);
+       @include rem(font-size, 1.2);  
+    }
+
+    &:-ms-input-placeholder {  
+       color: lighten($black, 20);
+       @include rem(font-size, 1.2);
+    }
 }
 
 form,
 .#{form} {
     opacity:0;
     > legend {
-        @extend .text-bold;
+        @include rem(border-radius, .3, .3, 0, 0);
         @include rem(font-size, 1.8);
         @include rem(line-height, 5);
         @include rem(margin, 0);
         @include rem(text-indent, 1.5);
-        background-color: lighten($white, 2);
-        border-radius: 5px 5px 0 0;
-        border:1px solid darken($white, 10);
-        color:lighten($black, 20);
+        background-color: $primary;
+        color:$white;
+        display: table;
         display:block;
         vertical-align: middle;
         width:100%;
+        &.nobg {
+            background-color:transparent;
+        }
     }
     > fieldset {
         @include rem(padding, 2);
-        background-color: lighten($white, 3);
-        border-left:1px solid darken($white, 10);
-        border-right:1px solid darken($white, 10);
-        border-top:0;
+        background-color:desaturate(lighten($black, 5), 5);
+        border:0;
         border-bottom:0;
         display:block;
         margin: 0;
 
         label {
             @include rem(font-size, 1.6);
-            color: darken($white, 50);
+            color:$white;
         }
 
         label + p {
             @include rem(font-size, 1.4);
             @include rem(margin, 1, 0);
             @include rem(line-height, 2);
-            color: darken($white, 20);
+            color:$white;
+            @include opacity(0.25);
         }
 
         .help {
@@ -95,20 +116,16 @@ form,
     }
     
     > footer {
-        @include rem(padding, 2);
-        background-color: lighten($white, 3);
-        border-bottom:1px solid darken($white, 10);
-        border-left:1px solid darken($white, 10);
-        border-radius: 0 0 5px 5px;
-        border-right:1px solid darken($white, 10);
+        background-color:desaturate(lighten($black, 3), 5);
         margin: 0;
+        padding: 0;
         display:block;
     }
 
     &.mini {
         display:table;
         width:100%;
-        background-color:$white;
+        background-color:desaturate(lighten($black, 2), 2);
         fieldset {
             display:table-row;
             margin:0;

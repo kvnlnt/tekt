@@ -3,18 +3,19 @@
     @include rem(bottom, -3);
     @include rem(font-size, 1.2);
     @include rem(padding, 0, 1.4);
-    @include rem(line-height, 3);
+    @include rem(line-height, 4);
     @include rem(right, 0);
+    @include opacity(0.8);
+    border-top:1px solid $primary;
     text-align: center;
     width:100%;
     visibility: hidden;
-    background-color: $white;
-    border:1px solid darken($white, 10);
-    opacity:.6;
+    background-color: $black;
     position:fixed;
     z-index: 100;
     &:hover {
-        opacity: 1;
+        background-color: $black;
+        @include opacity(0.8);
     }
     &.fixate {
         transition: all 0.25s ease;

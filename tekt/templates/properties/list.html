@@ -9,7 +9,7 @@
     <header>
         <h2 class="title">{{properties|length}} of {{metadata.total_records}}</h2>
         <div class="actions">
-            <a class="button" href="{{ url_for('.create_property') }}">new</a>
+            <a class="button" href="{{ url_for('.create_property') }}"><i class="fa fa-plus"></i> New</a>
         </div>
     </header>
     <div class="content">
@@ -23,8 +23,7 @@
             {% for record in properties %}
             <tr>
                 <td>{{record.id}}</td>
-                <td><a black href="{{ url_for('.read_property', id=record.id) }}">{{record.property}}</a>
-                </td>
+                <td><a black href="{{ url_for('.read_property', id=record.id) }}">{{record.property}}</a></td>
                 <td>{{record.stats.total_paths}}</td>
                 <td>{{record.stats.total_pages}}</td>
             </tr>

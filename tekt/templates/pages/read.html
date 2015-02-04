@@ -6,11 +6,16 @@
 <h1>
     <a black href="{{ url_for('.list_pages') }}">Pages</a>
 </h1>
+<h2>
+    <a black href="{{ url_for('.read_page', id=page.id) }}">{{page.page}}</a>
+</h2>
+
+
 <div class="card">
     <header>
-        <h2 class="title">{{ page.page }}</h2>
+        <h2 class="title">Details</h2>
         <div class="actions">
-            <a class="button" href="{{ url_for('.update_page', id=page.id )}}">settings</a>
+            <a class="button" href="{{ url_for('.update_page', id=page.id )}}"><i class="fa fa-gear"></i> Settings</a>
         </div>
     </header>
     <div class="content">
@@ -23,14 +28,31 @@
                 <th>page</th>
                 <td>{{ page.page }}</td>
             </tr>
-            <tr>
-                <th>paths</th>
-                <td>
-                    {% for path in page.paths %}
-                    <a href="{{ url_for('paths.page_schedule', id=path.id) }}">{{ path.path }}</a>
-                    {% endfor %}
-                </td>
-            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="card">
+    <header>
+        <h2 class="title">Path Schedule</h2>
+        <div class="actions">
+            <a class="button" href="{{ url_for('.path_schedule', id=page.id )}}"><i class="fa fa-gear"></i> Settings</a>
+        </div>
+    </header>
+    <div class="content">
+        <table class="data">
+                <tr>
+                    <th>Path</th>
+                    <th>Effective</th>
+                    <th>Expires</th>
+                </tr>
+                {% for path in page.paths %}
+                <tr>
+                    <td><a href="{{ url_for('paths.read_path', id=path.id )}}">{{path.path}}</a></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% endfor %}
         </table>
     </div>
 </div>

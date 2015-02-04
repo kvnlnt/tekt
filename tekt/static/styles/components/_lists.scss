@@ -14,13 +14,13 @@ ul,
         li {
             border-top-style: solid;
             border-top-width: 1px;
-            border-top-color: lighten($black, 80);
+            border-top-color: $black;
         }
     }
     &.pick {
         @extend .ul;
         li:nth-child(even){
-            background-color: lighten($white,1);
+            background-color:desaturate(lighten($black, 2), 0);
         }
         li a {
             display: block;
@@ -28,7 +28,7 @@ ul,
             @include rem(line-height, 4);
             border-bottom-style: solid;
             border-bottom-width: 1px;
-            border-bottom-color: lighten($black, 80);
+            border-bottom-color: $black;
             @include rem(text-indent, 2);
             cursor: pointer;
         }

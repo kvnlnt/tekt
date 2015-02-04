@@ -7,6 +7,9 @@
 <h1>
     <a black href="{{ url_for('.list_properties') }}">Properties</a>
 </h1>
+<h2>
+    <a black href="{{ url_for('.read_property', id=property.id) }}">{{property.property}}</a>
+</h2>
 
 <form method="post" action="{{ url_for('.update_property', id=property.id) }}">
     {{ form.id }}
@@ -15,27 +18,27 @@
         {{ render_field(form.property, autofocus='autofocus', placeholder="Example: my.website.com") }}
     </fieldset>
     <footer>
-        <input class="button" type="submit" value="save">
-        <a class="button" href="{{ url_for('.read_property', id=property.id) }}">cancel</a>
+        <button type="submit"><i class="fa fa-check"></i> Save</button>
+        <a class="button" href="{{ url_for('.read_property', id=property.id) }}"><i class="fa fa-close"></i> Cancel</a>
     </footer>
 </form>
 
 <div class="panel text-right">
-    <a class="alarm button link" tekt-showhide="delete_form">delete</a>
+    <a class="alarm button link" tekt-showhide="delete_form"><i class="fa fa-trash"></i> Delete</a>
 </div>
 
 <form method="post" tekt-id="delete_form" class="view-hidden" action="{{ url_for('.delete_property', id=property.id) }}">
-    <legend>Delete Property</legend>
+    <legend>Delete</legend>
     <fieldset>
         {{ delete_form.phrase }}
         <div class="field">
             {{ delete_form.confirm(placeholder=form.property.data)|safe }}
-            <label>{{ delete_form.confirm.description }}</label>
+            <p>{{ delete_form.confirm.description }}</p>
         </div>
     </fieldset>
     <footer>
     <div class="actions">
-        <input class="button alarm" type="submit" value="confirm">
+        <button type="submit"><i class="fa fa-check"></i> Confirm</button>
     </footer>
 </form>
 

@@ -1,26 +1,39 @@
 button,
 .#{$button}  {
-    @include rem(font-size, 1.6);
+    @include rem(font-size, 1.5);
     @include rem(line-height, 3);
-    @include rem(padding, 0, 1.25);  
+    @include rem(padding, 0, 1.25); 
+    @include border-radius(2px); 
     cursor: pointer;
-    border:2px solid $primary;
+    border:0px solid $primary;
     letter-spacing: 1px;  
-    color:$tertiery;
+    color:$white;
+    @include opacity(0.5);
     background-color:transparent;
     display: inline-block;
     text-align: center;
     text-decoration: none;
-    text-transform: uppercase;
+    text-transform: capitalize;
+    i {
+        @include rem(margin-right, 0);
+        @include opacity(0.5);
+    }
     &:hover,
     .hover {
         transition: all 0.5s ease;
         text-decoration: none;
         background-color: transparent;
-        color:$black;
+        color:$white;
+        @include opacity(1);
+        i {
+            @include opacity(1);
+            color:$white;
+        }
     }
-    i + * {
-        @include rem(margin-right, 0.5);
+    
+    &.callout {
+        background-color: $primary;
+        @include opacity(1);
     }
     &.alarm {
         border:1px solid $alarm;

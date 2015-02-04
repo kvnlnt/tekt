@@ -1,13 +1,14 @@
 a, 
 .a {
     background: transparent;
-    color:$primary;
+    color:$secondary;
     cursor: pointer;
     outline: 0;
     text-decoration: none;
     &:hover, 
     .hover {
         transition: all 0.5s ease;
+        color:$white;
     }
     &.alarm {
         color:$alarm;

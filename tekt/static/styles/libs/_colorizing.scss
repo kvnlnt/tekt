@@ -1,12 +1,12 @@
 // base
-$black:#46484D;
+$black:#333333;
 $white:#F4F4F4;
 
 // scheme
 // $primary:#4fc4f6;
-$primary: saturate(adjust-hue(lighten($black, 30), 320deg), 20);
-$secondary: lighten(saturate(complement($primary), 10), 5);
-$tertiery: lighten(adjust-hue($secondary, 90deg), 20);
+$primary: lighten($black, 15);
+$secondary: #33AA33;
+$tertiery: darken($black, 10);
 
 // emotions
 $inform:#11a8ab;

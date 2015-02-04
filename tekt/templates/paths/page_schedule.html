@@ -14,7 +14,7 @@
     <header>
         <h2 class="title">Page Schedule</h2>
         <div class="actions">
-            <a tekt-scroller="target=add_page" class="button">Add</a>
+            <a tekt-scroller="target=add_page" class="button"><i class="fa fa-plus"></i> Add</a>
         </div>
     </header>
     <div class="content">
@@ -27,9 +27,9 @@
             {% for page in path.pages %}
             <tr>
                 <td>{{ page.id }}</td>
-                <td><a black href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a>
+                <td><a href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a>
                 </td>
-                <td><a black href="{{ url_for('paths.remove_page', id=path.id, path_page_id=page.path_page_id)}}">remove</a>
+                <td><a href="{{ url_for('paths.remove_page', id=path.id, path_page_id=page.path_page_id)}}"> remove</a>
                 </td>
             </tr>
             {% endfor %}
@@ -53,7 +53,7 @@
             </ul>
         </fieldset>
     <footer>
-        <input class="button" type="submit" value="Add Page">
+        <button type="submit"><i class="fa fa-plus"></i> Add</button> 
     </footer>
 </form>
 
