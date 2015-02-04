@@ -5,18 +5,19 @@
 var TEKT = {};
 
 TEKT.DIRECTIVE          = {};
-TEKT.DIRECTIVE.ID       = 'tekt-id';
+TEKT.DIRECTIVE.DIALOG   = 'tekt-dialog';
 TEKT.DIRECTIVE.FIXATE   = 'tekt-fixate';
+TEKT.DIRECTIVE.ID       = 'tekt-id';
 TEKT.DIRECTIVE.KEY      = 'tekt-key';
+TEKT.DIRECTIVE.SCROLLER = 'tekt-scroller';
 TEKT.DIRECTIVE.SELECTOR = 'tekt-selector';
 TEKT.DIRECTIVE.SHOWHIDE = 'tekt-showhide';
-TEKT.DIRECTIVE.SCROLLER = 'tekt-scroller';
-TEKT.DIRECTIVE.TYPE     = 'tekt-type';
 TEKT.DIRECTIVE.TARGET   = 'tekt-target';
+TEKT.DIRECTIVE.TYPE     = 'tekt-type';
 TEKT.DIRECTIVE.VAL      = 'tekt-val';
 TEKT.EVENT              = {};
-TEKT.EVENT.WIN_SCROLL   = 'WIN:SCROLL';
 TEKT.EVENT.WIN_RESIZE   = 'WIN:RESIZE';
+TEKT.EVENT.WIN_SCROLL   = 'WIN:SCROLL';
 
 // GLOBAL JSDOCS MTEKTUP
 /**

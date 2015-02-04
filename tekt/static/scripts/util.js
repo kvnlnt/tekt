@@ -17,7 +17,7 @@ TEKT.util = (function(module){
         var params = {}
 
         if(string.length){
-            var key_values = string.split(',');
+            var key_values = string.split('|');
             _.each(key_values, function(v, k){
                 var item    = v.split('=');
                 var key     = item[0].trim();

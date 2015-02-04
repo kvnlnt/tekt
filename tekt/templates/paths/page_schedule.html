@@ -29,7 +29,7 @@
                 <td>{{ page.id }}</td>
                 <td><a href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a>
                 </td>
-                <td><a href="{{ url_for('paths.remove_page', id=path.id, path_page_id=page.path_page_id)}}"> remove</a>
+                <td><a href="{{ url_for('paths.remove_page', id=path.id, path_page_id=page.path_page_id)}}" tekt-dialog="type=confirm|message=Are you sure you want to remove this page from this path?"> remove</a>
                 </td>
             </tr>
             {% endfor %}
