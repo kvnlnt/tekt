@@ -10,7 +10,7 @@
 </h2>
 <form method="post" action="{{ url_for('paths.update_path', id=path.id) }}">
     {{ path_form.id }}
-    <legend>Settings</legend>
+    <legend>Edit</legend>
     <fieldset>
         <ul class="list">
             {{ render_field(path_form.path, autofocus="autofocus", placeholder="Example: /my/path") }}

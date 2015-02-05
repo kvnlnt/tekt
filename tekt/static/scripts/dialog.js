@@ -4,6 +4,7 @@
  * @param  {object} config           
  * @param  {string} config.el        jquery element of object
  * @param  {string} config.type      type of dialog
+ * @param  {string} config.message   message to display
  * @return {object}                  selector function instance
  * @class Dialog
  */

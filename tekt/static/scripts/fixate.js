@@ -10,7 +10,8 @@
 TEKT.Fixate = function(config){
 
     // default settings
-    var defaults = { el:null, threshold:null, expire:false, fixate_class:'fixate' };
+    var CLASSES = { FIXATE:'fixate' };
+    var defaults = { el:null, threshold:null, expire:false, fixate_class:CLASSES.FIXATE };
 
     // settings
     this.settings = _.assign(defaults, config);

@@ -1,6 +1,6 @@
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}
-    <div class="messenger">
+    <div tekt-id="messenger" class="messenger">
         {% for category, message in messages %}
         <div class="message {{ category }}">{{ message|safe }}</div>
         {% endfor %}

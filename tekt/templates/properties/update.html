@@ -13,7 +13,7 @@
 
 <form method="post" action="{{ url_for('.update_property', id=property.id) }}">
     {{ form.id }}
-    <legend>Settings</legend>
+    <legend>Edit</legend>
     <fieldset>
         {{ render_field(form.property, autofocus='autofocus', placeholder="Example: my.website.com") }}
     </fieldset>
