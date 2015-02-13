@@ -8,6 +8,7 @@ TEKT.DIRECTIVE          = {};
 TEKT.DIRECTIVE.DIALOG   = 'tekt-dialog';
 TEKT.DIRECTIVE.FIXATE   = 'tekt-fixate';
 TEKT.DIRECTIVE.ID       = 'tekt-id';
+TEKT.DIRECTIVE.MASK     = 'tekt-mask';
 TEKT.DIRECTIVE.KEY      = 'tekt-key';
 TEKT.DIRECTIVE.SCROLLER = 'tekt-scroller';
 TEKT.DIRECTIVE.SELECTOR = 'tekt-selector';

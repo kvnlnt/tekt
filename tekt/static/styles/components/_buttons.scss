@@ -14,6 +14,9 @@ button,
     text-align: center;
     text-decoration: none;
     text-transform: capitalize;
+    &.small {
+        @include rem(font-size, 1.2);
+    }
     i {
         @include rem(margin-right, 0);
         @include opacity(0.5);

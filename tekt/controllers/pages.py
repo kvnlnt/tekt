@@ -42,7 +42,7 @@ def search_pages():
         term = {'page': request.form['term']}
         records = tektonik.search_pages(term)['result']
 
-    return render_template("pages/search.html", pages=records, form=form)
+    return render_template("selectors/pages.html", pages=records, form=form)
 
 
 @blueprint.route('/create', methods=['GET', 'POST'])

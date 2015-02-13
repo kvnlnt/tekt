@@ -33,7 +33,6 @@
     </table>
 </div>
 </div>
-
 <div class="card">
     <header>
         <h2 class="title">Page Schedule</h2>
@@ -51,8 +50,8 @@
                 {% for page in path.pages %}
                 <tr>
                     <td><a href="{{ url_for('pages.read_page', id=page.id )}}">{{page.page}}</a></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{page.effective_date}}</td>
+                    <td>{{page.expiration_date}}</td>
                 </tr>
                 {% endfor %}
         </table>

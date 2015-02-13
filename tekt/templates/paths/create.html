@@ -9,14 +9,10 @@
 <form method="post" action="{{ url_for('.create_path') }}">
     <legend>New</legend>
     <fieldset>
-        <div class="field">
-            {{ render_field(form.path, autofocus='autofocus', placeholder="Example: /my/path") }}
-        </div>
+        {{ render_field(form.path, autofocus='autofocus', placeholder="Example: /my/path") }}
     </fieldset>
     <fieldset>
-        <div class="field">
-            {{ render_field(form.property_id) }}
-        </div>
+        {{ render_field(form.property_id) }}
     </fieldset>
     <footer>
         <button type="submit"><i class="fa fa-check"></i> Save</button>

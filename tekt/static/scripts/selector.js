@@ -13,7 +13,7 @@ TEKT.Selector = function(config){
 
     // default settings
     var that     = this;
-    var defaults = { el:null, src:null, callback:null };
+    var defaults = { el:null, src:null, callback:null, title:'Search' };
 
     // settings
     this.settings = _.assign(defaults, config);
@@ -86,7 +86,7 @@ TEKT.Selector = function(config){
         this.iframe = $('<iframe>');
         this.iframe.prop('src', this.get('src'));
         this.iframe.on('load', this.init_iframe.bind(this));
-        this.modal = new TEKT.Modal({title:'Search', content:this.iframe});
+        this.modal = new TEKT.Modal({title:this.get('title'), content:this.iframe});
         this.modal.show();
 
     };

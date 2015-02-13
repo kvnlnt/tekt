@@ -2,19 +2,17 @@
 {% extends 'template.html' %}
 {% block body %}
 
-
 <h1>
     <a black href="{{ url_for('.list_paths') }}">Paths</a>
 </h1>
 <h2>
     <a black href="{{ url_for('paths.read_path', id=path.id) }}">{{path.path}}</a>
 </h2>
-
 <div class="card">
     <header>
         <h2 class="title">Page Schedule</h2>
         <div class="actions">
-            <a tekt-scroller="target=add_page" class="button"><i class="fa fa-plus"></i> Add</a>
+            <a tekt-scroller="target=add_page" class="button small"><i class="fa fa-arrow-down"></i> Schedule New Page</a>
         </div>
     </header>
     <div class="content">
@@ -22,15 +20,17 @@
             <tr>
                 <th>#</th>
                 <th>page</th>
+                <th>effective</th>
+                <th>expires</th>
                 <th>actions</th>
             </tr>
             {% for page in path.pages %}
             <tr>
                 <td>{{ page.id }}</td>
-                <td><a href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a>
-                </td>
-                <td><a href="{{ url_for('paths.remove_page', id=path.id, path_page_id=page.path_page_id)}}" tekt-dialog="type=confirm|message=Are you sure you want to remove this page from this path?"> remove</a>
-                </td>
+                <td><a href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a></td>
+                <td>{{page.effective_date}}</td>
+                <td>{{page.expiration_date}}</td>
+                <td><a href="{{ url_for('paths.remove_page', id=path.id, path_page_id=page.path_page_id)}}" tekt-dialog="type=confirm|message=Are you sure you want to remove this page from this path?"> remove</a></td>
             </tr>
             {% endfor %}
         </table>
@@ -38,22 +38,32 @@
 </div>
 
 <form id="add_page" tekt-id="add_page" method="post" action="{{ url_for('paths.page_schedule', id=path.id) }}">
-    <legend>Add Page</legend>
+    <legend>Schedule Page</legend>
         <fieldset>
-            <ul class="list">
-                {{ render_hidden_field(form.path_id) }}
-                {{ render_hidden_field(form.page_id) }} 
-                {{ 
-                    render_field(form.page_selector, 
-                    placeholder="Click to Search", 
-                    readonly="readonly", 
-                    show_description=False,
-                    **{'tekt-selector':'page'}) 
-                }}
-            </ul>
+            {{ 
+                render_field(form.page_selector, 
+                placeholder="Click to select", 
+                readonly="readonly", 
+                **{'tekt-selector':'page'}) 
+            }}
+        </fieldset>
+        <fieldset>
+            {{ 
+                render_field(form.effective_date, 
+                placeholder="Example: 12/25/2025 5:00pm",
+                **{'tekt-mask':'datetime'})
+            }}
+        </fieldset>
+        <fieldset>
+            {{ 
+                render_field(form.expiration_date) 
+            }}
+        </fieldset>
+        <fieldset>
+            {{ render_field(form.is_persistent) }}
         </fieldset>
     <footer>
-        <button type="submit"><i class="fa fa-plus"></i> Add</button> 
+        <button type="submit"><i class="fa fa-plus"></i> Schedule</button> 
     </footer>
 </form>
 

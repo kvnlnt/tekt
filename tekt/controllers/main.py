@@ -7,7 +7,6 @@ from flask import g
 from flask import render_template
 from tekt import forms
 from flask import request
-from flask import current_app
 from tekt.tektonik import tektonik
 
 
@@ -54,20 +53,3 @@ def primers():
     """ Help tutorials """
 
     return render_template("primers.html", section='primers')
-
-
-@blueprint.route('patterns')
-def patterns():
-
-    """ Pattern library """
-
-    import pykss
-    libs = pykss.Parser(
-        current_app.root_path + '/static/styles/libs', '.scss')
-    components = pykss.Parser(
-        current_app.root_path + '/static/styles/components', '.scss')
-
-    return render_template(
-        "patterns.html",
-        libs=libs,
-        components=components)

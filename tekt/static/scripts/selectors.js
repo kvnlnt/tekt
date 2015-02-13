@@ -43,6 +43,7 @@ TEKT.selectors = (function(module) {
         page:{
             src:'/pages/search',
             callback:module.pages_handler,
+            title:'Find Page'
         }
     };
 
@@ -64,6 +65,7 @@ TEKT.selectors = (function(module) {
             config.src = type.src;
             config.callback = type.callback;
             config.target = $el;
+            config.title = type.title;
 
         // create selector
         var selector = new TEKT.Selector(config);
