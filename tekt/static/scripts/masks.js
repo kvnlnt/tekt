@@ -30,15 +30,15 @@ TEKT.masks = (function(module) {
     module.TYPES = {
         datetime:{
             maskex:[
-                { mask:'MM',   regex:/([0-9]{2})/, min:1, max:12 },
+                { mask:'MM',   regex:/([0-9]{2})/ },
                 { mask:'/',    regex:/(\/)/, autocomplete:true },
-                { mask:'DD',   regex:/([0-9]{2})/, min:1, max:31 },
+                { mask:'DD',   regex:/([0-9]{2})/ },
                 { mask:'/',    regex:/(\/)/, autocomplete:true  },
-                { mask:'YYYY', regex:/([0-9]{4})/, min:new Date().getFullYear(), max:(new Date().getFullYear() + 100) },
+                { mask:'YYYY', regex:/([0-9]{4})/},
                 { mask:' ',    regex:/(\s)/, autocomplete:true  },
-                { mask:'HH',   regex:/([0-9]{2})/, min:1, max:12 },
+                { mask:'HH',   regex:/([0-9]{2})/ },
                 { mask:':',    regex:/(:)/, autocomplete:true  },
-                { mask:'MM',   regex:/([0-9]{2})/, min:1, max:59 },
+                { mask:'MM',   regex:/([0-9]{2})/ },
                 { mask:'aa',   regex:/(am|pm)/ },
             ]
         }

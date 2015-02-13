@@ -12,7 +12,7 @@ TEKT.Mask = function(config){
 
     // default settings
     var that     = this;
-    var defaults = { el:null, maskex:null, hint_container:null };
+    var defaults = { el:null, maskex:null, hint_container:null, last_index:0 };
 
     // settings
     this.settings = _.assign(defaults, config);
@@ -66,7 +66,7 @@ TEKT.Mask = function(config){
     };
 
     /**
-     * Compile maskex
+     * Match as many groups as possible and return matching string
      * @param {string}  input               string to be matched
      * @param {array}   maskex              array of maskexes
      * @param {string}  maskex.mask         group string
@@ -74,7 +74,7 @@ TEKT.Mask = function(config){
      * @param {number}  regex_index         index of maskex group being evaluted
      * @param {string}  matching_string     concatenated string of matches
      * @function Mask.match
-     * @return {string} string of matching string
+     * @return {string} string of matched groups
      */
     this.match = function(input, maskex, regex_index, matching_string){ 
 
@@ -86,6 +86,7 @@ TEKT.Mask = function(config){
 
         // if group test failed or all groups have been evaluated, return aggregated string
         if(false === regex_test || regex_index > maskex.length + 1){
+            this.set('last_index', regex_index-1);
             return matching_string;
         } else {
             regex_index += 1;
@@ -95,6 +96,39 @@ TEKT.Mask = function(config){
             // recursive return
             return this.match(input, maskex, regex_index, matching_string);
         }
+
+    };
+
+    /**
+     * Autcomplete maskex group chars set to autocomplete
+     * @param  {number} keyCode number of keyCode entered
+     * @return {object}         instance
+     */
+    this.autocomplete = function(keyCode){
+
+        // jump out if out of bounds
+        if(this.get('last_index') > this.get('maskex').length){
+            return this;
+        }
+
+        // autocomplete automation
+        var input                           = this.get('el').val();
+        var next_is_autocompleted           = void 0 !== this.get('maskex')[this.get('last_index')].autocomplete;
+        var is_delete_key                   = keyCode === 8 || keyCode === 46;
+        var character_entered               = String.fromCharCode(keyCode);
+        var next_character                  = this.get('maskex')[this.get('last_index')].mask;
+        var key_is_autocomplete_character   = character_entered === next_character;
+
+        // do autcompletion
+        if(
+            true  === next_is_autocompleted && 
+            false === is_delete_key && 
+            false === key_is_autocomplete_character
+        ){
+            this.get('el').val(input + next_character);
+        }
+
+        return this;
 
     };
 
@@ -116,7 +150,8 @@ TEKT.Mask = function(config){
             this.get('hint_container').html('');
         };
 
-        console.log(match);
+        // try autcomplete
+        this.autocomplete(e.keyCode);
 
         return this;
 
@@ -128,7 +163,7 @@ TEKT.Mask = function(config){
      */
     this.init = function(){
 
-        this.get('el').on('keydown keyup', this.on_input.bind(this));
+        this.get('el').on('keypress keyup change', this.on_input.bind(this));
 
     };
 
