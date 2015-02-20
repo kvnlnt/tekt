@@ -28,8 +28,8 @@
             <tr>
                 <td>{{ page.id }}</td>
                 <td><a href="{{ url_for('pages.read_page', id=page.id) }}">{{ page.page }}</a></td>
-                <td>{{page.effective_date}}</td>
-                <td>{{page.expiration_date}}</td>
+                <td>{{page.effective_date_humanized}}</td>
+                <td>{{page.expiration_date_humanized}}</td>
                 <td><a href="{{ url_for('paths.remove_page', id=path.id, path_page_id=page.path_page_id)}}" tekt-dialog="type=confirm|message=Are you sure you want to remove this page from this path?"> remove</a></td>
             </tr>
             {% endfor %}
@@ -37,8 +37,11 @@
     </div>
 </div>
 
+{{form.errors}}
 <form id="add_page" tekt-id="add_page" method="post" action="{{ url_for('paths.page_schedule', id=path.id) }}">
     <legend>Schedule Page</legend>
+        {{ render_hidden_field(form.path_id) }}
+        {{ render_hidden_field(form.page_id) }}
         <fieldset>
             {{ 
                 render_field(form.page_selector, 
@@ -54,13 +57,15 @@
                 **{'tekt-mask':'datetime'})
             }}
         </fieldset>
-        <fieldset>
-            {{ 
-                render_field(form.expiration_date) 
-            }}
+        <fieldset tekt-id="expiration_date_fieldset" class="{% if form.is_persistent.data: %}disabled{% endif %}">
+            {% if form.is_persistent.data: %}
+                {{ render_field(form.expiration_date, **{'disabled':'disabled'})  }}
+            {% else %}
+                {{ render_field(form.expiration_date)  }}
+            {% endif %}
         </fieldset>
         <fieldset>
-            {{ render_field(form.is_persistent) }}
+            {{ render_field(form.is_persistent, **{'tekt-disable':'expiration_date_fieldset'}) }}
         </fieldset>
     <footer>
         <button type="submit"><i class="fa fa-plus"></i> Schedule</button> 

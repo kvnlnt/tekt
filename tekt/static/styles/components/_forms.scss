@@ -138,6 +138,12 @@ form,
             @include rem(height, 4);
         }
 
+        &.disabled {
+            label {
+                color: desaturate(lighten($black, 20), 5);
+            }    
+        }
+
     }
 
     > fieldset + fieldset {

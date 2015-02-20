@@ -50,8 +50,8 @@
                 {% for page in path.pages %}
                 <tr>
                     <td><a href="{{ url_for('pages.read_page', id=page.id )}}">{{page.page}}</a></td>
-                    <td>{{page.effective_date}}</td>
-                    <td>{{page.expiration_date}}</td>
+                    <td>{{page.effective_date_humanized}}</td>
+                    <td>{{page.expiration_date_humanized}}</td>
                 </tr>
                 {% endfor %}
         </table>
